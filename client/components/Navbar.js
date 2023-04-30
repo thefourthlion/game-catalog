@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
+import Dropdown from "../context/dropdown";
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
-
+  const consoleOptions = ["Nintendo", "Playstation", "Xbox"];
   return (
     <div className="Navbar" id="Navbar">
       <ul
@@ -19,7 +19,10 @@ export default function Navbar() {
         <li className="nav-item">Link</li>
         <li className="nav-item">Link</li>
         <li className="nav-item">Link</li>
-        <li className="nav-item">Link</li>
+
+        <li className="nav-item">
+          <Dropdown title="Consoles" param="/games/" options={consoleOptions} />
+        </li>
 
         <li>
           <Link href="/ ">
