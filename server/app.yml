@@ -1,0 +1,5 @@
+apps:
+  - script: ./index.js
+    cwd: /home/gameCataog/game-catalog/server/
+    name: "gameCataog server"
+    interpreter: /usr/bin/node
