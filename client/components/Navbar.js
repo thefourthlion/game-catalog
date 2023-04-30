@@ -25,7 +25,7 @@ export default function Navbar() {
         </li>
 
         <li>
-          <Link href="/ ">
+          <Link href="/login">
             <button className="primary-btn">Login</button>
           </Link>
         </li>
