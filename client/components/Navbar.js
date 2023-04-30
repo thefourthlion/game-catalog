@@ -18,7 +18,9 @@ export default function Navbar() {
 
         <li className="nav-item">Link</li>
         <li className="nav-item">Link</li>
-        <li className="nav-item">Link</li>
+        <li className="nav-item">
+          <Link href="games">Games</Link>
+        </li>
 
         <li className="nav-item">
           <Dropdown title="Consoles" param="/games/" options={consoleOptions} />

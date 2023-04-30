@@ -1,0 +1,29 @@
+.GameLine {
+  .GameLine-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .item {
+    width: 100px;
+  }
+  .number {
+    max-width: 30px !important;
+  }
+
+  .size {
+    width: 75px;
+  }
+
+  .download {
+    width: 75px;
+  }
+
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: clamp(100px, 50%, 500px);
+  }
+}

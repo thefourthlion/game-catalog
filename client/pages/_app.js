@@ -1,4 +1,4 @@
-import "../styles/Input.scss";import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/GameLine.scss";import "../styles/Input.scss";import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.scss";
 import "../styles/index.scss";
 import "../styles/Footer.scss";
