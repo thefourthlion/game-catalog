@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Alert } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 import Link from "next/link";
 import Input from "../components/Input";
@@ -25,8 +25,8 @@ const Login = () => {
     try {
       await logIn(email, password);
       navigate("/");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -35,29 +35,27 @@ const Login = () => {
       <h2>Log In</h2>
       {error && <Alert variant="danger">{error}</Alert>}
 
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Input
-            placeholder="email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
+      <form onSubmit={handleSubmit}>
+        <Input
+          placeholder="email"
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <Form.Group controlId="formBasicPassword">
-          <Input
-            placeholder="password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+        <Input
+          placeholder="password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
         <h4>
           Don't have an account? <Link href="/register">Register</Link>
         </h4>
 
-        <button className="primary-btn">Log In</button>
-      </Form>
+        <button className="primary-btn" type="submit">
+          Log In
+        </button>
+      </form>
 
       {user && (
         <button className="secondary-btn logout-btn" onClick={handleLogout}>

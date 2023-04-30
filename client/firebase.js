@@ -2,13 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCa2kKyK72UwXkS4CteP9zR2w42u4_wJNI",
-  authDomain: "personal-website-872a5.firebaseapp.com",
-  projectId: "personal-website-872a5",
-  storageBucket: "personal-website-872a5.appspot.com",
-  messagingSenderId: "574950819709",
-  appId: "1:574950819709:web:26f95e6be3880163a86e14",
-  measurementId: "G-0K5PPS825B",
+  apiKey: "AIzaSyDoGyLCESXkiktsAtucAnyto7z89o69mBU",
+  authDomain: "game-catalog-5d71a.firebaseapp.com",
+  projectId: "game-catalog-5d71a",
+  storageBucket: "game-catalog-5d71a.appspot.com",
+  messagingSenderId: "443196981071",
+  appId: "1:443196981071:web:34f64e237f1553ecfd8f3a",
 };
 
 const app = initializeApp(firebaseConfig);
