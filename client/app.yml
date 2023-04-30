@@ -1,0 +1,5 @@
+apps:
+  - script: ./server.js
+    cwd: /home/gamecatalog/game-catalog/client/
+    name: "game-catalog-client"
+    interpreter: /usr/bin/node
