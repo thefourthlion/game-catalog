@@ -87,10 +87,15 @@ body {
     box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
   }
 
-  .square-btn {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 5px;
+  @media only screen and (max-width: 900px) {
+    .phone-none {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: 900px) {
+    .pc-none {
+      display: none;
+    }
   }
 }

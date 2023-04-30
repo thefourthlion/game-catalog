@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/globals.scss";
+import "../styles/index.scss";
 import "../styles/Footer.scss";
 import "../styles/ProjectInfo.scss";
 import "../styles/Landing.scss";
@@ -10,8 +12,6 @@ import "../styles/Register.scss";
 import "../styles/Login.scss";
 import "../styles/Game.scss";
 import "../styles/Games.scss";
-import "../styles/globals.scss";
-import "../styles/index.scss";
 
 import { UserAuthContextProvider } from "../context/UserAuthContext";
 import Navbar from "../components/Navbar";
