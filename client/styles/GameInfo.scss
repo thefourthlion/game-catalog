@@ -1,0 +1,21 @@
+.GameInfo {
+  .product-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .img-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+  }
+}

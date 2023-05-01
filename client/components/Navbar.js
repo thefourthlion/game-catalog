@@ -19,7 +19,7 @@ export default function Navbar() {
         <li className="nav-item">Link</li>
         <li className="nav-item">Link</li>
         <li className="nav-item">
-          <Link href="games">Games</Link>
+          <Link href="http://localhost:3000/games">Games</Link>
         </li>
 
         <li className="nav-item">

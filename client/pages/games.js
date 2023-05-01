@@ -25,7 +25,7 @@ const Games = () => {
             <>
               <GameLine
                 num={key + 1}
-                gameId={val.gameId}
+                gameId={val._id}
                 title={val.title}
                 size={val.downloadSize}
                 downloadLink={val.oldDownloadLink}
