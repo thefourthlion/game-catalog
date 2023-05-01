@@ -10,28 +10,25 @@ const os = require("os");
 const { Storage } = require("@google-cloud/storage");
 
 const storage = new Storage({
-  projectId: "your-project-id",
-  keyFilename: "/path/to/your/keyfile.json",
+  projectId: "111387581544911691922",
+  keyFilename: "./personal-site-377920-53ef05f0a38d.json",
 });
 
-const bucketName = "your-bucket-name";
+const bucketName = "games-catalog";
 
-async function uploadImageToGCS(imagePath) {
-  const bucket = storage.bucket(bucketName);
-  const filename = imagePath.split("/").pop();
-  const file = bucket.file(filename);
+const uploadFileToGoogleCloud = async function (
+  fileName,
+  filePath,
+  bucketName
+) {
+  const options = {
+    destination: fileName,
+  };
+  await storage.bucket(bucketName).upload(filePath, options);
+  console.log(`☁️👍${filePath} uploaded to ${bucketName}`);
+};
 
-  const uploadResponse = await file.save(fs.createReadStream(imagePath), {
-    metadata: {
-      contentType: "image/jpeg",
-    },
-  });
-
-  console.log(`Image uploaded to GCS: ${filename}`);
-  return uploadResponse[0].name;
-}
-
-// const uploadedFilename = await uploadImageToGCS(imagePath);
+// const uploadedFilename = await uploadFileToGoogleCloud(imagePath);
 
 // ------------------------------------------ list of apis -------------------------------
 // https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
@@ -460,6 +457,12 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
+      await uploadFileToGoogleCloud(
+        `screen-${mediaId}.png`,
+        `./images/screen-${mediaId}.png`,
+        bucketName
+      );
+
       // --------------------------------------------------- get boxImg link -----------------------------
       const oldBoxImg = `https://vimm.net/image.php?type=box&id=${mediaId}`;
       const boxImg = `https://storage.googleapis.com/games-catalog/box-${mediaId}.png`;
@@ -476,6 +479,13 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
+      await uploadFileToGoogleCloud(
+        `box-${mediaId}.png`,
+        `./images/box-${mediaId}.png`,
+        bucketName
+      );
+
+ 
       // --------------------------------------------------- get oldCartImg link -----------------------------
       const oldCartImg = `https://vimm.net/image.php?type=cart&id=${mediaId}`;
       const cartImg = `https://storage.googleapis.com/games-catalog/cart-${mediaId}.png`;
@@ -492,7 +502,13 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
-      await delay(delayTime);
+       await uploadFileToGoogleCloud(
+        `cart-${mediaId}.png`,
+        `./images/cart-${mediaId}.png`,
+        bucketName
+      );
+
+      // await delay(delayTime);
 
       // --------------------------------------------------- get downloadLink -----------------------------
       const oldDownloadLink = `https://download3.vimm.net/download/?mediaId=${mediaId}`;
