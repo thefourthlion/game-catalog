@@ -383,6 +383,20 @@ async function downloadImage(url, selector, path) {
         }
       });
 
+      const format = await page.evaluate(() => {
+        try {
+          const row = Array.from(document.querySelectorAll(".rounded tr")).find(
+            (row) => row.querySelector("td").textContent === "Format"
+          );
+
+          const data = row.querySelector("td:nth-child(3)").textContent.trim();
+
+          return data;
+        } catch (e) {
+          return "Coming Soon";
+        }
+      });
+
       const version = await page.evaluate(() => {
         try {
           const row = Array.from(document.querySelectorAll(".rounded tr")).find(
@@ -485,7 +499,6 @@ async function downloadImage(url, selector, path) {
         bucketName
       );
 
- 
       // --------------------------------------------------- get oldCartImg link -----------------------------
       const oldCartImg = `https://vimm.net/image.php?type=cart&id=${mediaId}`;
       const cartImg = `https://storage.googleapis.com/games-catalog/cart-${mediaId}.png`;
@@ -502,7 +515,7 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
-       await uploadFileToGoogleCloud(
+      await uploadFileToGoogleCloud(
         `cart-${mediaId}.png`,
         `./images/cart-${mediaId}.png`,
         bucketName
@@ -513,6 +526,7 @@ async function downloadImage(url, selector, path) {
       // --------------------------------------------------- get downloadLink -----------------------------
       const oldDownloadLink = `https://download3.vimm.net/download/?mediaId=${mediaId}`;
       const downloadLink = "download-link";
+      const description = "placeholder";
 
       // get info ready for db
       let games = {
@@ -527,11 +541,11 @@ async function downloadImage(url, selector, path) {
         oldScreenImg: oldScreenImg,
         oldBoxImg: oldBoxImg,
         oldCartImg: oldCartImg,
-        cheatCode: cheatCode,
-        cheatCodeDescription: cheatCodeDescription,
-        reviewName: reviewName,
-        reviewDate: reviewDate,
-        reviewDescription: reviewDescription,
+        cheatCode: cheatCode, // []
+        cheatCodeDescription: cheatCodeDescription, // []
+        reviewName: reviewName, //[]
+        reviewDate: reviewDate, //[]
+        reviewDescription: reviewDescription, //[]
         gameFileName: gameFileName,
         region: region,
         serial: serial,
@@ -545,16 +559,16 @@ async function downloadImage(url, selector, path) {
         soundReview: soundReview,
         graphicsReview: graphicsReview,
         publisher: publisher,
+        format: format,
         cartSize: cartSize,
         year: year,
         players: players,
-        // gameInfoTitle: gameInfoTitle,
-        // gameInfoDescription: gameInfoDescription,
         oldDownloadLink: oldDownloadLink,
         downloadLink: downloadLink,
+        description: description,
         timestamp: date,
       };
-      // 36 inputs
+      // 37 inputs
       // ---------------------------- print info on game being scrapped downloaded ----------------------
       console.log("---------------------------------------");
       console.log(`Game Title: ${title}`);

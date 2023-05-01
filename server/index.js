@@ -38,4 +38,3 @@ app.listen(PORT, () => {
   console.log("✅ Listening on port " + PORT);
 });
 app.use("/api/Games", require("./routes/Games"));
-app.use('/api/Games', require('./routes/Games'));

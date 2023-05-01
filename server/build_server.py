@@ -4,7 +4,7 @@ import os.path
 from os import path
 
 # ----------------------------------------- Set according to directory - var ----------------------------
-current_path = (r"C:\Users\Everett De Leon\z\programming\game-catalog\server")
+current_path = (r"Z:\programming\gameCatalog\server")
 
 
 # ------------------------------------------- Global Variables ---------------------------------------------
