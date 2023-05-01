@@ -89,7 +89,7 @@ async function downloadImage(url, selector, path) {
 }
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   for (let num = firstGame; num <= lastGame; num++) {
@@ -453,7 +453,7 @@ async function downloadImage(url, selector, path) {
       const reviewDate = ["", ""];
       const reviewDescription = ["", ""];
 
-      await delay(delayTime);
+      // await delay(delayTime);
 
       // --------------------------------------------------- get oldScreenImg link -----------------------------
       const oldScreenImg = `https://vimm.net/image.php?type=screen&id=${mediaId}`;
