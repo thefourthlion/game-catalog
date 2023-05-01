@@ -1,8 +1,16 @@
 const mongoose = require("mongoose");
 const GamesSchema = new mongoose.Schema(
   {
-    gameId: { type: String, required: [true, "Please provide gameId"] },
-    mediaId: { type: String, required: [true, "Please provide mediaId"] },
+    gameId: {
+      unique: true,
+      type: String,
+      required: [true, "Please provide gameId"],
+    },
+    mediaId: {
+      unique: true,
+      type: String,
+      required: [true, "Please provide mediaId"],
+    },
     title: { type: String, required: [true, "Please provide title"] },
     console: { type: String, required: [true, "Please provide console"] },
     downloadSize: {
