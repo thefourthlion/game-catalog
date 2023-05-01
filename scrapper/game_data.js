@@ -587,18 +587,18 @@ async function downloadImage(url, selector, path) {
       // console.log(`Review Description: ${reviewDescription}`);
       console.log(`Games Left : ${lastGame - num}  |  GAME#${num}`);
 
-      // await axios({
-      //   method: "POST",
-      //   url: `http://localhost:3002/api/games/create`,
-      //   data: games,
-      //   timeout: 7000,
-      // })
-      //   .then(() => {
-      //     console.log("Successfully wrote data to db ✅");
-      //   })
-      //   .catch((error) => {
-      //     console.error({ "Failed writing to db 🛑": error });
-      //   });
+      await axios({
+        method: "POST",
+        url: `http://localhost:3002/api/games/create`,
+        data: games,
+        timeout: 7000,
+      })
+        .then(() => {
+          console.log("Successfully wrote data to db ✅");
+        })
+        .catch((error) => {
+          console.error({ "Failed writing to db 🛑": error });
+        });
     } catch (e) {
       const missingGame = `Missing game #${num}`;
       missingGames.push(missingGame);
