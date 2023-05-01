@@ -449,9 +449,27 @@ async function downloadImage(url, selector, path) {
         }
       });
 
-      const reviewName = ["", ""];
-      const reviewDate = ["", ""];
-      const reviewDescription = ["", ""];
+      // ---------------------------- print info on game being scrapped downloaded ----------------------
+      console.log("---------------------------------------");
+      console.log(`Game Title: ${title}`);
+      // console.log(`Download Size : ${downloadSize}`);
+      console.log(`Console: ${gameConsole}`);
+      // console.log(`Media Id : ${mediaId}`);
+      // console.log(`Screen Img: "${oldScreenImg}`);
+      // console.log(`Box Img: "${oldBoxImg}`);
+      // console.log(`Cart Img: "${oldCartImg}`);
+      // console.log(`CheatCode : ${cheatCode}`);
+      // console.log(`CheatCode Description: "${cheatCodeDescription}`);
+      // console.log(`Game Info Description: "${gameInfoDescription}`);
+      // console.log(`Game Info Titles: "${gameInfoTitle}`);
+      // console.log(`Review names: ${reviewName}`);
+      // console.log(`Review Dates: ${reviewDate}`);
+      // console.log(`Review Description: ${reviewDescription}`);
+      console.log(`Games Left : ${lastGame - num}  |  GAME#${num}`);
+
+      const reviewName = ["placeholder", "placeholder"];
+      const reviewDate = ["placeholder", "placeholder"];
+      const reviewDescription = ["placeholder", "placeholder"];
 
       // await delay(delayTime);
 
@@ -569,23 +587,6 @@ async function downloadImage(url, selector, path) {
         timestamp: date,
       };
       // 37 inputs
-      // ---------------------------- print info on game being scrapped downloaded ----------------------
-      console.log("---------------------------------------");
-      console.log(`Game Title: ${title}`);
-      // console.log(`Download Size : ${downloadSize}`);
-      console.log(`Console: ${gameConsole}`);
-      // console.log(`Media Id : ${mediaId}`);
-      // console.log(`Screen Img: "${oldScreenImg}`);
-      // console.log(`Box Img: "${oldBoxImg}`);
-      // console.log(`Cart Img: "${oldCartImg}`);
-      // console.log(`CheatCode : ${cheatCode}`);
-      // console.log(`CheatCode Description: "${cheatCodeDescription}`);
-      // console.log(`Game Info Description: "${gameInfoDescription}`);
-      // console.log(`Game Info Titles: "${gameInfoTitle}`);
-      // console.log(`Review names: ${reviewName}`);
-      // console.log(`Review Dates: ${reviewDate}`);
-      // console.log(`Review Description: ${reviewDescription}`);
-      console.log(`Games Left : ${lastGame - num}  |  GAME#${num}`);
 
       await axios({
         method: "POST",
@@ -606,7 +607,7 @@ async function downloadImage(url, selector, path) {
       if (missingGames.length > 0) {
         console.log("Creating file with missing games...");
         fs.writeFile(
-          `./missing-games${date}.txt`,
+          `./missing-games/missing.txt`,
           JSON.stringify(missingGames),
           (err) => {
             if (err) {
