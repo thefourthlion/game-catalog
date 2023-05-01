@@ -3,8 +3,38 @@ const puppeteer = require("puppeteer");
 const app = express();
 const axios = require("axios");
 const fs = require("fs");
-
 const port = process.env.PORT || 3001;
+const os = require("os");
+
+// Google Cloud Storage
+const { Storage } = require("@google-cloud/storage");
+
+const storage = new Storage({
+  projectId: "your-project-id",
+  keyFilename: "/path/to/your/keyfile.json",
+});
+
+const bucketName = "your-bucket-name";
+
+async function uploadImageToGCS(imagePath) {
+  const bucket = storage.bucket(bucketName);
+  const filename = imagePath.split("/").pop();
+  const file = bucket.file(filename);
+
+  const uploadResponse = await file.save(fs.createReadStream(imagePath), {
+    metadata: {
+      contentType: "image/jpeg",
+    },
+  });
+
+  console.log(`Image uploaded to GCS: ${filename}`);
+  return uploadResponse[0].name;
+}
+
+// const uploadedFilename = await uploadImageToGCS(imagePath);
+
+// ------------------------------------------ list of apis -------------------------------
+// https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
 
 // ------------------------------------------ game info --------------------------------
 // games link - https://vimm.net/vault/1-88080
@@ -38,8 +68,8 @@ const port = process.env.PORT || 3001;
 
 let firstGame = 1;
 let lastGame = 88080;
-let games = {};
 const missingGames = [];
+const delayTime = 3000;
 
 const date = new Date().toLocaleDateString("en-us", {
   year: "numeric",
@@ -47,8 +77,22 @@ const date = new Date().toLocaleDateString("en-us", {
   day: "numeric",
 });
 
+const delay = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+async function downloadImage(url, selector, path) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(url);
+  const element = await page.$(selector);
+  const imageURL = await element.screenshot({ path: path });
+  await browser.close();
+  return imageURL;
+}
+
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   for (let num = firstGame; num <= lastGame; num++) {
@@ -398,24 +442,64 @@ const date = new Date().toLocaleDateString("en-us", {
       const reviewDate = ["", ""];
       const reviewDescription = ["", ""];
 
+      await delay(delayTime);
+
       // --------------------------------------------------- get oldScreenImg link -----------------------------
       const oldScreenImg = `https://vimm.net/image.php?type=screen&id=${mediaId}`;
       const screenImg = `https://storage.googleapis.com/games-catalog/screen-${mediaId}.png`;
+
+      downloadImage(
+        `https://vimm.net/vault/${num}`,
+        "#screenShot",
+        `./images/screen-${mediaId}.png`
+      )
+        .then(() => {
+          console.log("Image downloaded successfully");
+        })
+        .catch((err) => {
+          console.error("Error downloading image", err);
+        });
 
       // --------------------------------------------------- get boxImg link -----------------------------
       const oldBoxImg = `https://vimm.net/image.php?type=box&id=${mediaId}`;
       const boxImg = `https://storage.googleapis.com/games-catalog/box-${mediaId}.png`;
 
+      downloadImage(
+        `https://vimm.net/vault/${num}`,
+        "#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(2) > table > tbody > tr > td > a > img",
+        `./images/box-${mediaId}.png`
+      )
+        .then(() => {
+          console.log("Image downloaded successfully");
+        })
+        .catch((err) => {
+          console.error("Error downloading image", err);
+        });
+
       // --------------------------------------------------- get oldCartImg link -----------------------------
       const oldCartImg = `https://vimm.net/image.php?type=cart&id=${mediaId}`;
       const cartImg = `https://storage.googleapis.com/games-catalog/cart-${mediaId}.png`;
+
+      downloadImage(
+        `https://vimm.net/vault/${num}`,
+        "#productimagethumb",
+        `./images/cart-${mediaId}.png`
+      )
+        .then(() => {
+          console.log("Image downloaded successfully");
+        })
+        .catch((err) => {
+          console.error("Error downloading image", err);
+        });
+
+      await delay(delayTime);
 
       // --------------------------------------------------- get downloadLink -----------------------------
       const oldDownloadLink = `https://download3.vimm.net/download/?mediaId=${mediaId}`;
       const downloadLink = "download-link";
 
       // get info ready for db
-      games = {
+      let games = {
         gameId: num,
         mediaId: mediaId,
         title: title,
@@ -454,7 +538,7 @@ const date = new Date().toLocaleDateString("en-us", {
         downloadLink: downloadLink,
         timestamp: date,
       };
-
+      // 36 inputs
       // ---------------------------- print info on game being scrapped downloaded ----------------------
       console.log("---------------------------------------");
       console.log(`Game Title: ${title}`);
