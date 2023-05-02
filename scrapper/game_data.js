@@ -63,10 +63,10 @@ const uploadFileToGoogleCloud = async function (
 // cycle through tr's and get text info from inside
 // github for cover images - https://github.com/libretro-thumbnails/libretro-thumbnails
 
-let firstGame = 1;
+let firstGame = 129;
 let lastGame = 88080;
 const missingGames = [];
-const delayTime = 3000;
+const delayTime = 1000;
 
 const date = new Date().toLocaleDateString("en-us", {
   year: "numeric",
@@ -442,8 +442,12 @@ async function downloadImage(url, selector, path) {
 
       const gameFileName = await page.evaluate(() => {
         try {
-          const data = document.querySelector("span#data-good-title").innerText;
-          return data;
+          const data = document.querySelector("#data-good-title").innerText;
+          if (gameFileName != "") {
+            return data;
+          } else {
+            return "Coming Soon";
+          }
         } catch (e) {
           return "Coming Soon";
         }
@@ -454,6 +458,7 @@ async function downloadImage(url, selector, path) {
       console.log(`Game Title: ${title}`);
       // console.log(`Download Size : ${downloadSize}`);
       console.log(`Console: ${gameConsole}`);
+      console.log(`Game File Name: ${gameFileName}`);
       // console.log(`Media Id : ${mediaId}`);
       // console.log(`Screen Img: "${oldScreenImg}`);
       // console.log(`Box Img: "${oldBoxImg}`);
@@ -471,7 +476,7 @@ async function downloadImage(url, selector, path) {
       const reviewDate = ["placeholder", "placeholder"];
       const reviewDescription = ["placeholder", "placeholder"];
 
-      // await delay(delayTime);
+      await delay(delayTime);
 
       // --------------------------------------------------- get oldScreenImg link -----------------------------
       const oldScreenImg = `https://vimm.net/image.php?type=screen&id=${mediaId}`;
@@ -489,11 +494,15 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
-      await uploadFileToGoogleCloud(
-        `screen-${mediaId}.png`,
-        `./images/screen-${mediaId}.png`,
-        bucketName
-      );
+      // try {
+      //   await uploadFileToGoogleCloud(
+      //     `screen-${mediaId}.png`,
+      //     `./images/screen-${mediaId}.png`,
+      //     bucketName
+      //   );
+      // } catch (e) {
+      //   console.log("Error uploading screen image");
+      // }
 
       // --------------------------------------------------- get boxImg link -----------------------------
       const oldBoxImg = `https://vimm.net/image.php?type=box&id=${mediaId}`;
@@ -511,11 +520,15 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
-      await uploadFileToGoogleCloud(
-        `box-${mediaId}.png`,
-        `./images/box-${mediaId}.png`,
-        bucketName
-      );
+      // try {
+      //   await uploadFileToGoogleCloud(
+      //     `box-${mediaId}.png`,
+      //     `./images/box-${mediaId}.png`,
+      //     bucketName
+      //   );
+      // } catch (e) {
+      //   console.log("Error uploading box image");
+      // }
 
       // --------------------------------------------------- get oldCartImg link -----------------------------
       const oldCartImg = `https://vimm.net/image.php?type=cart&id=${mediaId}`;
@@ -533,13 +546,17 @@ async function downloadImage(url, selector, path) {
           console.error("Error downloading image", err);
         });
 
-      await uploadFileToGoogleCloud(
-        `cart-${mediaId}.png`,
-        `./images/cart-${mediaId}.png`,
-        bucketName
-      );
+      // try {
+      //   await uploadFileToGoogleCloud(
+      //     `cart-${mediaId}.png`,
+      //     `./images/cart-${mediaId}.png`,
+      //     bucketName
+      //   );
+      // } catch (e) {
+      //   console.log("Error uploading cart image");
+      // }
 
-      // await delay(delayTime);
+      await delay(delayTime);
 
       // --------------------------------------------------- get downloadLink -----------------------------
       const oldDownloadLink = `https://download3.vimm.net/download/?mediaId=${mediaId}`;
