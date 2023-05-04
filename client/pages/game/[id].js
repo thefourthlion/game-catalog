@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Axios from "axios";
 import GameInfo from "../../components/GameInfo";
+// import dotenv from "dotenv";
+
 const Game = () => {
   const [game, setGame] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
+  // dotenv.config();
+  // const apiUrl = process.env.API_URL;
+
   const findGame = () => {
-    Axios.get(`http://localhost:3002/api/games/read/${id}`).then((res) => {
+    Axios.get(`http://localhost:3005/api/games/read/${id}`).then((res) => {
       const data = res.data;
       console.log(data);
       setGame(data);
@@ -34,11 +39,13 @@ const Game = () => {
             title={game.title}
             console={game.console}
             downloadSize={game.downloadSize}
-            boxImg={game.oldBoxImg}
-            cartImg={game.oldCartImg}
-            screenImg={game.oldScreenImg}
+            boxImg={game.boxImg}
+            cartImg={game.cartImg}
+            screenImg={game.screenImg}
             gameInfoDescription={info}
             gameInfoTitle={game.gameInfoTitle}
+            overallReview={game.overallReview}
+            cartSize={game.cartSize}
           />
         ) : (
           "Loading Game..."

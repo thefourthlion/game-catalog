@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import GameLine from "../components/GameLine";
 import Axios from "axios";
+// import dotenv from "dotenv";
+
 const Games = () => {
   const [games, setGames] = useState([]);
+
+  // dotenv.config();
+  // const apiUrl = process.env.API_URL;
 
   useEffect(() => {
     getGames();
   }, []);
 
   const getGames = () => {
-    Axios.get("http://localhost:3002/api/games/read").then((res) => {
+    Axios.get(`http://localhost:3005/api/games/read`).then((res) => {
       const data = res.data;
       setGames(data);
       console.log(data);
