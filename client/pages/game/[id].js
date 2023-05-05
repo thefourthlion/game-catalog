@@ -42,10 +42,9 @@ const Game = () => {
             boxImg={game.boxImg}
             cartImg={game.cartImg}
             screenImg={game.screenImg}
-            gameInfoDescription={info}
-            gameInfoTitle={game.gameInfoTitle}
             overallReview={game.overallReview}
             cartSize={game.cartSize}
+            year={game.year}
           />
         ) : (
           "Loading Game..."

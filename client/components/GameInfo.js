@@ -7,10 +7,10 @@ const GameInfo = ({
   boxImg,
   cartImg,
   screenImg,
-  gameInfoDescription,
-  gameInfoTitle,
+
   overallReview,
   cartSize,
+  year,
 }) => {
   const [showScreenImg, setShowScreenImg] = useState(true);
   const [showBoxImg, setShowBoxImg] = useState(true);
@@ -52,9 +52,12 @@ const GameInfo = ({
           </div>
           <div className="info-container">
             <h1>{title}</h1>
-            <a href="/">
-              <h4 className="content-header">{console}</h4>
-            </a>
+
+            <h4 className="content-header">
+              Platform - <a href="/">{console}</a>
+            </h4>
+
+            <h4>{year}</h4>
             {rating && (
               <StarRatings
                 starRatedColor="red"
@@ -63,7 +66,9 @@ const GameInfo = ({
                 starSpacing="5px"
               />
             )}
-            <p>Size: {cartSize}</p>
+            <p>Size: {downloadSize}</p>
+
+            <button>Download</button>
           </div>
         </div>
       </div>
