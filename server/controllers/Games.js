@@ -46,6 +46,7 @@ exports.createGames = async (req, res) => {
     console.log(err);
   }
 };
+
 exports.readGames = async (req, res) => {
   const page = req.query.page || 0;
   const limit = req.query.limit || 25;
@@ -63,6 +64,7 @@ exports.readGames = async (req, res) => {
     console.log(err);
   }
 };
+
 exports.readGamesFromID = async (req, res) => {
   try {
     await Games.findById({ _id: req.params.id }, {}, (err, result) => {
@@ -75,6 +77,38 @@ exports.readGamesFromID = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.readGamesFromGameID = async (req, res) => {
+  try {
+    await Games.findOne({ gameId: req.params.id }, {}, (err, result) => {
+      if (err) {
+        res.json({ app: err });
+      }
+      res.send(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.readGamesFromConsole = async (req, res) => {
+  const page = req.query.page || 0;
+  const limit = req.query.limit || 25;
+  try {
+    Games.find({ console: req.params.console }, (err, result) => {
+      if (err) {
+        res.json({ app: err });
+      }
+      res.send(result);
+    })
+      .sort()
+      .skip(page * limit)
+      .limit(limit);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.updateGames = async (req, res) => {
   try {
     await Games.findByIdAndUpdate(

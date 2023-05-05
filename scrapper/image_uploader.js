@@ -1,23 +1,14 @@
 const express = require("express");
-const puppeteer = require("puppeteer");
 const app = express();
-const fs = require("fs");
 const port = process.env.PORT || 3002;
+const axios = require("axios");
 
 // Google Cloud Storage
 const { Storage } = require("@google-cloud/storage");
 
-let firstGame = 196;
+let firstGame = 1;
 let lastGame = 88085;
-
 (async () => {
-  const delayTime = 30000;
-
-  function delay(time) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, time);
-    });
-  }
   const storage = new Storage({
     projectId: "111387581544911691922",
     keyFilename: "./personal-site-377920-53ef05f0a38d.json",
@@ -37,57 +28,48 @@ let lastGame = 88085;
 
   const bucketName = "games-catalog";
 
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-
   for (let num = firstGame; num <= lastGame; num++) {
-    delay(delayTime);
     try {
-      await page.setDefaultNavigationTimeout(0);
-
-      await page.goto(`https://vimm.net/vault/${num}`);
-
-      const mediaId = await page.evaluate(() => {
-        const data = document.querySelector(
-          "#download_form > input[type=hidden]:nth-child(1)"
-        ).value;
-        return data;
-      });
+      const id = await axios
+        .get(`http://localhost:3005/api/games/read/game/${num}`)
+        .then((response) => {
+          const data = response.data;
+          let mediaId = data.mediaId;
+          return mediaId;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       console.log(`========== ${num}`);
 
       // --------------------------------------------------- get ScreenImg  -----------------------------
 
       await uploadFileToGoogleCloud(
-        `screen-${mediaId}.png`,
-        `./images/screen-${mediaId}.png`,
+        `screen-${id}.png`,
+        `./images/screen-${id}.png`,
         bucketName
       );
 
       // --------------------------------------------------- get boxImg -----------------------------
 
       await uploadFileToGoogleCloud(
-        `box-${mediaId}.png`,
-        `./images/box-${mediaId}.png`,
+        `box-${id}.png`,
+        `./images/box-${id}.png`,
         bucketName
       );
 
       // --------------------------------------------------- get CartImg  -----------------------------
 
       await uploadFileToGoogleCloud(
-        `cart-${mediaId}.png`,
-        `./images/cart-${mediaId}.png`,
+        `cart-${id}.png`,
+        `./images/cart-${id}.png`,
         bucketName
       );
-
-      process.on("uncaughtException", (e) => {
-        console.log("uncaughtException:", e);
-      });
     } catch (e) {
       process.on("uncaughtException", (e) => {
         console.log("uncaughtException:", e);
       });
-
       console.error(e);
     }
   }
