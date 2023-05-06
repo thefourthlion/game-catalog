@@ -19,6 +19,12 @@ export default function Navbar() {
     "PlayStation 3",
     "Wii",
     "WiiWare",
+    "Game Boy",
+    "Virtual Boy",
+    "Game Boy Color",
+    "Game Boy Advance",
+    "Nintendo DS",
+    "PlayStation Portable",
   ];
   return (
     <div className="Navbar" id="Navbar">
