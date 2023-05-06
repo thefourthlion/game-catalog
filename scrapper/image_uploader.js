@@ -7,7 +7,7 @@ const axios = require("axios");
 const { Storage } = require("@google-cloud/storage");
 
 let firstGame = 1;
-let lastGame = 88085;
+let lastGame = 88096;
 (async () => {
   const storage = new Storage({
     projectId: "111387581544911691922",
@@ -31,7 +31,7 @@ let lastGame = 88085;
   for (let num = firstGame; num <= lastGame; num++) {
     try {
       const id = await axios
-        .get(`http://localhost:3005/api/games/read/game/${num}`)
+        .get(`http://localhost:3006/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let mediaId = data.mediaId;

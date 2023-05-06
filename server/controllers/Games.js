@@ -169,8 +169,8 @@ exports.updateGamesByGameId = async (req, res) => {
     await Games.updateOne(
       { gameId: req.params.id },
       {
-        // description: req.body.description,
-        oldCartImg: req.body.oldCartImg,
+        description: req.body.description,
+        // oldCartImg: req.body.oldCartImg,
       },
       (err, result) => {
         if (err) {

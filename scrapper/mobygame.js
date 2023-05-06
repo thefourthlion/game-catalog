@@ -4,7 +4,7 @@ const port = process.env.PORT || 3003;
 const axios = require("axios");
 
 let firstGame = 7590;
-let lastGame = 88085;
+let lastGame = 88096;
 const delayTime = 1000;
 
 async function iterateSlowly() {

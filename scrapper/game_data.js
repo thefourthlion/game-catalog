@@ -64,7 +64,7 @@ https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&lim
 // github for cover images - https://github.com/libretro-thumbnails/libretro-thumbnails
 
 let firstGame = 129;
-let lastGame = 88080;
+let lastGame = 88096;
 const missingGames = [];
 const delayTime = 1000;
 
