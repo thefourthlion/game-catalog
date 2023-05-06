@@ -14,6 +14,7 @@ const GameInfo = ({
   cheatCode,
   cheatCodeDescription,
   year,
+  region,
 }) => {
   const [showScreenImg, setShowScreenImg] = useState(true);
   const [showBoxImg, setShowBoxImg] = useState(true);
@@ -21,6 +22,10 @@ const GameInfo = ({
   const [showCheatCodes, setShowCheatCodes] = useState(false);
 
   const rating = parseFloat(overallReview) / 2;
+
+  // if (console == "Nintendo") {
+  //   console = "NES";
+  // }
 
   return (
     <div className="GameInfo">
@@ -58,10 +63,12 @@ const GameInfo = ({
             <h1>{title}</h1>
 
             <h4 className="content-header">
-              Platform - <a href="/">{console}</a>
+              Platform - <a href={`/console/${console}`}>{console}</a>
             </h4>
 
-            <h4>{year}</h4>
+            <h4>Released - {year}</h4>
+
+            <h4>Region - {region}</h4>
             {rating && (
               <StarRatings
                 starRatedColor="red"
@@ -72,12 +79,20 @@ const GameInfo = ({
             )}
             <p>Size: {downloadSize}</p>
 
-            <button>Download</button>
+            <button>Free Download</button>
+
+            <a href={`https://www.amazon.com/s?k=${title}+${console}`}>
+              <button>Buy On Amazon</button>
+            </a>
 
             {/* <div>
               <p>{description}</p>
             </div> */}
           </div>
+        </div>
+        <div className="descriptions">
+          <h1>Product Description</h1>
+          <p>{description}</p>
         </div>
         <div className="cheat-codes">
           <h1 className="header">Cheat Codes</h1>

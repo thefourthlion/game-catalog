@@ -42,6 +42,7 @@ const Game = () => {
             oldCartImg={game.oldCartImg}
             cheatCodeDescription={game.cheatCodeDescription}
             cheatCode={game.cheatCode}
+            region={game.region}
             downloadSize={game.downloadSize}
             boxImg={game.boxImg}
             cartImg={game.cartImg}
