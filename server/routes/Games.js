@@ -6,6 +6,7 @@ const {
   readGamesFromID,
   readGamesFromGameID,
   readGamesFromConsole,
+  updateGamesByGameId,
   updateGames,
   deleteGames,
 } = require("../controllers/Games");
@@ -15,5 +16,8 @@ router.route("/read/:id").get(readGamesFromID);
 // router.route("/read/gameId/:console").get(readGamesFromConsole);
 router.route("/read/game/:id").get(readGamesFromGameID);
 router.route("/update/:id").post(updateGames);
+router.route("/update/:id").post(updateGames);
+router.route("/update/game/:id").post(updateGamesByGameId);
+
 router.route("/delete/:id").delete(deleteGames);
 module.exports = router;

@@ -20,4 +20,18 @@
     flex-direction: column;
     gap: 0;
   }
+
+  .cheat-codes > .header {
+    margin: 25px 0;
+  }
+  .cheats {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .code {
+    margin-right: 25px;
+  }
 }

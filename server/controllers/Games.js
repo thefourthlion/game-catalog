@@ -163,6 +163,26 @@ exports.updateGames = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.updateGamesByGameId = async (req, res) => {
+  try {
+    await Games.updateOne(
+      { gameId: req.params.id },
+      {
+        description: req.body.description,
+        oldCartImg: req.body.oldCartImg,
+      },
+      (err, result) => {
+        if (err) {
+          res.json({ app: err });
+        }
+        res.send(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
 exports.deleteGames = async (req, res) => {
   try {
     if ((await Games.findById(req.params.id)) === null) {

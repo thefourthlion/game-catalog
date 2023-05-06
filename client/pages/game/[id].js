@@ -38,6 +38,10 @@ const Game = () => {
           <GameInfo
             title={game.title}
             console={game.console}
+            description={game.description}
+            oldCartImg={game.oldCartImg}
+            cheatCodeDescription={game.cheatCodeDescription}
+            cheatCode={game.cheatCode}
             downloadSize={game.downloadSize}
             boxImg={game.boxImg}
             cartImg={game.cartImg}

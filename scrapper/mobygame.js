@@ -3,9 +3,9 @@ const app = express();
 const port = process.env.PORT || 3003;
 const axios = require("axios");
 
-let firstGame = 3;
+let firstGame = 6655;
 let lastGame = 88085;
-const delayTime = 10000;
+const delayTime = 1000;
 
 async function iterateSlowly() {
   for (let num = firstGame; num <= lastGame; num++) {

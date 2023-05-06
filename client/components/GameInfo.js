@@ -7,14 +7,18 @@ const GameInfo = ({
   boxImg,
   cartImg,
   screenImg,
-
+  oldCartImg,
+  description,
   overallReview,
   cartSize,
+  cheatCode,
+  cheatCodeDescription,
   year,
 }) => {
   const [showScreenImg, setShowScreenImg] = useState(true);
   const [showBoxImg, setShowBoxImg] = useState(true);
   const [showCartImg, setShowCartImg] = useState(true);
+  const [showCheatCodes, setShowCheatCodes] = useState(false);
 
   const rating = parseFloat(overallReview) / 2;
 
@@ -69,7 +73,50 @@ const GameInfo = ({
             <p>Size: {downloadSize}</p>
 
             <button>Download</button>
+
+            {/* <div>
+              <p>{description}</p>
+            </div> */}
           </div>
+        </div>
+        <div className="cheat-codes">
+          <h1 className="header">Cheat Codes</h1>
+          {!showCheatCodes ? (
+            <h4
+              onClick={() => {
+                setShowCheatCodes(!showCheatCodes);
+              }}
+            >
+              Show Cheats
+            </h4>
+          ) : (
+            <h4
+              onClick={() => {
+                setShowCheatCodes(!showCheatCodes);
+              }}
+            >
+              Hide Cheats
+            </h4>
+          )}
+
+          {showCheatCodes && (
+            <div className="cheats">
+              <p className="code">
+                {cheatCode &&
+                  cheatCode.map((item, index) => {
+                    return <p key={index}>{item}</p>;
+                  })}
+              </p>
+
+              <p className="code-description">
+                {cheatCodeDescription
+                  ? cheatCodeDescription.map((item, index) => {
+                      return <p key={index}>{item}</p>;
+                    })
+                  : " "}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
