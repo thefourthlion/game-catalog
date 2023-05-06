@@ -12,6 +12,8 @@ const GameInfo = ({
   overallReview,
   cartSize,
   cheatCode,
+  publisher,
+  serial,
   cheatCodeDescription,
   year,
   region,
@@ -32,23 +34,23 @@ const GameInfo = ({
       <div className="container">
         <div className="product-container">
           <div className="img-container">
-            {showBoxImg == true && (
+            {/* {showBoxImg == true && (
               <img
                 src={boxImg}
                 onError={() => {
                   setShowBoxImg(false);
                 }}
               />
-            )}
+            )} */}
 
-            {showCartImg == true && (
+            {/* {showCartImg == true && (
               <img
                 src={cartImg}
                 onError={() => {
                   setShowCartImg(false);
                 }}
               />
-            )}
+            )} */}
 
             {showScreenImg == true && (
               <img
@@ -59,80 +61,92 @@ const GameInfo = ({
               />
             )}
           </div>
+
           <div className="info-container">
             <h1>{title}</h1>
 
-            <h4 className="content-header">
-              Platform - <a href={`/console/${console}`}>{console}</a>
-            </h4>
-
-            <h4>Released - {year}</h4>
-
-            <h4>Region - {region}</h4>
             {rating && (
               <StarRatings
+                className="ratings"
                 starRatedColor="red"
                 rating={rating}
                 starDimension="25px"
                 starSpacing="5px"
               />
             )}
-            <p>Size: {downloadSize}</p>
+
+            <p className="game-information platform">
+              Platform - <a href={`/console/${console}`}>{console}</a>
+            </p>
+
+            <p className="game-information">
+              Publisher - {publisher}
+              {publisher != "Coming Soon" && (
+                <a
+                  className="wiki-link"
+                  href={`https://bootleggames.fandom.com/wiki/Special:Search?query=${publisher}&scope=cross-wiki`}
+                >
+                  Wiki
+                </a>
+              )}
+            </p>
+
+            <p className="game-information">Released - {year}</p>
+
+            <p className="game-information">Region - {region}</p>
+
+            <p className="game-information">Serial - {serial}</p>
+
+            <p className="game-information">Size - {downloadSize}</p>
 
             <button>Free Download</button>
 
             <a href={`https://www.amazon.com/s?k=${title}+${console}`}>
               <button>Buy On Amazon</button>
             </a>
-
-            {/* <div>
-              <p>{description}</p>
-            </div> */}
           </div>
         </div>
-        <div className="descriptions">
-          <h1>Product Description</h1>
-          <p>{description}</p>
-        </div>
-        <div className="cheat-codes">
-          <h1 className="header">Cheat Codes</h1>
-          {!showCheatCodes ? (
-            <h4
-              onClick={() => {
-                setShowCheatCodes(!showCheatCodes);
-              }}
-            >
-              Show Cheats
-            </h4>
-          ) : (
-            <h4
-              onClick={() => {
-                setShowCheatCodes(!showCheatCodes);
-              }}
-            >
-              Hide Cheats
-            </h4>
-          )}
 
-          {showCheatCodes && (
+        {description != "placeholder" && (
+          <div className="descriptions">
+            <h1>Product Description</h1>
+            <p>{description}</p>
+          </div>
+        )}
+
+        {cheatCode != "" && (
+          <div className="cheat-codes">
+            <h1>Cheat Codes</h1>
+
             <div className="cheats">
-              <p className="code">
-                {cheatCode &&
-                  cheatCode.map((item, index) => {
-                    return <p key={index}>{item}</p>;
-                  })}
-              </p>
-
-              <p className="code-description">
-                {cheatCodeDescription
-                  ? cheatCodeDescription.map((item, index) => {
-                      return <p key={index}>{item}</p>;
-                    })
-                  : " "}
-              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Codes</th>
+                    <th>Cheats</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="code">
+                      {cheatCode &&
+                        cheatCode.map((item, index) => {
+                          return <p key={index}>{item}</p>;
+                        })}
+                    </td>
+                    <td className="code-description">
+                      {cheatCodeDescription
+                        ? cheatCodeDescription.map((item, index) => {
+                            return <p key={index}>{item}</p>;
+                          })
+                        : " "}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

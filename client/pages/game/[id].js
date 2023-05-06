@@ -43,6 +43,8 @@ const Game = () => {
             cheatCodeDescription={game.cheatCodeDescription}
             cheatCode={game.cheatCode}
             region={game.region}
+            serial={game.serial}
+            publisher={game.publisher}
             downloadSize={game.downloadSize}
             boxImg={game.boxImg}
             cartImg={game.cartImg}

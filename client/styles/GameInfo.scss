@@ -1,28 +1,92 @@
 .GameInfo {
+  text-align: left !important;
+
+  p {
+    font-size: 1.25rem;
+  }
+  img {
+    position: absolute;
+    top: 0;
+    width: 20vw;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid black;
+  }
+
+  th {
+    background-color: #ccc;
+  }
+
+  button {
+    margin: 7.5px 0 7.5px 0;
+    font-weight: bold;
+  }
+
+  .game-information {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+  }
+
+  .platform {
+    margin-top: 10px;
+  }
+
   .product-container {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+  }
+  .wiki-link {
+    margin-left: 5px;
   }
 
   .img-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    min-width: 22vw;
   }
 
   .info-container {
     text-align: left;
-    max-width: 40vw;
+    width: 40vw;
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  .cheat-codes > .header {
-    margin: 25px 0;
+  .descriptions {
+    margin: 0 auto;
+    width: 62vw;
+  }
+
+  .descriptions > h1 {
+    margin: 15px 0 15px 0;
+  }
+
+  .descriptions > p {
+    margin: 0;
+  }
+
+  .cheat-codes {
+    margin: 0 auto;
+    width: 62vw;
+  }
+
+  .cheat-codes > h1 {
+    margin: 15px 0 15px 0;
   }
   .cheats {
     text-align: left;
