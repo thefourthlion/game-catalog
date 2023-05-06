@@ -31,7 +31,7 @@ const uploadFileToGoogleCloud = async function (
 // const uploadedFilename = await uploadFileToGoogleCloud(imagePath);
 
 // ------------------------------------------ list of apis -------------------------------
-// https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
+https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
 
 // ------------------------------------------ game info --------------------------------
 // games link - https://vimm.net/vault/1-88080

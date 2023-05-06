@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3003;
 const axios = require("axios");
 
-let firstGame = 6655;
+let firstGame = 7590;
 let lastGame = 88085;
 const delayTime = 1000;
 
@@ -12,7 +12,7 @@ async function iterateSlowly() {
     await new Promise((resolve) => setTimeout(resolve, delayTime)); // wait for 1 second
     try {
       const title = await axios
-        .get(`http://localhost:3005/api/games/read/game/${num}`)
+        .get(`http://localhost:3006/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let title = data.title;
@@ -23,7 +23,7 @@ async function iterateSlowly() {
         });
 
       const year = await axios
-        .get(`http://localhost:3005/api/games/read/game/${num}`)
+        .get(`http://localhost:3006/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let year = data.year;
@@ -37,31 +37,26 @@ async function iterateSlowly() {
 
       const gameInfo = await axios
         .get(
-          `https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm`
+          `https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL`
         )
         .then((response) => {
           const data = response.data;
           const games = data.games[0];
-          let info = [];
-          let description = games.description;
-          info.push(description);
-          let sample_cover = games.sample_cover;
-          let thumbnail_image = sample_cover.thumbnail_image;
-          info.push(thumbnail_image);
-          return info;
+          let thumbnail_image = games.thumbnail_image;
+          return thumbnail_image;
         })
         .catch((error) => {
           console.log(error.type);
         });
 
+      console.log(gameInfo);
       if (gameInfo[0] == undefined) {
         console.log("⛔ DESCRIPTION");
       } else {
         console.log(gameInfo);
         await axios
-          .post(`http://localhost:3005/api/games/update/game/${num}`, {
-            description: gameInfo[0],
-            oldCartImg: gameInfo[1],
+          .post(`http://localhost:3006/api/games/update/game/${num}`, {
+            oldCartImg: gameInfo,
           })
           .then(() => {
             console.log("✅ CHANGED DESCRIPTION");
