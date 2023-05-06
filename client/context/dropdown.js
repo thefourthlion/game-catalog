@@ -9,31 +9,10 @@ const dropdown = ({ title, param, options }) => {
     setSelected(option);
   };
 
-  const dropdownStyles = {
-    minWidth: "165px",
-    fontWeight: "bold",
-    fontSize: "28px",
-    position: "relative",
-    bottom: "6px",
-    backgroundColor: "transparent",
-    borderColor: "transparent",
-    color: "black",
-  };
-
-  const dropdownMenuStyles = {
-    minWidth: "165px",
-    fontWeight: "bold",
-    fontSize: "20px",
-    backgroundColor: "rgba(255, 255, 255, 0.55)",
-    borderColor: "transparent",
-    color: "black",
-  };
-
   return (
     <div className="dropdown">
       <Dropdown>
         <Dropdown.Toggle
-          style={dropdownStyles}
           variant="secondary"
           id="dropdown-basic"
           className="dropdown"
@@ -41,7 +20,7 @@ const dropdown = ({ title, param, options }) => {
           {selected}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu style={dropdownMenuStyles}>
+        <Dropdown.Menu className="dropdown-menu">
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}

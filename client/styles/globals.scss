@@ -9,7 +9,13 @@
 body {
   background-color: $white;
   text-align: center;
-  p {
+  color: $black !important;
+
+  a {
+    color: $primary-color;
+  }
+
+  a:hover {
     color: $black;
   }
 
@@ -90,7 +96,7 @@ body {
   }
 
   .dropdown .dropdown-menu .dropdown-item:hover {
-    background-color: $secondary-color;
+    background-color: $primary-color;
   }
 
   @media only screen and (max-width: 900px) {

@@ -1,0 +1,24 @@
+@import "./Variables.scss";
+.dropdown {
+  .dropdown {
+    min-width: 165px;
+    font-weight: bold;
+    font-size: 28px;
+    position: relative;
+    bottom: 6px;
+    background-color: transparent;
+    border-color: transparent;
+    color: black;
+  }
+
+  .dropdown-menu {
+    min-width: 165px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: $glass;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    outline: none;
+    color: black;
+  }
+}

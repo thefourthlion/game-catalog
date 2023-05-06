@@ -49,6 +49,7 @@ const GameInfo = ({
                     alt="Slide One"
                     layout="fill"
                     objectFit="cover"
+                    className="carousel-img"
                   />
                 </Carousel.Item>
               )}
@@ -62,6 +63,7 @@ const GameInfo = ({
                     alt="Slide Two"
                     layout="fill"
                     objectFit="cover"
+                    className="carousel-img"
                   />
                 </Carousel.Item>
               )}
@@ -88,7 +90,7 @@ const GameInfo = ({
             {rating && (
               <StarRatings
                 className="ratings"
-                starRatedColor="red"
+                starRatedColor="#0b9ed9"
                 rating={rating}
                 starDimension="25px"
                 starSpacing="5px"
@@ -120,34 +122,35 @@ const GameInfo = ({
             <p className="game-information">Serial - {serial}</p>
 
             <p className="game-information">Size - {downloadSize}</p>
+          </div>
+          <div className="btn-container">
             <a href={`https://vimm.net/vault/${gameId}`}>
-              <button type="submit">Free Download</button>
+              <button className="primary-btn" type="submit">
+                Free Download
+              </button>
             </a>
 
+            <br />
+
             <a href={`https://www.amazon.com/s?k=${title}+${console}`}>
-              <button>Buy On Amazon</button>
+              <button className="primary-btn">Buy On Amazon</button>
             </a>
           </div>
         </div>
 
         {description != "placeholder" && (
           <div className="descriptions">
-            <h1>Product Description</h1>
+            <h1 className="info-header">Game Description</h1>
             <p>{description}</p>
           </div>
         )}
 
         {cheatCode != "" && (
           <div className="cheat-codes">
-            <h1>Cheat Codes</h1>
+            <h1 className="info-header">Cheat Codes</h1>
 
             <div className="cheats">
               <table>
-                <thead>
-                  <tr>
-                    <th>Cheat Codes</th>
-                  </tr>
-                </thead>
                 <tbody>
                   <tr>
                     <td className="code">

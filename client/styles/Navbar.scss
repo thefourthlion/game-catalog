@@ -27,7 +27,7 @@
   button {
     height: 55px;
     width: 200px;
-    }
+  }
 
   ul {
     display: flex;
@@ -90,7 +90,7 @@
 
 @media (max-width: 900px) {
   .Navbar {
-    background-color: $secondary-color;
+    background-color: $primary-color;
     height: 75px;
 
     .nav-title {
@@ -101,7 +101,7 @@
     }
 
     .nav-links {
-      background-color: $secondary-color;
+      background-color: $primary-color;
       position: absolute;
       height: 100vh;
       top: 65px;

@@ -1,4 +1,9 @@
-import "../styles/ConsoleGames.scss";import "../styles/GameInfo.scss";import "../styles/GameLine.scss";import "../styles/Input.scss";import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/ConsoleGames.scss";
+import "../styles/dropdown.scss";
+import "../styles/GameInfo.scss";
+import "../styles/GameLine.scss";
+import "../styles/Input.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.scss";
 import "../styles/index.scss";
 import "../styles/Footer.scss";
