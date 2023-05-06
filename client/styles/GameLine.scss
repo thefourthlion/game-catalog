@@ -1,8 +1,35 @@
+@import "./variables.scss";
 .GameLine {
   .GameLine-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+  }
+  p {
+    font-weight: bold;
+  }
+
+  a {
+    color: $primary-color;
+  }
+
+  a:hover {
+    color: $black;
+  }
+  button {
+    position: relative;
+    bottom: 5px;
+    width: 150px;
+    height: 45px;
+    padding-bottom: 3px;
+  }
+
+  hr {
+    color: $primary-color;
+    width: 60vw;
+    margin: 5px auto 15px auto;
+    position: relative;
+    left: 35px;
   }
 
   .item {

@@ -9,6 +9,9 @@
 body {
   background-color: $white;
   text-align: center;
+  p {
+    color: $black;
+  }
 
   .page {
     margin: 125px 0 125px 0;
@@ -32,13 +35,11 @@ body {
   }
 
   .primary-btn {
-    color: $white;
+    color: $black;
     font-weight: bold;
     background-color: $primary-color;
     border: 2px solid $primary-color;
     border-radius: 5px;
-    height: 57px;
-    min-width: 250px;
     font-size: 1.25rem;
     padding-top: 3px;
     cursor: pointer;
@@ -48,17 +49,16 @@ body {
     background-color: $primary-color-dark;
     border: 2px solid $primary-color-dark;
     border-radius: 5px;
-    box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
+    color: $primary-color;
+    box-shadow: 9px 9px 4px -5px hsla(197°, 90%, 45%, 0.5);
   }
 
   .secondary-btn {
-    color: $white;
+    color: $black;
     font-weight: bold;
     background-color: $secondary-color;
     border: 2px solid $secondary-color;
     border-radius: 5px;
-    height: 57px;
-    min-width: 250px;
     font-size: 1.25rem;
     padding-top: 3px;
     cursor: pointer;
@@ -72,13 +72,11 @@ body {
   }
 
   .third-btn {
-    color: $white;
+    color: $black;
     font-weight: bold;
     background-color: $third-color;
     border: 2px solid $third-color;
     border-radius: 5px;
-    height: 57px;
-    min-width: 250px;
     font-size: 1.25rem;
     padding-top: 3px;
     cursor: pointer;
