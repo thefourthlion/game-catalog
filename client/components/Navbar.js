@@ -19,6 +19,9 @@ export default function Navbar() {
     "PlayStation 3",
     "Wii",
     "WiiWare",
+  ];
+
+  const handheldOption = [
     "Game Boy",
     "Virtual Boy",
     "Game Boy Color",
@@ -26,6 +29,7 @@ export default function Navbar() {
     "Nintendo DS",
     "PlayStation Portable",
   ];
+
   return (
     <div className="Navbar" id="Navbar">
       <ul
@@ -38,10 +42,16 @@ export default function Navbar() {
           </Link>
         </li>
 
-        <li className="nav-item">Link</li>
-        <li className="nav-item">Link</li>
         <li className="nav-item">
           <Link href="http://localhost:3000/games">Games</Link>
+        </li>
+
+        <li className="nav-item">
+          <Dropdown
+            title="Handhelds"
+            param="/console/"
+            options={handheldOption}
+          />
         </li>
 
         <li className="nav-item">
