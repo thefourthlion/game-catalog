@@ -50,7 +50,7 @@ const dropdown = ({ title, param, options }) => {
                 handleSelected(option);
               }}
             >
-              <Link href={`${param}${option.toLowerCase()}`}>{option}</Link>
+              <Link href={`${param}${option}`}>{option}</Link>
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>

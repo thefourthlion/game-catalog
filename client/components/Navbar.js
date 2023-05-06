@@ -3,7 +3,23 @@ import Link from "next/link";
 import Dropdown from "../context/dropdown";
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
-  const consoleOptions = ["Nintendo", "Playstation", "Xbox"];
+  const consoleOptions = [
+    "Nintendo",
+    "Master System",
+    "Genesis",
+    "Super Nintendo",
+    "Saturn",
+    "PlayStation",
+    "Nintendo 64",
+    "Dreamcast",
+    "PlayStation 2",
+    "Xbox",
+    "GameCube",
+    "Xbox 360",
+    "PlayStation 3",
+    "Wii",
+    "WiiWare",
+  ];
   return (
     <div className="Navbar" id="Navbar">
       <ul
@@ -23,7 +39,11 @@ export default function Navbar() {
         </li>
 
         <li className="nav-item">
-          <Dropdown title="Consoles" param="/games/" options={consoleOptions} />
+          <Dropdown
+            title="Consoles"
+            param="/console/"
+            options={consoleOptions}
+          />
         </li>
 
         <li>
