@@ -5,7 +5,7 @@ import Axios from "axios";
 
 const Games = () => {
   const [games, setGames] = useState([]);
-
+  const [limit, setLimit] = useState(50);
   // dotenv.config();
   // const apiUrl = process.env.API_URL;
 
@@ -13,12 +13,19 @@ const Games = () => {
     getGames();
   }, []);
 
+  const getMoreGames = () => {
+    setLimit(limit + 25);
+    getGames();
+  };
+
   const getGames = () => {
-    Axios.get(`http://localhost:3005/api/games/read`).then((res) => {
-      const data = res.data;
-      setGames(data);
-      console.log(data);
-    });
+    Axios.get(`http://localhost:3005/api/games/read?limit=${limit}`).then(
+      (res) => {
+        const data = res.data;
+        setGames(data);
+        console.log(data);
+      }
+    );
   };
 
   return (
@@ -39,6 +46,14 @@ const Games = () => {
           );
         })}
       </div>
+      <button
+        className="primary-btn view-more-btn"
+        onClick={() => {
+          getMoreGames();
+        }}
+      >
+        View More
+      </button>
     </div>
   );
 };

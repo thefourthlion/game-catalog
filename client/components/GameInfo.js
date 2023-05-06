@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import StarRatings from "react-star-ratings";
+import { Carousel } from "react-bootstrap";
+
 const GameInfo = ({
   title,
   console,
@@ -7,6 +9,8 @@ const GameInfo = ({
   boxImg,
   cartImg,
   screenImg,
+  gameId,
+  players,
   oldCartImg,
   description,
   overallReview,
@@ -34,32 +38,48 @@ const GameInfo = ({
       <div className="container">
         <div className="product-container">
           <div className="img-container">
-            {/* {showBoxImg == true && (
-              <img
-                src={boxImg}
-                onError={() => {
-                  setShowBoxImg(false);
-                }}
-              />
-            )} */}
-
-            {/* {showCartImg == true && (
-              <img
-                src={cartImg}
-                onError={() => {
-                  setShowCartImg(false);
-                }}
-              />
-            )} */}
-
-            {showScreenImg == true && (
-              <img
-                src={screenImg}
-                onError={() => {
-                  setShowScreenImg(false);
-                }}
-              />
-            )}
+            <Carousel className="carousel">
+              {showScreenImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={screenImg}
+                    onError={() => {
+                      setShowScreenImg(false);
+                    }}
+                    alt="Slide One"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </Carousel.Item>
+              )}
+              {showCartImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={cartImg}
+                    onError={() => {
+                      setShowCartImg(false);
+                    }}
+                    alt="Slide Two"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </Carousel.Item>
+              )}
+              {showBoxImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={boxImg}
+                    onError={() => {
+                      setShowBoxImg(false);
+                    }}
+                    alt="Slide Three"
+                    layout="fill"
+                    objectFit="cover"
+                    className="carousel-img"
+                  />
+                </Carousel.Item>
+              )}
+            </Carousel>
           </div>
 
           <div className="info-container">
@@ -95,11 +115,14 @@ const GameInfo = ({
 
             <p className="game-information">Region - {region}</p>
 
+            <p className="game-information">Players - {players}</p>
+
             <p className="game-information">Serial - {serial}</p>
 
             <p className="game-information">Size - {downloadSize}</p>
-
-            <button>Free Download</button>
+            <a href={`https://vimm.net/vault/${gameId}`}>
+              <button type="submit">Free Download</button>
+            </a>
 
             <a href={`https://www.amazon.com/s?k=${title}+${console}`}>
               <button>Buy On Amazon</button>
@@ -122,8 +145,7 @@ const GameInfo = ({
               <table>
                 <thead>
                   <tr>
-                    <th>Codes</th>
-                    <th>Cheats</th>
+                    <th>Cheat Codes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -131,15 +153,13 @@ const GameInfo = ({
                     <td className="code">
                       {cheatCode &&
                         cheatCode.map((item, index) => {
-                          return <p key={index}>{item}</p>;
+                          return (
+                            <p key={index}>
+                              {item} - {cheatCodeDescription[index]}
+                              <hr />
+                            </p>
+                          );
                         })}
-                    </td>
-                    <td className="code-description">
-                      {cheatCodeDescription
-                        ? cheatCodeDescription.map((item, index) => {
-                            return <p key={index}>{item}</p>;
-                          })
-                        : " "}
                     </td>
                   </tr>
                 </tbody>

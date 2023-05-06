@@ -42,6 +42,8 @@ const Game = () => {
             oldCartImg={game.oldCartImg}
             cheatCodeDescription={game.cheatCodeDescription}
             cheatCode={game.cheatCode}
+            gameId={game.gameId}
+            players={game.players}
             region={game.region}
             serial={game.serial}
             publisher={game.publisher}

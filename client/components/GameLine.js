@@ -23,9 +23,10 @@ const GameLine = ({
         <p className=" region">{region}</p> */}
         <p className="item size">{size}</p>
         <a className="item download" href={downloadLink} download>
-          <button>download</button>
+          <button className="primary-btn">download</button>
         </a>
       </div>
+      <hr />
     </div>
   );
 };
