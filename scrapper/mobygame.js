@@ -37,21 +37,23 @@ async function iterateSlowly() {
 
       const gameInfo = await axios
         .get(
-          `https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL`
+          `https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `
         )
         .then((response) => {
           const data = response.data;
           const games = data.games[0];
-          let thumbnail_image = games.thumbnail_image;
+          let sample_cover = games.sample_cover;
+          let thumbnail_image = sample_cover.thumbnail_image;
           return thumbnail_image;
         })
         .catch((error) => {
           console.log(error.type);
         });
 
-      console.log(gameInfo);
-      if (gameInfo[0] == undefined) {
-        console.log("⛔ DESCRIPTION");
+      // console.log(gameInfo);
+
+      if (gameInfo == undefined) {
+        console.log("⛔ IMAGE");
       } else {
         console.log(gameInfo);
         await axios
@@ -59,10 +61,10 @@ async function iterateSlowly() {
             oldCartImg: gameInfo,
           })
           .then(() => {
-            console.log("✅ CHANGED DESCRIPTION");
+            console.log("✅ CHANGED IMAGE");
           })
           .catch((error) => {
-            console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+            console.log("🛑 COULDN'T CHANGE IMAGE");
           });
       }
 
