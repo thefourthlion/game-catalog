@@ -169,8 +169,7 @@ exports.updateGamesByGameId = async (req, res) => {
     await Games.updateOne(
       { gameId: req.params.id },
       {
-        description: req.body.description,
-        // oldCartImg: req.body.oldCartImg,
+        downloadLink: req.body.downloadLink,
       },
       (err, result) => {
         if (err) {
@@ -185,6 +184,26 @@ exports.updateGamesByGameId = async (req, res) => {
 };
 
 exports.updateImageByGameId = async (req, res) => {
+  try {
+    await Games.updateOne(
+      { gameId: req.params.id },
+      {
+        // description: req.body.description,
+        oldCartImg: req.body.oldCartImg,
+      },
+      (err, result) => {
+        if (err) {
+          res.json({ app: err });
+        }
+        res.send(result);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.updateGameDownloadByGameId = async (req, res) => {
   try {
     await Games.updateOne(
       { gameId: req.params.id },

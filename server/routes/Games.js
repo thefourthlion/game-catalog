@@ -9,6 +9,7 @@ const {
   updateGamesByGameId,
   updateImageByGameId,
   updateGames,
+  updateGameDownloadByGameId,
   deleteGames,
 } = require("../controllers/Games");
 router.route("/create").post(createGames);
@@ -19,6 +20,7 @@ router.route("/read/game/:id").get(readGamesFromGameID);
 router.route("/update/:id").post(updateGames);
 router.route("/update/:id").post(updateGames);
 router.route("/update/game/:id").post(updateGamesByGameId);
+router.route("/update/game/:id").post(updateGameDownloadByGameId);
 router.route("/update/game/:id").post(updateImageByGameId);
 
 router.route("/delete/:id").delete(deleteGames);
