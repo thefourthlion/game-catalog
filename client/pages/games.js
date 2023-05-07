@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import GameLine from "../components/GameLine";
 import Axios from "axios";
-// import dotenv from "dotenv";
 
 const Games = () => {
   const [games, setGames] = useState([]);
   const [limit, setLimit] = useState(50);
-  // dotenv.config();
-  // const apiUrl = process.env.API_URL;
 
   useEffect(() => {
     getGames();
@@ -19,7 +16,7 @@ const Games = () => {
   };
 
   const getGames = () => {
-    Axios.get(`http://localhost:3005/api/games/read?limit=${limit}`).then(
+    Axios.get(`http://localhost:3006/api/games/read?limit=${limit}`).then(
       (res) => {
         const data = res.data;
         setGames(data);
@@ -46,6 +43,7 @@ const Games = () => {
           );
         })}
       </div>
+
       <button
         className="primary-btn view-more-btn"
         onClick={() => {

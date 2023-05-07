@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Dropdown from "../context/dropdown";
+import Input from "./Input";
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const consoleOptions = [
@@ -33,25 +34,16 @@ export default function Navbar() {
   return (
     <div className="Navbar" id="Navbar">
       <ul
-        className="nav nav-links"
+        className="nav nav-links "
         id={showLinks ? "nav-active" : "nav-hidden"}
       >
-        <li>
-          <Link href="/" className="phone-none">
-            <h1>Logo</h1>
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link href="http://localhost:3000/games">Games</Link>
-        </li>
-
-        <li className="nav-item">
-          <Dropdown
-            title="Handhelds"
-            param="/console/"
-            options={handheldOption}
-          />
+        <li className="nav-item links">
+          <a
+            href="http://localhost:3000/games"
+            className="navbar-link phone-none"
+          >
+            Games
+          </a>
         </li>
 
         <li className="nav-item">
@@ -62,11 +54,34 @@ export default function Navbar() {
           />
         </li>
 
-        <li>
-          <Link href="/login">
-            <button className="primary-btn">Login</button>
-          </Link>
+        <li className="nav-item">
+          <Dropdown
+            title="Handhelds"
+            param="/console/"
+            options={handheldOption}
+          />
         </li>
+
+        <li className="nav-item links">
+          <a className="navbar-link" href="http://localhost:3000/emulators">
+            Emulators
+          </a>
+        </li>
+
+        <li className="nav-item links">
+          <a className="navbar-link" href="http://localhost:3000/login">
+            Login
+          </a>
+        </li>
+
+        <form>
+          <li className="search">
+            <Input placeholder="Search Games" type="text" />{" "}
+            <button className="search-btn" type="submit">
+              🔎
+            </button>
+          </li>
+        </form>
       </ul>
 
       <Link href="/" className="pc-none">

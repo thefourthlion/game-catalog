@@ -9,18 +9,31 @@ const dropdown = ({ title, param, options }) => {
     setSelected(option);
   };
 
+  const dropdownStyles = {
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+    color: "black",
+  };
+
+  const dropdownMenuStyles = {
+    fontSize: "20px",
+    borderColor: "transparent",
+    color: "black",
+  };
+
   return (
     <div className="dropdown">
       <Dropdown>
         <Dropdown.Toggle
+          style={dropdownStyles}
           variant="secondary"
           id="dropdown-basic"
-          className="dropdown"
+          className="navbar-link dropdown"
         >
           {selected}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu className="dropdown-menu">
+        <Dropdown.Menu style={dropdownMenuStyles}>
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}

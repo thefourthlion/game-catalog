@@ -6,9 +6,7 @@
   align-items: center;
   // gap: 50px;
   z-index: 8 !important;
-  background-color: $glass;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background-color: #babcbf;
   border-bottom: none;
   outline: none;
   position: fixed;
@@ -20,7 +18,7 @@
     width: 35px;
     height: 5px;
     border-radius: 5px;
-    background-color: $primary-color;
+    background-color: black;
     margin: 5px;
   }
 
@@ -38,7 +36,6 @@
   }
 
   li {
-    font-size: 1.7rem;
     padding: 20px;
     flex-direction: row;
   }
@@ -46,6 +43,24 @@
   a {
     text-decoration: none;
     color: black;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .search-btn {
+    width: 50px;
+    border-radius: 5px;
+    height: 58px;
+    border: 2px solid $primary-color;
+    background-color: white;
+  }
+
+  .links {
+    position: relative;
+    top: 4.5px;
   }
 
   .burger {
@@ -67,6 +82,7 @@
 }
 
 .nav-item {
+  font-size: 25px;
   // a:hover {
   //   color: $primary-color;
   // }
@@ -104,7 +120,7 @@
       background-color: $primary-color;
       position: absolute;
       height: 100vh;
-      top: 65px;
+      top: 0px;
       display: flex;
       flex-direction: column;
       align-items: center;

@@ -13,7 +13,7 @@ const Game = () => {
   // const apiUrl = process.env.API_URL;
 
   const findGame = () => {
-    Axios.get(`http://localhost:3005/api/games/read/${id}`).then((res) => {
+    Axios.get(`http://localhost:3006/api/games/read/${id}`).then((res) => {
       const data = res.data;
       console.log(data);
       setGame(data);

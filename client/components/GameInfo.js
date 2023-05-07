@@ -37,6 +37,7 @@ const GameInfo = ({
     <div className="GameInfo">
       <div className="container">
         <div className="product-container">
+          {/* {screenImg != false && cartImg != false && boxImg != false && ( */}
           <div className="img-container">
             <Carousel className="carousel">
               {showScreenImg == true && (
@@ -83,7 +84,7 @@ const GameInfo = ({
               )}
             </Carousel>
           </div>
-
+          {/* )} */}
           <div className="info-container">
             <h1>{title}</h1>
 

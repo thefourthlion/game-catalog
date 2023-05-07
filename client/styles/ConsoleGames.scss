@@ -1,1 +1,16 @@
-.ConsoleGames{}
+.ConsoleGames {
+  .container {
+    text-align: left;
+  }
+  .view-more-btn {
+    height: 55px;
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
