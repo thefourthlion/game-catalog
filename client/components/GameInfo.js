@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StarRatings from "react-star-ratings";
 import { Carousel } from "react-bootstrap";
-
+// import puppeteer from "puppeteer";
 const GameInfo = ({
   title,
   console,
@@ -20,6 +20,7 @@ const GameInfo = ({
   serial,
   cheatCodeDescription,
   year,
+  downloadLink,
   region,
 }) => {
   const [showScreenImg, setShowScreenImg] = useState(true);
@@ -28,6 +29,20 @@ const GameInfo = ({
   const [showCheatCodes, setShowCheatCodes] = useState(false);
 
   const rating = parseFloat(overallReview) / 2;
+
+  // const downloadGame = async (link) => {
+  //   const browser = await puppeteer.launch();
+  //   const page = await browser.newPage();
+  //   await page.goto(link);
+
+  //   // Find the button using a CSS selector
+  //   const button = await page.$("#download_form > button");
+
+  //   // Click the button
+  //   await button.click();
+
+  //   await browser.close();
+  // };
 
   // if (console == "Nintendo") {
   //   console = "NES";
@@ -125,7 +140,7 @@ const GameInfo = ({
             <p className="game-information">Size - {downloadSize}</p>
           </div>
           <div className="btn-container">
-            <a href={`https://vimm.net/vault/${gameId}`}>
+            <a href={downloadLink}>
               <button className="primary-btn" type="submit">
                 Free Download
               </button>

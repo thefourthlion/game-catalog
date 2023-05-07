@@ -1,3 +1,4 @@
+@import "./variables.scss";
 .ConsoleGames {
   .container {
     text-align: left;
@@ -12,5 +13,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .letter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .letter-container p:hover {
+    color: $primary-color;
+    cursor: pointer;
   }
 }

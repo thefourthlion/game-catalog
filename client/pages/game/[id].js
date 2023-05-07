@@ -45,6 +45,7 @@ const Game = () => {
             gameId={game.gameId}
             players={game.players}
             region={game.region}
+            downloadLink={game.downloadLink}
             serial={game.serial}
             publisher={game.publisher}
             downloadSize={game.downloadSize}
