@@ -3,7 +3,7 @@ const session = require("express-session");
 const passport = require("passport");
 const app = express();
 const cors = require("cors");
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3014;
 const User = require("./models/auth");
 const connectDB = require("./config/mongoose");
 require("dotenv").config({ path: "./.env" });

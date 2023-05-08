@@ -10,6 +10,7 @@ const {
   updateImageByGameId,
   updateGames,
   updateGameDownloadByGameId,
+  readGamesStartingWithLetter,
   deleteGames,
 } = require("../controllers/Games");
 router.route("/create").post(createGames);
@@ -17,6 +18,7 @@ router.route("/read").get(readGames);
 router.route("/read/:id").get(readGamesFromID);
 router.route("/read/console/:console").get(readGamesFromConsole);
 router.route("/read/game/:id").get(readGamesFromGameID);
+router.route("/read/game/letter/:id").get(readGamesStartingWithLetter);
 router.route("/update/:id").post(updateGames);
 router.route("/update/:id").post(updateGames);
 router.route("/update/game/:id").post(updateGamesByGameId);
