@@ -1,19 +1,16 @@
-const express = require("express");
 const puppeteer = require("puppeteer");
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
-const app = express();
+
 const { Storage } = require("@google-cloud/storage");
 
 const { games } = require("./gameLists/Nintendo");
 
-console.log(games);
-
-const port = process.env.PORT || 3001;
-const start = 7;
+const start = 1602;
 const end = games.length;
 const delayTime = 1000;
+let count = 0;
 
 const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -52,6 +49,17 @@ const downloadGames = async () => {
       await page.goto(`https://vimm.net/vault/${games[num]}`, {
         waitUntil: "domcontentloaded",
       });
+
+      function getFileNameFromDir(dirPath) {
+        const filenames = [];
+        fs.readdirSync(dirPath).forEach((file) => {
+          filenames.push(file);
+        });
+        return filenames;
+      }
+
+      // const fileName = getFileNameFromDir(`./downloads/`);
+      // console.log(fileName[0].split(".crdownload")[0]);
 
       // Check if the download button is available for the game
       const isDownloadable = await page.evaluate(() => {
@@ -96,13 +104,19 @@ const downloadGames = async () => {
 
       // Check if the game has already been downloaded
 
-      const currentFile = path.join(__dirname, "/downloads/" + getTitle);
+      let currentFile = path.join(__dirname, "/downloads/" + getTitle);
 
       const currentFileZ = path.join(__dirname, "/downloads/" + getTitleZ);
 
+      if (getTitle == ".zip" || getTitleZ == ".7z") {
+        let fileName = getFileNameFromDir(`./downloads/`);
+        fileName = fileName[0].split(".crdownload")[0];
+        currentFile = path.join(__dirname, "/downloads/" + fileName);
+      }
+
       if (fs.existsSync(currentFile)) {
         let exists = "✅";
-        console.log(`Is #${currentFile} downloaded? ${exists}`);
+        console.log(`Is ${currentFile} downloaded? ${exists}`);
 
         await uploadFileToGoogleCloud(
           `${getConsole}/${getTitle}`,
@@ -113,9 +127,12 @@ const downloadGames = async () => {
           let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${urlTitle}`;
           console.log(googleGCSUrl);
           axios
-            .post(`http://localhost:3006/api/games/update/game/${num}`, {
-              downloadLink: googleGCSUrl,
-            })
+            .post(
+              `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
+              {
+                downloadLink: googleGCSUrl,
+              }
+            )
             .then(() => {
               console.log("✅ CHANGED DESCRIPTION");
             })
@@ -136,11 +153,15 @@ const downloadGames = async () => {
           let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${urlTitle}`;
           console.log(googleGCSUrl);
           axios
-            .post(`http://localhost:3006/api/games/update/game/${num}`, {
-              downloadLink: googleGCSUrl,
-            })
+            .post(
+              `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
+              {
+                downloadLink: googleGCSUrl,
+              }
+            )
             .then(() => {
               console.log("✅ CHANGED DESCRIPTION");
+              count = 0;
             })
             .catch((error) => {
               console.log("🛑 COULDN'T CHANGE DESCRIPTION");
@@ -168,8 +189,14 @@ const downloadGames = async () => {
           await Promise.all([
             await page.click("#download_form > button"),
             console.log("Downloading..."),
+            count++,
+            console.log(`🥶 - ${count}`),
             (num = num - 1),
           ]);
+          if (count == 10) {
+            num++;
+            count = 0;
+          }
         } else {
           fs.unlink(`./downloads/${getTitle}`, (err) => {
             if (err) throw err;
@@ -185,5 +212,3 @@ const downloadGames = async () => {
 };
 
 downloadGames();
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
