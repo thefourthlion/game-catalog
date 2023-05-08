@@ -1,5 +1,5 @@
 apps:
   - script: ./index.js
-    cwd: /home/gameCatalog/game-catalog/server/
+    cwd: /home/everettdeleon/game-catalog/server/
     name: "gameCatalog server"
     interpreter: /usr/bin/node
