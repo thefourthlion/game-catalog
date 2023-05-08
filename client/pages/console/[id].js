@@ -17,7 +17,7 @@ const Games = () => {
 
   const getGames = () => {
     Axios.get(
-      `http://localhost:3006/api/games/read/console/${id}?limit=${limit}`
+      `https://www.api.games.everettdeleon.com/api/games/read/console/${id}?limit=${limit}`
     ).then((res) => {
       const data = res.data;
       setGames(data);

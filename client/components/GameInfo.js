@@ -139,12 +139,19 @@ const GameInfo = ({
 
             <p className="game-information">Size - {downloadSize}</p>
           </div>
+
           <div className="btn-container">
-            <a href={downloadLink}>
+            {downloadLink != "download-link" ? (
+              <a href={downloadLink}>
+                <button className="primary-btn" type="submit">
+                  Free Download
+                </button>
+              </a>
+            ) : (
               <button className="primary-btn" type="submit">
-                Free Download
+                Coming Soon
               </button>
-            </a>
+            )}
 
             <br />
 

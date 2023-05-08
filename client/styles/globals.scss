@@ -28,7 +28,7 @@ body {
   // }
 
   .page {
-    margin: 125px 0 125px 0;
+    margin: 120px 0 125px 0;
   }
   .search-input {
     background-color: $white;
@@ -109,6 +109,9 @@ body {
   }
 
   @media only screen and (max-width: 900px) {
+    .page {
+      margin: 95px 0 125px 0;
+    }
     .phone-none {
       display: none;
     }

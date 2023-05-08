@@ -38,10 +38,7 @@ export default function Navbar() {
         id={showLinks ? "nav-active" : "nav-hidden"}
       >
         <li className="nav-item links">
-          <a
-            href="http://localhost:3000/games"
-            className="navbar-link phone-none"
-          >
+          <a href="/games" className="navbar-link phone-none">
             Games
           </a>
         </li>
@@ -63,13 +60,13 @@ export default function Navbar() {
         </li>
 
         <li className="nav-item links">
-          <a className="navbar-link" href="http://localhost:3000/emulators">
+          <a className="navbar-link" href="/emulators">
             Emulators
           </a>
         </li>
 
         <li className="nav-item links">
-          <a className="navbar-link" href="http://localhost:3000/login">
+          <a className="navbar-link" href="/login">
             Login
           </a>
         </li>
