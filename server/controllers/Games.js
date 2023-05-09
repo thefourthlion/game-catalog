@@ -51,7 +51,7 @@ exports.readGames = async (req, res) => {
   const page = req.query.page || 0;
   const limit = req.query.limit || 25;
   try {
-    Games.find({}, (err, result) => {
+    await Games.find({}, (err, result) => {
       if (err) {
         res.json({ app: err });
       }
@@ -59,7 +59,8 @@ exports.readGames = async (req, res) => {
     })
       .sort()
       .skip(page * limit)
-      .limit(limit);
+      .limit(limit)
+      .exec();
   } catch (err) {
     console.log(err);
   }
@@ -109,7 +110,7 @@ exports.readGamesFromConsole = async (req, res) => {
   const page = req.query.page || 0;
   const limit = req.query.limit || 25;
   try {
-    Games.find({ console: req.params.console }, (err, result) => {
+    await Games.find({ console: req.params.console }, (err, result) => {
       if (err) {
         res.json({ app: err });
       }
