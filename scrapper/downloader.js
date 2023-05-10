@@ -10,7 +10,7 @@ const { games } = require("./gameLists/Nintendo");
 const start = 1602;
 const end = games.length;
 const delayTime = 1000;
-let count = 0;
+// let count = 0;
 
 const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -161,7 +161,7 @@ const downloadGames = async () => {
             )
             .then(() => {
               console.log("✅ CHANGED DESCRIPTION");
-              count = 0;
+              // count = 0;
             })
             .catch((error) => {
               console.log("🛑 COULDN'T CHANGE DESCRIPTION");
@@ -185,18 +185,19 @@ const downloadGames = async () => {
           await client.send("Page.setDownloadBehavior", {
             behavior: "allow",
             downloadPath: path.resolve(__dirname, "./downloads"),
+            // filename: "my-downloaded-file.zip",
           });
           await Promise.all([
             await page.click("#download_form > button"),
             console.log("Downloading..."),
-            count++,
-            console.log(`🥶 - ${count}`),
+            // count++,
+            // console.log(`🥶 - ${count}`),
             (num = num - 1),
           ]);
-          if (count == 10) {
-            num++;
-            count = 0;
-          }
+          // if (count == 10) {
+          //   num++;
+          //   count = 0;
+          // }
         } else {
           fs.unlink(`./downloads/${getTitle}`, (err) => {
             if (err) throw err;
