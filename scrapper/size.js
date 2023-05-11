@@ -1,7 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 
-const starting = 5000;
+const starting = 1;
 const ending = 88096;
 let size = 0;
 
@@ -26,7 +26,7 @@ const generate = async () => {
       } else if (gameSizeSplit[1] == "MB") {
         size = size + parseFloat(gamesSize) / 1000;
       } else if (gameSizeSplit[1] == "KB") {
-        size = (size + parseFloat(gamesSize) / 1000) / 1000;
+        size = size + (parseFloat(gamesSize) / 1000 )/ 1000;
       }
 
       console.log(
