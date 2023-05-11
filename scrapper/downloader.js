@@ -7,8 +7,8 @@ const { Storage } = require("@google-cloud/storage");
 
 const { games } = require("./gameLists/Nintendo");
 
-const start = 1602;
-const end = games.length;
+const start = 2;
+const end = 88065;
 const delayTime = 1000;
 // let count = 0;
 
@@ -46,7 +46,9 @@ const downloadGames = async () => {
       await page.setDefaultNavigationTimeout(0);
 
       // Navigate to the vault page for the current id
-      await page.goto(`https://vimm.net/vault/${games[num]}`, {
+
+      console.log(`GAME #${num}`);
+      await page.goto(`https://vimm.net/vault/${num}`, {
         waitUntil: "domcontentloaded",
       });
 
@@ -98,23 +100,23 @@ const downloadGames = async () => {
         return name;
       });
 
-      console.log(
-        `-------------------- #${num} - ${getTitle} -------------------------`
-      );
-
       // Check if the game has already been downloaded
 
       let currentFile = path.join(__dirname, "/downloads/" + getTitle);
 
       const currentFileZ = path.join(__dirname, "/downloads/" + getTitleZ);
 
-      if (getTitle == ".zip" || getTitleZ == ".7z") {
-        let fileName = getFileNameFromDir(`./downloads/`);
-        fileName = fileName[0].split(".crdownload")[0];
-        currentFile = path.join(__dirname, "/downloads/" + fileName);
-      }
+      // if (getTitle == ".zip" || getTitleZ == ".7z") {
+      //   let fileName = getFileNameFromDir(`./downloads/`);
+      //   fileName = fileName[0].split(".crdownload")[0];
+      //   currentFile = path.join(__dirname, "/downloads/" + fileName);
+      // }
 
-      if (fs.existsSync(currentFile)) {
+      console.log(
+        `-------------------- #${num} - ${getTitle} - ${getConsole} -------------------------`
+      );
+
+      if (fs.existsSync(currentFile) && getConsole == "Nintendo") {
         let exists = "✅";
         console.log(`Is ${currentFile} downloaded? ${exists}`);
 
@@ -125,7 +127,7 @@ const downloadGames = async () => {
         ).then(() => {
           let urlTitle = getTitle.replace(/\s+/g, "%20");
           let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${urlTitle}`;
-          console.log(googleGCSUrl);
+          // console.log(googleGCSUrl);
           axios
             .post(
               `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
@@ -140,9 +142,9 @@ const downloadGames = async () => {
               console.log("🛑 COULDN'T CHANGE DESCRIPTION");
             });
         });
-      } else if (fs.existsSync(currentFileZ)) {
+      } else if (fs.existsSync(currentFileZ) && getConsole == "Nintendo") {
         let exists = "✅";
-        console.log(`Is #${currentFile} downloaded? ${exists}`);
+        console.log(`Is ${currentFileZ} downloaded? ${exists}`);
 
         await uploadFileToGoogleCloud(
           `${getConsole}/${getTitleZ}`,
@@ -170,6 +172,20 @@ const downloadGames = async () => {
       } else {
         let exists = "⛔";
         console.log(`Is #${currentFile || currentFileZ} downloaded? ${exists}`);
+        axios
+          .post(
+            `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
+            {
+              downloadLink: "download-link",
+            }
+          )
+          .then(() => {
+            console.log("🕎 CHANGED DESCRIPTION");
+            // count = 0;
+          })
+          .catch((error) => {
+            console.log("🕎🛑 COULDN'T CHANGE DESCRIPTION");
+          });
       }
 
       //storage.googleapis.com/game-catalog-roms/Nintendo/10-Yard%20Fight%20(USA%2C%20Europe).zip
