@@ -60,9 +60,6 @@ const downloadGames = async () => {
         return filenames;
       }
 
-      // const fileName = getFileNameFromDir(`./downloads/`);
-      // console.log(fileName[0].split(".crdownload")[0]);
-
       // Check if the download button is available for the game
       const isDownloadable = await page.evaluate(() => {
         const download = document.querySelector(
@@ -91,6 +88,14 @@ const downloadGames = async () => {
         return name;
       });
 
+      const gameTitle = await page.evaluate(() => {
+        let title = document.querySelector(
+          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span:nth-child(3)"
+        ).innerText;
+        title = title.replace(/[,:\s]+/g, "-");
+        return title;
+      });
+
       // Get the title of the game
       const getTitleZ = await page.evaluate(() => {
         const title = document.querySelector("#data-good-title").innerText;
@@ -102,15 +107,11 @@ const downloadGames = async () => {
 
       // Check if the game has already been downloaded
 
-      let currentFile = path.join(__dirname, "/downloads/" + getTitle);
+      const downloadDir = `./downloads/${gameTitle}/`;
 
-      const currentFileZ = path.join(__dirname, "/downloads/" + getTitleZ);
+      let currentFile = path.join(__dirname, `${downloadDir}` + getTitle);
 
-      // if (getTitle == ".zip" || getTitleZ == ".7z") {
-      //   let fileName = getFileNameFromDir(`./downloads/`);
-      //   fileName = fileName[0].split(".crdownload")[0];
-      //   currentFile = path.join(__dirname, "/downloads/" + fileName);
-      // }
+      const currentFileZ = path.join(__dirname, `${downloadDir}` + getTitleZ);
 
       console.log(
         `-------------------- #${num} - ${getTitle} - ${getConsole} -------------------------`
@@ -122,7 +123,7 @@ const downloadGames = async () => {
 
         await uploadFileToGoogleCloud(
           `${getConsole}/${getTitle}`,
-          `./downloads/${getTitle}`,
+          `${downloadDir}/${getTitle}`,
           bucketName
         ).then(() => {
           let urlTitle = getTitle.replace(/\s+/g, "%20");
@@ -148,7 +149,7 @@ const downloadGames = async () => {
 
         await uploadFileToGoogleCloud(
           `${getConsole}/${getTitleZ}`,
-          `./downloads/${getTitleZ}`,
+          `${downloadDir}/${getTitleZ}`,
           bucketName
         ).then(() => {
           let urlTitle = getTitleZ.replace(/\s+/g, "%20");
@@ -200,25 +201,26 @@ const downloadGames = async () => {
           const client = await page.target().createCDPSession();
           await client.send("Page.setDownloadBehavior", {
             behavior: "allow",
-            downloadPath: path.resolve(__dirname, "./downloads"),
-            // filename: "my-downloaded-file.zip",
+            downloadPath: path.resolve(__dirname, `${downloadDir}`),
           });
           await Promise.all([
             await page.click("#download_form > button"),
             console.log("Downloading..."),
-            // count++,
-            // console.log(`🥶 - ${count}`),
             (num = num - 1),
           ]);
-          // if (count == 10) {
-          //   num++;
-          //   count = 0;
-          // }
         } else {
-          fs.unlink(`./downloads/${getTitle}`, (err) => {
-            if (err) throw err;
-            console.log("File deleted!");
-          });
+          // Get the list of downloaded files
+          const files = fs.readdirSync(`${downloadDir}`);
+          console.log(files);
+          // Rename the downloaded file
+          const originalFilePath = `${downloadDir}${files[0]}`;
+          const newFilePath = `${downloadDir}/newfilename.csv`;
+          fs.renameSync(originalFilePath, newFilePath);
+
+          // fs.unlink(`./downloads/${getTitle}`, (err) => {
+          //   if (err) throw err;
+          //   console.log("File deleted!");
+          // });
         }
       }
       //
