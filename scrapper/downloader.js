@@ -7,8 +7,8 @@ const { Storage } = require("@google-cloud/storage");
 
 const { games } = require("./gameLists/Nintendo");
 
-const start = 1;
-const end = 88065;
+const start = 0;
+const end = games.length-1;
 const delayTime = 1000;
 // let count = 0;
 let newCurrentFile = false;
@@ -48,8 +48,8 @@ const downloadGames = async () => {
 
       // Navigate to the vault page for the current id
 
-      console.log(`GAME #${num}`);
-      await page.goto(`https://vimm.net/vault/${num}`, {
+      console.log(`GAME #${games[num]}`);
+      await page.goto(`https://vimm.net/vault/${games[num]}`, {
         waitUntil: "domcontentloaded",
       });
 
@@ -97,7 +97,7 @@ const downloadGames = async () => {
       );
 
       console.log(
-        `-------------------- #${num} - ${getConsole} -------------------------`
+        `-------------------- #${games[num]} - ${getConsole} -------------------------`
       );
 
       if (isDownloadable == "Download") {
@@ -182,7 +182,7 @@ const downloadGames = async () => {
           // post the google link to db
           axios
             .post(
-              `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
+              `https://www.api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
               {
                 downloadLink: googleGCSUrl,
               }
@@ -200,9 +200,9 @@ const downloadGames = async () => {
           //   console.log("File deleted!");
           // });
 
-          fsExtra.remove(`./downloads/${gameTitle}/`, (err) => {
-            console.log("Folder deleted successfully");
-          });
+          // fsExtra.remove(`./downloads/${gameTitle}/`, (err) => {
+          //   console.log("Folder deleted successfully");
+          // });
           // fs.unlink(`./downloads/${gameTitle}/`, (err) => {
           //   if (err) throw err;
           //   console.log("Folder deleted!");
