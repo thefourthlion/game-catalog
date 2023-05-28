@@ -120,7 +120,7 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
-          await delay(1000);
+          await delay(10000);
 
           const files = fs.readdirSync(`${downloadDir}`);
 
