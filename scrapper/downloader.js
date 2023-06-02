@@ -5,11 +5,11 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/gameBoyColor");
+const { games } = require("./gameLists/nintendoDs");
 
 const start = 0;
 const end = games.length - 1;
-const currentGameConsole = "Game Boy Color"
+const currentGameConsole = "Nintendo DS";
 const delayTime = 0;
 let retryCount = 0;
 // let count = 0;
@@ -78,14 +78,14 @@ const downloadGames = async () => {
 
       const getConsole = await page.evaluate(() => {
         const console = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span.sectionTitle"
+          "#main > div.innerMain > div > div.mainContent > h2 > span.sectionTitle"
         ).innerText;
         return console;
       });
 
       const gameTitle = await page.evaluate(() => {
         let title = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span:nth-child(3)"
+          "#main > div.innerMain > div > div.mainContent > h2 > span:nth-child(3)"
         ).innerText;
         title = title.replace(/[,:\s]+/g, "-");
         title = `${title}`;
@@ -111,7 +111,7 @@ const downloadGames = async () => {
         ) {
           console.log(`🕎🕎🕎`);
           let current_num = num;
-          
+
           if (current_num == num) {
             retryCount++;
             console.log(`Retrying...${retryCount}`);
@@ -122,7 +122,7 @@ const downloadGames = async () => {
             }
           }
 
-          if(retryCount == 5){
+          if (retryCount == 5) {
             retryCount = 0;
           }
           // Download the game if it's not already downloaded
@@ -158,6 +158,7 @@ const downloadGames = async () => {
 
           const originalFilePath = `${downloadDir}${files[0]}`;
           if (fileType == "zip") {
+            console.log("Zip file");
             // Rename the downloaded file to game name
             const newFilePath = `${downloadDir}/${gameTitle}.zip`;
             try {
