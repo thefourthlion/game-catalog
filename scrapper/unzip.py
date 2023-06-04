@@ -22,6 +22,6 @@ def unzip_files_in_folder(folder_path):
                 print(f"Deleted {file_path}")
 
 # Usage example
-folder_to_search = 'E:\programming\game-catalog\scrapper\downloads'  # Replace with the folder path you want to search
+folder_to_search = 'D:\programming\game-catalog\scrapper\downloads'  # Replace with the folder path you want to search
 
 unzip_files_in_folder(folder_to_search)
