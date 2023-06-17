@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 import GameLine from "../../components/GameLine";
 import { useRouter } from "next/router";
 import Axios from "axios";
-
+import Search from "../../components/Search";
+import Input from "../../components/Input";
 const Games = () => {
   const [games, setGames] = useState([]);
   const router = useRouter();
   const { id } = router.query;
   const [limit, setLimit] = useState(50);
   const [letter, setLetter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const handleSearch = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+
+    if (value === "") {
+      setFilteredData(games);
+    } else {
+      const filtered = games.filter((item) => {
+        return item.title.toLowerCase().includes(value.toLowerCase());
+      });
+      setFilteredData(filtered);
+    }
+  };
 
   const getMoreGames = () => {
     setLimit(limit + 25);
@@ -20,6 +38,7 @@ const Games = () => {
       `https://www.api.games.everettdeleon.com/api/games/read/console/${id}?limit=${limit}`
     ).then((res) => {
       const data = res.data;
+      setFilteredData(data);
       setGames(data);
       console.log(data);
     });
@@ -34,6 +53,19 @@ const Games = () => {
 
   return (
     <div className="ConsoleGames page">
+      <FloatingLabel
+        className="search-input-label form-label"
+        label="Search Games"
+      >
+        <Form.Control
+          className="search-input-form-control form-input"
+          type="text"
+          placeholder="Search Games"
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </FloatingLabel>
+
       <div className="letter-container">
         <p
           onClick={() => {
@@ -226,16 +258,16 @@ const Games = () => {
         </p>
       </div>
       <div className="container">
-        {games.map((val, key) => {
+        {filteredData.map((item, key) => {
           console.log("🛑");
           return (
             <>
               <GameLine
                 num={key + 1}
-                gameId={val._id}
-                title={val.title}
-                size={val.downloadSize}
-                downloadLink={val.oldDownloadLink}
+                gameId={item._id}
+                title={item.title}
+                size={item.downloadSize}
+                downloadLink={item.oldDownloadLink}
               />
             </>
           );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Dropdown from "../context/dropdown";
-import Input from "./Input";
+
 export default function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const consoleOptions = [
@@ -70,15 +70,6 @@ export default function Navbar() {
             Login
           </a>
         </li>
-
-        <form>
-          <li className="search">
-            <Input placeholder="Search Games" type="text" />{" "}
-            <button className="search-btn" type="submit">
-              🔎
-            </button>
-          </li>
-        </form>
       </ul>
 
       <Link href="/" className="pc-none">
