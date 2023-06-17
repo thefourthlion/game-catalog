@@ -16,10 +16,10 @@ const Footer = () => {
             <Link href="/handhelds">Handhelds</Link>
           </li>
           <li>
-            <Link href="/">Emulators</Link>
+            <Link href="/emulators">Emulators</Link>
           </li>
           <li>
-            <Link href="/">Emulators</Link>
+            <Link href="/login">Login</Link>
           </li>
         </ul>
       </div>
