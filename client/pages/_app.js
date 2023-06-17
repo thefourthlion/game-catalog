@@ -1,4 +1,4 @@
-import "../styles/emulators.scss";import "../styles/ConsoleGames.scss";
+import "../styles/Handhelds.scss";import "../styles/Consoles.scss";import "../styles/consoles.scss";import "../styles/emulators.scss";import "../styles/ConsoleGames.scss";
 import "../styles/dropdown.scss";
 import "../styles/GameInfo.scss";
 import "../styles/GameLine.scss";

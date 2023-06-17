@@ -10,10 +10,10 @@ const Footer = () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/">Consoles</Link>
+            <Link href="/consoles">Consoles</Link>
           </li>
           <li>
-            <Link href="/">Handhelds</Link>
+            <Link href="/handhelds">Handhelds</Link>
           </li>
           <li>
             <Link href="/">Emulators</Link>
