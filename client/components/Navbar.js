@@ -38,8 +38,8 @@ export default function Navbar() {
         id={showLinks ? "nav-active" : "nav-hidden"}
       >
         <li className="nav-item links">
-          <a href="/games" className="navbar-link phone-none">
-            Games
+          <a href="/" className="navbar-link phone-none">
+            Bomb Roms
           </a>
         </li>
 
