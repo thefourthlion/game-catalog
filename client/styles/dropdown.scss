@@ -6,6 +6,7 @@
     width: auto;
     font-size: 25px;
     font-weight: bold;
+    color: $white !important;
   }
 
   .dropdown:hover {
@@ -14,11 +15,11 @@
 
     background-color: transparent;
     border-color: transparent;
-    // color: black;
+    color: $white;
   }
 
   .dropdown-menu {
-    background-color: #babcbf;
-    // color: black;
+    background-color: $dark;
+    color: $white;
   }
 }

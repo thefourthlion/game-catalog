@@ -6,7 +6,9 @@
   align-items: center;
   // gap: 50px;
   z-index: 8 !important;
-  background-color: #babcbf;
+  background-color: $glass;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border-bottom: none;
   outline: none;
   position: fixed;
@@ -18,7 +20,7 @@
     width: 35px;
     height: 5px;
     border-radius: 5px;
-    background-color: black;
+    background-color: $primary-color;
     margin: 5px;
   }
 
@@ -42,20 +44,7 @@
 
   a {
     text-decoration: none;
-    color: black;
-  }
-
-  .search {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .search-btn {
-    width: 50px;
-    border-radius: 5px;
-    height: 58px;
-    border: 2px solid $primary-color;
-    background-color: white;
+    color: $white;
   }
 
   .links {
@@ -106,7 +95,7 @@
 
 @media (max-width: 900px) {
   .Navbar {
-    background-color: $primary-color;
+    background-color: $dark;
     height: 75px;
 
     .nav-title {
@@ -117,7 +106,7 @@
     }
 
     .nav-links {
-      background-color: $primary-color;
+      background-color: $dark;
       position: absolute;
       height: 100vh;
       top: 0px;
