@@ -222,8 +222,11 @@ exports.updateImageByGameId = async (req, res) => {
     await Games.updateOne(
       { gameId: req.params.id },
       {
-        // description: req.body.description,
+        oldBoxImg: req.body.oldBoxImg,
+        oldScreenImg: req.body.oldScreenImg,
         oldCartImg: req.body.oldCartImg,
+        releaseDate: req.body.releaseDate,
+        gameDbId: req.body.gameDbId,
       },
       (err, result) => {
         if (err) {

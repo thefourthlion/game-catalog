@@ -22,7 +22,7 @@ router.route("/read/console/:console/:title").get(readGamesStartingWithLetter);
 router.route("/update/:id").post(updateGames);
 router.route("/update/game/:id").post(updateGamesByGameId);
 router.route("/update/game/:id").post(updateGameDownloadByGameId);
-router.route("/update/game/:id").post(updateImageByGameId);
+router.route("/update/game/all/:id").post(updateImageByGameId);
 
 router.route("/delete/:id").delete(deleteGames);
 module.exports = router;
