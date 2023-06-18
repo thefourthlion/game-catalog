@@ -1,11 +1,11 @@
-// # ------ ✅ Game Boy Games Available - #2109 (2941 - 87856) @ 0.22061600000000015GB
+// # ------ 1️⃣ ✅ Game Boy Games Available - #2109 (2941 - 87856) @ 0.22061600000000015GB
 // # ------ ✅ Master System Games Available - #417 (83629 - 87529) @ 0.07214499999999989GB
-// # ------ ✅ Game Boy Color Games Available - #1963 (11 - 87858) @ 0.8464650000000007GB
+// # ------ 2️⃣ ✅ Game Boy Color Games Available - #1963 (11 - 87858) @ 0.8464650000000007GB
 // ------ ✅ Genesis Games Available - #2882 (1802 - 87859) @ 1.9200699999999902GB
 // ------ ✅ Nintendo 64 Games Available - #1001 (2518 - 87558) @ 12.777404000000004GB
 // ------ ✅ Super Nintendo Games Available - #3673 (215 - 88018) @ 3.1744679999999943GB
 // ------ ✅ Nintendo Games Available - #4424 (1 - 88067) @ 5.653308999999967GB
-// # ------ ✅ Game Boy Advanced Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB
+// # ------ 3️⃣ ✅ Game Boy Advanced Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB
 
 ✅ Nintendo DS Games Available - #7030 (18351 - 87992) @ 209.6218250000005GB
 ✅ Sega Saturn Games Available - #2167 (24335 - 88019) @ 630.8578299999988GB
