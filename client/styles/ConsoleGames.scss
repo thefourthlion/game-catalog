@@ -6,8 +6,17 @@
 
   .search-input-label {
     height: 55px;
-    width: 80vw;
-    margin: 0 auto;
+    width: 60vw;
+    margin: 0 auto 35px auto;
+  }
+
+  .loading-header {
+    text-align: center;
+  }
+
+  .no-games-found {
+    text-align: center;
+    margin-bottom: 25px;
   }
   .view-more-btn {
     height: 55px;

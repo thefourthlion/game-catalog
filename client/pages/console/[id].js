@@ -13,6 +13,7 @@ const Games = () => {
   const [letter, setLetter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [hideSearch, setHideSearch] = useState(false);
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearchQuery(value);
@@ -28,8 +29,9 @@ const Games = () => {
   };
 
   const getMoreGames = () => {
-    setLimit(limit + 25);
-    getGames();
+    setLimit(limit + 25, () => {
+      getGames();
+    });
   };
 
   const getGames = async () => {
@@ -47,34 +49,24 @@ const Games = () => {
   };
 
   const handleLetterClick = (selectedLetter) => {
-    setSearchQuery(""); // Reset the search query
+    setSearchQuery("");
+    setHideSearch(true); // Reset the search query
     setLetter(selectedLetter, () => {
       getGames();
     });
   };
+
+  console.log(filteredData);
 
   useEffect(() => {
     if (!id) {
       return;
     }
     getGames();
-  }, [id, letter]);
+  }, [id, letter, limit]);
 
   return (
     <div className="ConsoleGames page">
-      <FloatingLabel
-        className="search-input-label form-label"
-        label="Search Games"
-      >
-        <Form.Control
-          className="search-input-form-control form-input"
-          type="text"
-          placeholder="Search Games"
-          value={searchQuery}
-          onChange={handleSearch}
-        />
-      </FloatingLabel>
-
       <div className="letter-container">
         <p
           onClick={() => {
@@ -261,32 +253,59 @@ const Games = () => {
         </p>
       </div>
 
-      <div className="container">
-        {filteredData.map((item, key) => {
-          console.log("🛑");
-          return (
-            <>
-              <GameLine
-                num={key + 1}
-                gameId={item._id}
-                title={item.title}
-                size={item.downloadSize}
-                downloadLink={item.oldDownloadLink}
-              />
-            </>
-          );
-        })}
+      {hideSearch && (
+        <FloatingLabel
+          className="search-input-label form-label"
+          label="Search Games"
+        >
+          <Form.Control
+            className="search-input-form-control form-input"
+            type="text"
+            placeholder="Search Games"
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </FloatingLabel>
+      )}
 
-        <div className="btn-container">
-          <button
-            className="primary-btn view-more-btn"
-            onClick={() => {
-              getMoreGames();
-            }}
-          >
-            View More
-          </button>
-        </div>
+      <div className="container">
+        {filteredData.length === 0 && searchQuery == "" ? (
+          <h1 className="loading-header">Loading...</h1>
+        ) : (
+          <div>
+            {filteredData.map((item, key) => {
+              if (item.downloadSize !== "0 KB") {
+                return (
+                  <GameLine
+                    key={key}
+                    num={key + 1}
+                    gameId={item._id}
+                    title={item.title}
+                    size={item.downloadSize}
+                    downloadLink={item.oldDownloadLink}
+                  />
+                );
+              } else {
+                return null; // Exclude items with size 0
+              }
+            })}
+
+            {filteredData.length === 0 && searchQuery != "" ? (
+              <h1 className="no-games-found">No Games Found</h1>
+            ) : (
+              <div className="btn-container">
+                <button
+                  className="primary-btn view-more-btn"
+                  onClick={() => {
+                    getMoreGames();
+                  }}
+                >
+                  View More
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

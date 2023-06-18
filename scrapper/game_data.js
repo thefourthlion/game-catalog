@@ -31,7 +31,7 @@ const uploadFileToGoogleCloud = async function (
 // const uploadedFilename = await uploadFileToGoogleCloud(imagePath);
 
 // ------------------------------------------ list of apis -------------------------------
-https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
+// https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&limit=1&offset=0&api_key=moby_L18Orzm9hqHPK5N2ebgXI9yemLm
 
 // ------------------------------------------ game info --------------------------------
 // games link - https://vimm.net/vault/1-88080
@@ -63,10 +63,10 @@ https://api.mobygames.com/v1/games?title=Super Mario Bros.&release_date=1985&lim
 // cycle through tr's and get text info from inside
 // github for cover images - https://github.com/libretro-thumbnails/libretro-thumbnails
 
-let firstGame = 129;
-let lastGame = 88096;
+let firstGame = 0;
+let lastGame = 88080;
 const missingGames = [];
-const delayTime = 1000;
+const delayTime = 0;
 
 const date = new Date().toLocaleDateString("en-us", {
   year: "numeric",
@@ -482,17 +482,17 @@ async function downloadImage(url, selector, path) {
       const oldScreenImg = `https://vimm.net/image.php?type=screen&id=${mediaId}`;
       const screenImg = `https://storage.googleapis.com/games-catalog/screen-${mediaId}.png`;
 
-      downloadImage(
-        `https://vimm.net/vault/${num}`,
-        "#screenShot",
-        `./images/screen-${mediaId}.png`
-      )
-        .then(() => {
-          console.log("Image downloaded successfully");
-        })
-        .catch((err) => {
-          console.error("Error downloading image", err);
-        });
+      // downloadImage(
+      //   `https://vimm.net/vault/${num}`,
+      //   "#screenShot",
+      //   `./images/screen-${mediaId}.png`
+      // )
+      //   .then(() => {
+      //     console.log("Image downloaded successfully");
+      //   })
+      //   .catch((err) => {
+      //     console.error("Error downloading image", err);
+      //   });
 
       // try {
       //   await uploadFileToGoogleCloud(
@@ -508,17 +508,17 @@ async function downloadImage(url, selector, path) {
       const oldBoxImg = `https://vimm.net/image.php?type=box&id=${mediaId}`;
       const boxImg = `https://storage.googleapis.com/games-catalog/box-${mediaId}.png`;
 
-      downloadImage(
-        `https://vimm.net/vault/${num}`,
-        "#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(2) > table > tbody > tr > td > a > img",
-        `./images/box-${mediaId}.png`
-      )
-        .then(() => {
-          console.log("Image downloaded successfully");
-        })
-        .catch((err) => {
-          console.error("Error downloading image", err);
-        });
+      // downloadImage(
+      //   `https://vimm.net/vault/${num}`,
+      //   "#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(2) > table > tbody > tr > td > a > img",
+      //   `./images/box-${mediaId}.png`
+      // )
+      //   .then(() => {
+      //     console.log("Image downloaded successfully");
+      //   })
+      //   .catch((err) => {
+      //     console.error("Error downloading image", err);
+      //   });
 
       // try {
       //   await uploadFileToGoogleCloud(
@@ -534,17 +534,17 @@ async function downloadImage(url, selector, path) {
       const oldCartImg = `https://vimm.net/image.php?type=cart&id=${mediaId}`;
       const cartImg = `https://storage.googleapis.com/games-catalog/cart-${mediaId}.png`;
 
-      downloadImage(
-        `https://vimm.net/vault/${num}`,
-        "#productimagethumb",
-        `./images/cart-${mediaId}.png`
-      )
-        .then(() => {
-          console.log("Image downloaded successfully");
-        })
-        .catch((err) => {
-          console.error("Error downloading image", err);
-        });
+      // downloadImage(
+      //   `https://vimm.net/vault/${num}`,
+      //   "#productimagethumb",
+      //   `./images/cart-${mediaId}.png`
+      // )
+      //   .then(() => {
+      //     console.log("Image downloaded successfully");
+      //   })
+      //   .catch((err) => {
+      //     console.error("Error downloading image", err);
+      //   });
 
       // try {
       //   await uploadFileToGoogleCloud(
@@ -562,7 +562,10 @@ async function downloadImage(url, selector, path) {
       const oldDownloadLink = `https://download3.vimm.net/download/?mediaId=${mediaId}`;
       const downloadLink = "download-link";
       const description = "placeholder";
-
+      const rating = "placeholder";
+      const gameDbId = "placeholder";
+      const releaseDate = "placeholder";
+      const developer = "placeholder";
       // get info ready for db
       let games = {
         gameId: num,
@@ -579,6 +582,10 @@ async function downloadImage(url, selector, path) {
         cheatCode: cheatCode, // []
         cheatCodeDescription: cheatCodeDescription, // []
         reviewName: reviewName, //[]
+        rating: rating,
+        gameDbId: gameDbId,
+        releaseDate: releaseDate,
+        developer: developer,
         reviewDate: reviewDate, //[]
         reviewDescription: reviewDescription, //[]
         gameFileName: gameFileName,
@@ -607,7 +614,7 @@ async function downloadImage(url, selector, path) {
 
       await axios({
         method: "POST",
-        url: `http://localhost:3002/api/games/create`,
+        url: `http://localhost:3017/api/games/create`,
         data: games,
         timeout: 7000,
       })
