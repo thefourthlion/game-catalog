@@ -16,13 +16,13 @@ const Games = () => {
   };
 
   const getGames = () => {
-    Axios.get(
-      `https://www.api.games.everettdeleon.com/api/games/read?limit=${limit}`
-    ).then((res) => {
-      const data = res.data;
-      setGames(data);
-      console.log(data);
-    });
+    Axios.get(`http://localhost:3017/api/games/read?limit=${limit}`).then(
+      (res) => {
+        const data = res.data;
+        setGames(data);
+        console.log(data);
+      }
+    );
   };
 
   return (

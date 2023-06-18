@@ -17,7 +17,7 @@ const generate = async () => {
   for (let num = starting; num <= ending; num++) {
     // ------------------------------- get data from db -------------------------------
     const res = await axios.get(
-      `https://www.api.games.everettdeleon.com/api/games/read/game/${num}`
+      `http://localhost:3017/api/games/read/game/${num}`
     );
 
     const apiData = res.data;
@@ -54,12 +54,9 @@ const generate = async () => {
       // ------------------------------- post data -------------------------------
 
       await axios
-        .post(
-          `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
-          {
-            description: aiData,
-          }
-        )
+        .post(`http://localhost:3017/api/games/update/game/${num}`, {
+          description: aiData,
+        })
         .then(() => {
           console.log(`✅ CHANGED DESCRIPTION ${aiData}`);
         })

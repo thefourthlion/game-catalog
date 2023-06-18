@@ -200,12 +200,9 @@ const downloadGames = async () => {
 
           // post the google link to db
           axios
-            .post(
-              `https://www.api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
-              {
-                downloadLink: googleGCSUrl,
-              }
-            )
+            .post(`http://localhost:3017/api/games/update/game/${games[num]}`, {
+              downloadLink: googleGCSUrl,
+            })
             .then(() => {
               console.log("✅ CHANGED DESCRIPTION");
             })
