@@ -1,9 +1,12 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/Handhelds.scss";
+import "../styles/Consoles.scss";
+import "../styles/emulators.scss";
 import "../styles/ConsoleGames.scss";
 import "../styles/dropdown.scss";
 import "../styles/GameInfo.scss";
 import "../styles/GameLine.scss";
 import "../styles/Input.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.scss";
 import "../styles/index.scss";
 import "../styles/Footer.scss";

@@ -12,9 +12,7 @@ async function iterateSlowly() {
     await new Promise((resolve) => setTimeout(resolve, delayTime)); // wait for 1 second
     try {
       const title = await axios
-        .get(
-          `https://www.api.games.everettdeleon.com/api/games/read/game/${num}`
-        )
+        .get(`http://localhost:3017/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let title = data.title;
@@ -25,9 +23,7 @@ async function iterateSlowly() {
         });
 
       const year = await axios
-        .get(
-          `https://www.api.games.everettdeleon.com/api/games/read/game/${num}`
-        )
+        .get(`http://localhost:3017/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let year = data.year;
@@ -61,12 +57,9 @@ async function iterateSlowly() {
       } else {
         console.log(gameInfo);
         await axios
-          .post(
-            `https://www.api.games.everettdeleon.com/api/games/update/game/${num}`,
-            {
-              oldCartImg: gameInfo,
-            }
-          )
+          .post(`http://localhost:3017/api/games/update/game/${num}`, {
+            oldCartImg: gameInfo,
+          })
           .then(() => {
             console.log("✅ CHANGED IMAGE");
           })

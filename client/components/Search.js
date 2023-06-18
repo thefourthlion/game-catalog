@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Input from "./Input";
 const Search = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="Search">
       <div className="container">
-        <h1 className="content-header">Search</h1>
+        <form>
+          <Input placeholder="Search Games" type="text" />
+        </form>
       </div>
     </div>
   );

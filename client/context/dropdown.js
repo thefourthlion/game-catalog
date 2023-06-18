@@ -41,8 +41,9 @@ const dropdown = ({ title, param, options }) => {
               onClick={() => {
                 handleSelected(option);
               }}
+              href={`${param}${option}`}
             >
-              <Link href={`${param}${option}`}>{option}</Link>
+              {option}
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>

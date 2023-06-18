@@ -5,12 +5,21 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
+<<<<<<< HEAD
 const { games } = require("./curratedGamesList/playstation2");
 
 const start = 0;
 const end = games.length - 1;
 const currentGameConsole = "PlayStation 2";
 const delayTime = 60000;
+=======
+const { games } = require("./gameLists/nintendoDs");
+
+const start = 0;
+const end = games.length - 1;
+const currentGameConsole = "Nintendo DS";
+const delayTime = 0;
+>>>>>>> 1408456e6c442e67160bdfe6614ca784f00c2794
 let retryCount = 0;
 // let count = 0;
 let newCurrentFile = false;
@@ -78,14 +87,14 @@ const downloadGames = async () => {
 
       const getConsole = await page.evaluate(() => {
         const console = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span.sectionTitle"
+          "#main > div.innerMain > div > div.mainContent > h2 > span.sectionTitle"
         ).innerText;
         return console;
       });
 
       const gameTitle = await page.evaluate(() => {
         let title = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span:nth-child(3)"
+          "#main > div.innerMain > div > div.mainContent > h2 > span:nth-child(3)"
         ).innerText;
         title = title.replace(/[,:\s]+/g, "-");
         title = `${title}`;
@@ -115,14 +124,22 @@ const downloadGames = async () => {
           if (current_num == num) {
             retryCount++;
             console.log(`Retrying...${retryCount}`);
+<<<<<<< HEAD
             if (retryCount > 10) {
+=======
+            if (retryCount > 4) {
+>>>>>>> 1408456e6c442e67160bdfe6614ca784f00c2794
               num = num + 1;
               console.log(`MOVING ON 👌...${retryCount}`);
               // delay(1000);
             }
           }
 
+<<<<<<< HEAD
           if (retryCount == 10) {
+=======
+          if (retryCount == 5) {
+>>>>>>> 1408456e6c442e67160bdfe6614ca784f00c2794
             retryCount = 0;
           }
           // Download the game if it's not already downloaded
@@ -139,7 +156,11 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
+<<<<<<< HEAD
           await delay(delayTime);
+=======
+          await delay(3000);
+>>>>>>> 1408456e6c442e67160bdfe6614ca784f00c2794
 
           const files = fs.readdirSync(`${downloadDir}`);
 
@@ -159,6 +180,7 @@ const downloadGames = async () => {
 
           const originalFilePath = `${downloadDir}${files[0]}`;
           if (fileType == "zip") {
+            console.log("Zip file");
             // Rename the downloaded file to game name
             const newFilePath = `${downloadDir}/${gameTitle}.zip`;
             try {
@@ -198,6 +220,7 @@ const downloadGames = async () => {
 
         //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
 
+<<<<<<< HEAD
         //   // post the google link to db
         //   axios
         //     .post(
@@ -212,6 +235,19 @@ const downloadGames = async () => {
         //     .catch((error) => {
         //       console.log("🛑 COULDN'T CHANGE DESCRIPTION");
         //     });
+=======
+          // post the google link to db
+          axios
+            .post(`http://localhost:3017/api/games/update/game/${games[num]}`, {
+              downloadLink: googleGCSUrl,
+            })
+            .then(() => {
+              console.log("✅ CHANGED DESCRIPTION");
+            })
+            .catch((error) => {
+              console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+            });
+>>>>>>> 1408456e6c442e67160bdfe6614ca784f00c2794
 
           // Delete game once it is uploaded to google storage
           // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {

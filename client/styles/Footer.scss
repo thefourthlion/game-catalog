@@ -1,1 +1,13 @@
-.Footer{}
+.Footer {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+  li {
+    text-decoration: none;
+    list-style-type: none;
+  }
+}

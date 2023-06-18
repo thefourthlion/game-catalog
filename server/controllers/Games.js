@@ -94,13 +94,24 @@ exports.readGamesFromGameID = async (req, res) => {
 
 exports.readGamesStartingWithLetter = async (req, res) => {
   try {
-    const query = { title: new RegExp(`^${req.params.id}`, "i") };
-    await Games.find(query, {}, (err, result) => {
-      if (err) {
-        res.json({ app: err });
+    const page = req.query.page || 0;
+    const limit = req.query.limit || 25;
+    const { console, title } = req.params;
+    await Games.find(
+      {
+        console: console,
+        title: new RegExp(`^${title}`, "i"),
+      },
+      (err, result) => {
+        if (err) {
+          res.json({ app: err });
+        }
+        res.send(result);
       }
-      res.send(result);
-    });
+    )
+      .sort()
+      .skip(page * limit)
+      .limit(limit);
   } catch (err) {
     console.log(err);
   }
