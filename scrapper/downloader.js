@@ -5,11 +5,13 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/Nintendo");
+const { games } = require("./curratedGamesList/playstation2");
 
 const start = 0;
-const end = games.length-1;
-const delayTime = 1000;
+const end = games.length - 1;
+const currentGameConsole = "PlayStation 2";
+const delayTime = 60000;
+let retryCount = 0;
 // let count = 0;
 let newCurrentFile = false;
 
@@ -41,9 +43,10 @@ const downloadGames = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
+  console.log("Starting ✅");
   for (let num = start; num <= end; num++) {
     try {
-      await delay(delayTime);
+      // await delay(delayTime);
       await page.setDefaultNavigationTimeout(0);
 
       // Navigate to the vault page for the current id
@@ -97,22 +100,38 @@ const downloadGames = async () => {
       );
 
       console.log(
-        `-------------------- #${games[num]} - ${getConsole} -------------------------`
+        `-------------------- #${num} - ${getConsole} -------------------------`
       );
 
       if (isDownloadable == "Download") {
         if (
-          getConsole == "Nintendo" &&
+          getConsole == currentGameConsole &&
           fs.existsSync(currentFile) == false &&
           fs.existsSync(newCurrentFile) == false
         ) {
           console.log(`🕎🕎🕎`);
+          let current_num = num;
+
+          if (current_num == num) {
+            retryCount++;
+            console.log(`Retrying...${retryCount}`);
+            if (retryCount > 10) {
+              num = num + 1;
+              console.log(`MOVING ON 👌...${retryCount}`);
+              // delay(1000);
+            }
+          }
+
+          if (retryCount == 10) {
+            retryCount = 0;
+          }
           // Download the game if it's not already downloaded
           const client = await page.target().createCDPSession();
           await client.send("Page.setDownloadBehavior", {
             behavior: "allow",
             downloadPath: path.resolve(__dirname, `${downloadDir}`),
           });
+
           await Promise.all([
             await page.click("#download_form > button"),
             console.log("Downloading..."),
@@ -120,7 +139,7 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
-          await delay(1000);
+          await delay(delayTime);
 
           const files = fs.readdirSync(`${downloadDir}`);
 
@@ -130,7 +149,7 @@ const downloadGames = async () => {
           }
         } else {
           console.log(`🔎🔎🔎`);
-
+          retryCount = 0;
           // If the game is already downloaded
           // Check game folder for files
           const files = fs.readdirSync(`${downloadDir}`);
@@ -162,37 +181,37 @@ const downloadGames = async () => {
       if (
         (fs.existsSync(currentFile) ||
           fs.existsSync(newCurrentFile) == false) &&
-        getConsole == "Nintendo"
+        getConsole == currentGameConsole
       ) {
         // if the game exists, log it
         let exists = "✅";
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
 
-        // upload it to google server if its downloaded
-        await uploadFileToGoogleCloud(
-          `${getConsole}/${gameTitle}/${gameTitle}.zip`,
-          `${downloadDir}/${gameTitle}.zip`,
-          bucketName
-        ).then(() => {
-          // upload it to google server if its downloaded
+        // // upload it to google server if its downloaded
+        // await uploadFileToGoogleCloud(
+        //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,
+        //   `${downloadDir}/${gameTitle}.zip`,
+        //   bucketName
+        // ).then(() => {
+        //   // upload it to google server if its downloaded
 
-          let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
+        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
 
-          // post the google link to db
-          axios
-            .post(
-              `https://www.api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
-              {
-                downloadLink: googleGCSUrl,
-              }
-            )
-            .then(() => {
-              console.log("✅ CHANGED DESCRIPTION");
-            })
-            .catch((error) => {
-              console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-            });
+        //   // post the google link to db
+        //   axios
+        //     .post(
+        //       `https://www.api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //       {
+        //         downloadLink: googleGCSUrl,
+        //       }
+        //     )
+        //     .then(() => {
+        //       console.log("✅ CHANGED DESCRIPTION");
+        //     })
+        //     .catch((error) => {
+        //       console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+        //     });
 
           // Delete game once it is uploaded to google storage
           // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {
@@ -207,7 +226,11 @@ const downloadGames = async () => {
           //   if (err) throw err;
           //   console.log("Folder deleted!");
           // });
-        });
+          if(num == games.length - 2){
+            console.log("🎉🎉�");
+            num = 0;
+          }
+        // });
       }
     } catch (e) {
       console.error(e);
