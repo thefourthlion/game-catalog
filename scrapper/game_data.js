@@ -64,7 +64,7 @@ const uploadFileToGoogleCloud = async function (
 // github for cover images - https://github.com/libretro-thumbnails/libretro-thumbnails
 
 let firstGame = 0;
-let lastGame = 88080;
+let lastGame = 88313;
 const missingGames = [];
 const delayTime = 0;
 
