@@ -4,13 +4,12 @@ import Form from "react-bootstrap/Form";
 import GameLine from "../../components/GameLine";
 import { useRouter } from "next/router";
 import Axios from "axios";
-import Search from "../../components/Search";
-import Input from "../../components/Input";
+
 const Games = () => {
   const [games, setGames] = useState([]);
   const router = useRouter();
   const { id } = router.query;
-  const [limit, setLimit] = useState(50);
+  const [limit, setLimit] = useState(500);
   const [letter, setLetter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -33,14 +32,24 @@ const Games = () => {
     getGames();
   };
 
-  const getGames = () => {
-    Axios.get(
-      `http://localhost:3017/api/games/read/console/${id}?limit=${limit}`
-    ).then((res) => {
-      const data = res.data;
+  const getGames = async () => {
+    try {
+      const response = await Axios.get(
+        `http://localhost:3017/api/games/read/console/${id}/${letter}?limit=${limit}`
+      );
+      const data = response.data;
       setFilteredData(data);
       setGames(data);
       console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleLetterClick = (selectedLetter) => {
+    setSearchQuery(""); // Reset the search query
+    setLetter(selectedLetter, () => {
+      getGames();
     });
   };
 
@@ -49,7 +58,7 @@ const Games = () => {
       return;
     }
     getGames();
-  }, [id]);
+  }, [id, letter]);
 
   return (
     <div className="ConsoleGames page">
@@ -69,194 +78,189 @@ const Games = () => {
       <div className="letter-container">
         <p
           onClick={() => {
-            setLetter("#");
+            handleLetterClick("#");
           }}
         >
           #
         </p>
+        <p onClick={() => handleLetterClick("A")}>A</p>
         <p
           onClick={() => {
-            setLetter("A");
-          }}
-        >
-          A
-        </p>
-        <p
-          onClick={() => {
-            setLetter("B");
+            handleLetterClick("B");
           }}
         >
           B
         </p>
         <p
           onClick={() => {
-            setLetter("C");
+            handleLetterClick("C");
           }}
         >
           C
         </p>
         <p
           onClick={() => {
-            setLetter("D");
+            handleLetterClick("D");
           }}
         >
           D
         </p>
         <p
           onClick={() => {
-            setLetter("E");
+            handleLetterClick("E");
           }}
         >
           E
         </p>
         <p
           onClick={() => {
-            setLetter("F");
+            handleLetterClick("F");
           }}
         >
           F
         </p>
         <p
           onClick={() => {
-            setLetter("G");
+            handleLetterClick("G");
           }}
         >
           G
         </p>
         <p
           onClick={() => {
-            setLetter("H");
+            handleLetterClick("H");
           }}
         >
           H
         </p>
         <p
           onClick={() => {
-            setLetter("I");
+            handleLetterClick("I");
           }}
         >
           I
         </p>
         <p
           onClick={() => {
-            setLetter("J");
+            handleLetterClick("J");
           }}
         >
           J
         </p>
         <p
           onClick={() => {
-            setLetter("K");
+            handleLetterClick("K");
           }}
         >
           K
         </p>
         <p
           onClick={() => {
-            setLetter("L");
+            handleLetterClick("L");
           }}
         >
           L
         </p>
         <p
           onClick={() => {
-            setLetter("M");
+            handleLetterClick("M");
           }}
         >
           M
         </p>
         <p
           onClick={() => {
-            setLetter("N");
+            handleLetterClick("N");
           }}
         >
           N
         </p>
         <p
           onClick={() => {
-            setLetter("O");
+            handleLetterClick("O");
           }}
         >
           O
         </p>
         <p
           onClick={() => {
-            setLetter("P");
+            handleLetterClick("P");
           }}
         >
           P
         </p>
         <p
           onClick={() => {
-            setLetter("Q");
+            handleLetterClick("Q");
           }}
         >
           Q
         </p>
         <p
           onClick={() => {
-            setLetter("R");
+            handleLetterClick("R");
           }}
         >
           R
         </p>
         <p
           onClick={() => {
-            setLetter("S");
+            handleLetterClick("S");
           }}
         >
           S
         </p>
         <p
           onClick={() => {
-            setLetter("T");
+            handleLetterClick("T");
           }}
         >
           T
         </p>
         <p
           onClick={() => {
-            setLetter("U");
+            handleLetterClick("U");
           }}
         >
           U
         </p>
         <p
           onClick={() => {
-            setLetter("V");
+            handleLetterClick("V");
           }}
         >
           V
         </p>
         <p
           onClick={() => {
-            setLetter("W");
+            handleLetterClick("W");
           }}
         >
           W
         </p>
         <p
           onClick={() => {
-            setLetter("X");
+            handleLetterClick("X");
           }}
         >
           X
         </p>
         <p
           onClick={() => {
-            setLetter("Y");
+            handleLetterClick("Y");
           }}
         >
           Y
         </p>
         <p
           onClick={() => {
-            setLetter("Z");
+            handleLetterClick("Z");
           }}
         >
           Z
         </p>
       </div>
+
       <div className="container">
         {filteredData.map((item, key) => {
           console.log("🛑");
