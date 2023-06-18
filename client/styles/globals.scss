@@ -1,22 +1,32 @@
 @import "./variables.scss";
 
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Orbitron:wght@900&family=Oxanium:wght@800&family=Press+Start+2P&family=Ubuntu+Mono:wght@700&family=VT323&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // font-size: 1 !important;
 }
 
 body {
   background-color: $dark;
   text-align: center;
-  color: $white !important;
+  color: $white;
+  // font-family: "Orbitron", sans-serif;
+  // font-family: "Press Start 2P", cursive;
+  // font-family: "VT323", monospace;
+  font-family: "Oxanium", cursive;
+
+  // font-family: "Bungee", cursive;
+
+  // font-family: "Ubuntu Mono", monospace;
 
   a {
     color: $primary-color;
   }
 
   a:hover {
-    color: $white !important;
+    color: $secondary-color !important;
   }
 
   // #dropdown-basic:hover {
@@ -32,31 +42,26 @@ body {
     margin-bottom: 125px;
   }
 
-  .search-input-form-control::placeholder {
-    color: $black !important;
-  }
-
-  .search-input-form-control::placeholder {
+  .form-label {
     color: $black;
   }
-
   .search-input-form-control {
     border: 2px solid $primary-color;
     border-color: $primary-color;
-    color: $black;
+    color: $black !important;
   }
 
   .search-input-form-control:focus {
     background-color: white;
-    border-color: $primary-color;
+    border-color: $secondary-color;
     box-shadow: none;
     outline: 0 none;
-    color: $black;
+    color: $black !important;
     box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
   }
 
   .primary-btn {
-    color: $white;
+    color: $black;
     // font-weight: bold;
     background-color: $primary-color;
     border: 2px solid $primary-color;
@@ -67,15 +72,15 @@ body {
   }
 
   .primary-btn:hover {
-    background-color: $primary-color-dark;
-    border: 2px solid $primary-color-dark;
+    background-color: $secondary-color;
+    border: 2px solid $secondary-color;
     border-radius: 5px;
     color: $primary-color;
-    box-shadow: 9px 9px 4px -5px rgba(80, 251, 170, 0.6);
+    box-shadow: 9px 9px 4px -5px rgba(8, 255, 213, 0.6);
   }
 
   .secondary-btn {
-    color: $white;
+    color: $primary-color;
     font-weight: bold;
     background-color: $secondary-color;
     border: 2px solid $secondary-color;
@@ -89,7 +94,8 @@ body {
     background-color: $secondary-color-dark;
     border: 2px solid $secondary-color-dark;
     border-radius: 5px;
-    box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
+    color: $black;
+    box-shadow: 9px 9px 4px -5px rgba(252, 239, 11, 0.6);
   }
 
   .third-btn {

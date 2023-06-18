@@ -9,17 +9,19 @@
     color: $white !important;
   }
 
+  .navbar-link:hover {
+    color: $secondary-color !important;
+  }
+
   .dropdown:hover {
     // min-width: 165px;
     // font-weight: bold;
 
     background-color: transparent;
     border-color: transparent;
-    color: $white;
   }
 
   .dropdown-menu {
     background-color: $dark;
-    color: $white;
   }
 }

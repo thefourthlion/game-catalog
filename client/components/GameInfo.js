@@ -106,7 +106,7 @@ const GameInfo = ({
             {rating && (
               <StarRatings
                 className="ratings"
-                starRatedColor="#0b9ed9"
+                starRatedColor="rgb(213,215,29)"
                 rating={rating}
                 starDimension="25px"
                 starSpacing="5px"
@@ -156,7 +156,7 @@ const GameInfo = ({
             <br />
 
             <a href={`https://www.amazon.com/s?k=${title}+${console}`}>
-              <button className="primary-btn">Buy On Amazon</button>
+              <button className="secondary-btn">Buy On Amazon</button>
             </a>
           </div>
         </div>
