@@ -36,6 +36,13 @@ const GamesSchema = new mongoose.Schema(
     reviewName: [
       { type: String, required: [true, "Please provide reviewName"] },
     ],
+    rating: { type: String, required: [true, "Please provide rating"] },
+    gameDbId: { type: String, required: [true, "Please provide gameDbId"] },
+    releaseDate: {
+      type: String,
+      required: [true, "Please provide releaseDate"],
+    },
+    developer: { type: String, required: [true, "Please provide developer"] },
     reviewDate: [
       { type: String, required: [true, "Please provide reviewDate"] },
     ],
