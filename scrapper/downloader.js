@@ -185,6 +185,7 @@ const downloadGames = async () => {
       ) {
         // if the game exists, log it
         let exists = "✅";
+        let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.zip`;
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
         axios
@@ -206,7 +207,7 @@ const downloadGames = async () => {
         //   // upload it to google server if its downloaded
 
         //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
-        //   let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}.zip`
+
         // post the google link to db
 
         // Delete game once it is uploaded to google storage
