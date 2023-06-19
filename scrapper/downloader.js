@@ -5,11 +5,11 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/nintendoDs");
+const { games } = require("./gameLists/gameBoy");
 
 const start = 0;
 const end = games.length - 1;
-const currentGameConsole = "Nintendo DS";
+const currentGameConsole = "Game Boy";
 const delayTime = 0;
 let retryCount = 0;
 // let count = 0;
@@ -187,43 +187,42 @@ const downloadGames = async () => {
         let exists = "✅";
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
-
+        axios
+          .post(`http://localhost:3017/api/games/update/game/${games[num]}`, {
+            downloadLink: localRomHostUrl,
+          })
+          .then(() => {
+            console.log("✅ CHANGED DESCRIPTION");
+          })
+          .catch((error) => {
+            console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+          });
         // upload it to google server if its downloaded
-        await uploadFileToGoogleCloud(
-          `${getConsole}/${gameTitle}/${gameTitle}.zip`,
-          `${downloadDir}/${gameTitle}.zip`,
-          bucketName
-        ).then(() => {
-          // upload it to google server if its downloaded
+        // await uploadFileToGoogleCloud(
+        //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,
+        //   `${downloadDir}/${gameTitle}.zip`,
+        //   bucketName
+        // ).then(() => {
+        //   // upload it to google server if its downloaded
 
-          let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
+        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
+        //   let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}.zip`
+        // post the google link to db
 
-          // post the google link to db
-          axios
-            .post(`http://localhost:3017/api/games/update/game/${games[num]}`, {
-              downloadLink: googleGCSUrl,
-            })
-            .then(() => {
-              console.log("✅ CHANGED DESCRIPTION");
-            })
-            .catch((error) => {
-              console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-            });
+        // Delete game once it is uploaded to google storage
+        // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {
+        //   if (err) throw err;
+        //   console.log("File deleted!");
+        // });
 
-          // Delete game once it is uploaded to google storage
-          // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {
-          //   if (err) throw err;
-          //   console.log("File deleted!");
-          // });
-
-          // fsExtra.remove(`./downloads/${gameTitle}/`, (err) => {
-          //   console.log("Folder deleted successfully");
-          // });
-          // fs.unlink(`./downloads/${gameTitle}/`, (err) => {
-          //   if (err) throw err;
-          //   console.log("Folder deleted!");
-          // });
-        });
+        // fsExtra.remove(`./downloads/${gameTitle}/`, (err) => {
+        //   console.log("Folder deleted successfully");
+        // });
+        // fs.unlink(`./downloads/${gameTitle}/`, (err) => {
+        //   if (err) throw err;
+        //   console.log("Folder deleted!");
+        // });
+        // });
       }
     } catch (e) {
       console.error(e);

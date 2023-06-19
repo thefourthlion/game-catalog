@@ -1,10 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
 
-const { games } = require("./gameLists/Nintendo");
+const { games } = require("./gameLists/gameBoy");
 
 const starting = 0;
-const ending = games.length - 1;
+const ending = games.length;
 
 const generate = async () => {
   for (let num = starting; num <= ending; num++) {

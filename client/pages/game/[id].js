@@ -39,7 +39,6 @@ const Game = () => {
             title={game.title}
             console={game.console}
             description={game.description}
-            oldCartImg={game.oldCartImg}
             cheatCodeDescription={game.cheatCodeDescription}
             cheatCode={game.cheatCode}
             gameId={game.gameId}
@@ -52,6 +51,9 @@ const Game = () => {
             boxImg={game.boxImg}
             cartImg={game.cartImg}
             screenImg={game.screenImg}
+            oldBoxImg={game.oldBoxImg}
+            oldCartImg={game.oldCartImg}
+            oldScreenImg={game.oldScreenImg}
             overallReview={game.overallReview}
             cartSize={game.cartSize}
             year={game.year}

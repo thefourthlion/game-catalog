@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    width: 75vw;
+    width: 950px;
     margin: 0 auto 10px auto;
   }
 
@@ -54,6 +54,8 @@
   @media (max-width: 900px) {
     .GameLine-container {
       margin: 0 auto 20px auto;
+      width: 75vw;
+
     }
 
     .size {

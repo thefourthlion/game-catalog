@@ -9,9 +9,11 @@ const GameInfo = ({
   boxImg,
   cartImg,
   screenImg,
+  oldBoxImg,
+  oldCartImg,
+  oldScreenImg,
   gameId,
   players,
-  oldCartImg,
   description,
   overallReview,
   cartSize,
@@ -26,6 +28,9 @@ const GameInfo = ({
   const [showScreenImg, setShowScreenImg] = useState(true);
   const [showBoxImg, setShowBoxImg] = useState(true);
   const [showCartImg, setShowCartImg] = useState(true);
+  const [showOldScreenImg, setShowOldScreenImg] = useState(true);
+  const [showOldBoxImg, setShowOldBoxImg] = useState(true);
+  const [showOldCartImg, setShowOldCartImg] = useState(true);
   const [showCheatCodes, setShowCheatCodes] = useState(false);
 
   const rating = parseFloat(overallReview) / 2;
@@ -55,28 +60,14 @@ const GameInfo = ({
           {/* {screenImg != false && cartImg != false && boxImg != false && ( */}
           <div className="img-container">
             <Carousel className="carousel">
-              {showScreenImg == true && (
+              {showOldBoxImg == true && (
                 <Carousel.Item className="carousel-item">
                   <img
-                    src={screenImg}
+                    src={oldBoxImg}
                     onError={() => {
-                      setShowScreenImg(false);
+                      setShowOldBoxImg(false);
                     }}
                     alt="Slide One"
-                    layout="fill"
-                    objectFit="cover"
-                    className="carousel-img"
-                  />
-                </Carousel.Item>
-              )}
-              {showCartImg == true && (
-                <Carousel.Item className="carousel-item">
-                  <img
-                    src={cartImg}
-                    onError={() => {
-                      setShowCartImg(false);
-                    }}
-                    alt="Slide Two"
                     layout="fill"
                     objectFit="cover"
                     className="carousel-img"
@@ -90,7 +81,63 @@ const GameInfo = ({
                     onError={() => {
                       setShowBoxImg(false);
                     }}
+                    alt="Slide Two"
+                    layout="fill"
+                    objectFit="cover"
+                    className="carousel-img"
+                  />
+                </Carousel.Item>
+              )}
+              {showOldCartImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={oldCartImg}
+                    onError={() => {
+                      setShowOldCartImg(false);
+                    }}
                     alt="Slide Three"
+                    layout="fill"
+                    objectFit="cover"
+                    className="carousel-img"
+                  />
+                </Carousel.Item>
+              )}
+              {showCartImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={cartImg}
+                    onError={() => {
+                      setShowCartImg(false);
+                    }}
+                    alt="Slide Four"
+                    layout="fill"
+                    objectFit="cover"
+                    className="carousel-img"
+                  />
+                </Carousel.Item>
+              )}
+              {showOldScreenImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={oldScreenImg}
+                    onError={() => {
+                      setShowOldScreenImg(false);
+                    }}
+                    alt="Slide Five"
+                    layout="fill"
+                    objectFit="cover"
+                    className="carousel-img"
+                  />
+                </Carousel.Item>
+              )}
+              {showScreenImg == true && (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    src={screenImg}
+                    onError={() => {
+                      setShowScreenImg(false);
+                    }}
+                    alt="Slide Six"
                     layout="fill"
                     objectFit="cover"
                     className="carousel-img"
