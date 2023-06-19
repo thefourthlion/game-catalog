@@ -37,7 +37,7 @@ const Games = () => {
   const getGames = async () => {
     try {
       const response = await Axios.get(
-        `http://localhost:3017/api/games/read/console/${id}/${letter}?limit=${limit}`
+        `https://api.games.everettdeleon.com/api/games/read/console/${id}/${letter}?limit=${limit}`
       );
       const data = response.data;
       setFilteredData(data);
