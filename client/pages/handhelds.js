@@ -7,15 +7,17 @@ const Handhelds = () => {
     "Game Boy Color",
     "Game Boy Advance",
     "Nintendo DS",
-    "PlayStation Portable",
+    "PSP",
   ];
   return (
     <div className="Handhelds">
       <div className="container page">
         {handheldOption.map((val, index) => (
-          <h1 key={index}>
-            <Link href={`/console/${val}`}>{val}</Link>
-          </h1>
+          <Link href={`/console/${val}`}>
+            <h1 className="consoles" key={index}>
+              {val}
+            </h1>
+          </Link>
         ))}
       </div>
     </div>

@@ -19,21 +19,15 @@ const Consoles = () => {
     "WiiWare",
   ];
 
-  const handheldOption = [
-    "Game Boy",
-    "Virtual Boy",
-    "Game Boy Color",
-    "Game Boy Advance",
-    "Nintendo DS",
-    "PlayStation Portable",
-  ];
   return (
     <div className="Consoles">
       <div className="container page">
         {consoleOptions.map((val, index) => (
-          <h1 key={index}>
-            <Link href={`/console/${val}`}>{val}</Link>
-          </h1>
+          <Link href={`/console/${val}`}>
+            <h1 className="consoles" key={index}>
+              {val}
+            </h1>
+          </Link>
         ))}
       </div>
     </div>

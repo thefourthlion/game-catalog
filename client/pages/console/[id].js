@@ -282,7 +282,7 @@ const Games = () => {
                     gameId={item._id}
                     title={item.title}
                     size={item.downloadSize}
-                    downloadLink={item.oldDownloadLink}
+                    downloadLink={item.downloadLink}
                   />
                 );
               } else {
@@ -295,7 +295,7 @@ const Games = () => {
             ) : (
               <div className="btn-container">
                 <button
-                  className="primary-btn view-more-btn"
+                  className="secondary-btn view-more-btn"
                   onClick={() => {
                     getMoreGames();
                   }}

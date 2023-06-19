@@ -4,41 +4,36 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: relative;
-    right: 5px;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+    width: 75vw;
+    margin: 0 auto 10px auto;
   }
+
   p {
     font-weight: bold;
   }
 
-  a:hover {
-    color: $black;
-  }
-
   button {
-    position: relative;
-    right: 5px;
-    bottom: 5px;
+    bottom: 7px;
     width: 150px;
     height: 45px;
     padding-bottom: 3px;
   }
 
-  hr {
-    color: $primary-color;
-    width: 60vw;
-    margin: 5px auto 15px auto;
-    position: relative;
-    left: 35px;
-  }
+  // hr {
+  //   color: $primary-color;
+  //   width: 60vw;
+  //   margin: 5px auto 15px auto;
+  //   position: relative;
+  //   left: 35px;
+  // }
 
-  .item {
-    width: 100px;
-  }
-  .number {
-    max-width: 30px !important;
-  }
+  // .item {
+  //   width: 100px;
+  // }
+  // .number {
+  //   max-width: 30px !important;
+  // }
 
   .size {
     width: 75px;
@@ -49,17 +44,29 @@
   }
 
   .title {
+    font-size: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: clamp(100px, 50%, 500px);
+    width: 420px;
   }
 
   @media (max-width: 900px) {
+    .GameLine-container {
+      margin: 0 auto 20px auto;
+    }
+
+    .size {
+      position: relative;
+      left: 15px;
+    }
     button {
-      padding: 2.5px;
-      width: auto;
+      // padding: 2.5px;
+      width: 75vw;
       height: auto;
     }
+  }
+
+  @media (max-width: 900px) {
   }
 }

@@ -38,8 +38,8 @@ export default function Navbar() {
         id={showLinks ? "nav-active" : "nav-hidden"}
       >
         <li className="nav-item links">
-          <a href="/" className="navbar-link phone-none">
-            Bomb Roms
+          <a href="/" className="logo-header navbar-link phone-none">
+            The Bomb Roms
           </a>
         </li>
 
@@ -66,14 +66,20 @@ export default function Navbar() {
         </li>
 
         <li className="nav-item links">
-          <a className="navbar-link" href="/login">
-            Login
+          <a className="navbar-link" href="/emulators">
+            Game Lists
           </a>
+        </li>
+
+        <li className="nav-item links">
+          <button href="/login" className="navbar-link login secondary-btn">
+            Login
+          </button>
         </li>
       </ul>
 
       <Link href="/" className="pc-none">
-        <h1>Logo</h1>
+        <h1 className="logo-header phone-logo">The Bomb Roms</h1>
       </Link>
       <div className="burger" onClick={() => setShowLinks(!showLinks)}>
         <div className="line1"></div>

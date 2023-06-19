@@ -18,9 +18,18 @@ const GameLine = ({
           <Link href={`/game/${gameId}`}>{title}</Link>
         </p>
         <p className="item size">{size}</p>
-        <a className="item download" href={downloadLink} download>
-          <button className="primary-btn">download</button>
-        </a>
+        {console.log(downloadLink)}
+        {downloadLink != "download-link" ? (
+          <a className="item download" href={downloadLink}>
+            <button className="primary-btn" type="submit">
+              Download
+            </button>
+          </a>
+        ) : (
+          <button className="primary-btn" type="submit">
+            Coming Soon
+          </button>
+        )}
       </div>
     </div>
   );
