@@ -2,9 +2,11 @@ require("dotenv").config();
 const axios = require("axios");
 
 const { games } = require("./gameLists/gameBoy");
+const { response } = require("express");
 
 const starting = 0;
 const ending = games.length;
+const platform = 4; // find gameDb platform num
 
 const generate = async () => {
   for (let num = starting; num <= ending; num++) {
@@ -37,22 +39,28 @@ const generate = async () => {
 
     const gameDbId = await axios
       .get(
-        `https://api.thegamesdb.net/v1/Games/ByGameName?apikey=${process.env.GAME_DB_API_KEY}&name=${gameTitle}&platform=${gameConsole}&include=screenshot`
+        `https://api.thegamesdb.net/v1/Games/ByGameName?apikey=${process.env.GAME_DB_API_KEY}&name=${gameTitle}&include=screenshot`
       )
       .then((response) => {
         let data = response.data;
         console.log(`${data.remaining_monthly_allowance} games DB calls left.`);
         data = data.data;
-        data = data.games[0];
-        let id = data.id;
-        let releaseDate = data.release_date;
-        return {
-          id: id,
-          releaseDate: releaseDate,
-        };
-      })
-      .catch((error) => {
-        console.log(error.type);
+        const games = data.games;
+
+        const game = games.find(
+          (game) => game.platform === platform && game.game_title === gameTitle
+        );
+
+        if (game) {
+          const { id, release_date: releaseDate } = game;
+          return {
+            id: id,
+            releaseDate: releaseDate,
+          };
+        } else {
+          console.log(`No game found on platform ${platform}`);
+          return null;
+        }
       });
 
     if (gameDbId != undefined) {
