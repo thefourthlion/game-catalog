@@ -10,7 +10,9 @@ const generate = async () => {
   for (let num = starting; num <= ending; num++) {
     console.log(`🔢 GAME - ${games[num]}`);
     const gameTitle = await axios
-      .get(`http://localhost:3017/api/games/read/game/${games[num]}`)
+      .get(
+        `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+      )
       .then((response) => {
         let data = response.data;
         data = data.title;
@@ -21,7 +23,9 @@ const generate = async () => {
       });
 
     const gameConsole = await axios
-      .get(`http://localhost:3017/api/games/read/game/${games[num]}`)
+      .get(
+        `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+      )
       .then((response) => {
         let data = response.data;
         data = data.console;
@@ -71,13 +75,16 @@ const generate = async () => {
       console.log(clearLogoLink);
 
       await axios
-        .post(`http://localhost:3017/api/games/update/game/all/${games[num]}`, {
-          oldBoxImg: boxArtLink,
-          oldScreenImg: titleScreenLink,
-          oldCartImg: screenshotLink,
-          releaseDate: gameDbId.releaseDate,
-          gameDbId: gameDbId.id,
-        })
+        .post(
+          `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
+          {
+            oldBoxImg: boxArtLink,
+            oldScreenImg: titleScreenLink,
+            oldCartImg: screenshotLink,
+            releaseDate: gameDbId.releaseDate,
+            gameDbId: gameDbId.id,
+          }
+        )
         .then(() => {
           console.log(`✅ CHANGED DB  `);
         })
