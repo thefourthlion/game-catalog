@@ -10,7 +10,7 @@ const { games } = require("./gameLists/gameBoyAdvanced");
 const start = 0;
 const end = games.length - 1;
 const currentGameConsole = "Game Boy Advance";
-const delayTime = 0;
+const delayTime = 1000;
 let retryCount = 0;
 // let count = 0;
 let newCurrentFile = false;
@@ -46,7 +46,7 @@ const downloadGames = async () => {
   console.log("Starting ✅");
   for (let num = start; num <= end; num++) {
     try {
-      // await delay(delayTime);
+      await delay(delayTime);
       await page.setDefaultNavigationTimeout(0);
 
       // Navigate to the vault page for the current id
@@ -118,7 +118,7 @@ const downloadGames = async () => {
             if (retryCount > 4) {
               num = num + 1;
               console.log(`MOVING ON 👌...${retryCount}`);
-              // delay(1000);
+              await delay(delayTime);
             }
           }
 
