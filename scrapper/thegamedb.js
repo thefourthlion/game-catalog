@@ -47,9 +47,23 @@ const generate = async () => {
         data = data.data;
         const games = data.games;
 
-        const game = games.find(
-          (game) => game.platform === platform && game.game_title === gameTitle
-        );
+        const game = games.find((game) => {
+          const gameTitleWords = new Set(gameTitle.toLowerCase().split(/\W+/));
+          const gameNameWords = new Set(
+            game.game_title.toLowerCase().split(/\W+/)
+          );
+
+          // Calculate Jaccard similarity coefficient
+          const intersection = new Set(
+            [...gameTitleWords].filter((word) => gameNameWords.has(word))
+          );
+          const union = new Set([...gameTitleWords, ...gameNameWords]);
+          const similarity = intersection.size / union.size;
+
+          return (
+            game.platform === platform && similarity >= 0.5 // Adjust similarity threshold as needed
+          );
+        });
 
         if (game) {
           const { id, release_date: releaseDate } = game;
