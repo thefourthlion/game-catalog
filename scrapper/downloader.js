@@ -5,11 +5,11 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/gameBoy");
+const { games } = require("./gameLists/gameBoyAdvanced");
 
 const start = 0;
 const end = games.length - 1;
-const currentGameConsole = "Game Boy";
+const currentGameConsole = "Game Boy Advance";
 const delayTime = 0;
 let retryCount = 0;
 // let count = 0;
