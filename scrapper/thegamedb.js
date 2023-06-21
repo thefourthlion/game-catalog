@@ -1,15 +1,15 @@
 require("dotenv").config();
 const axios = require("axios");
-gameBoyAdvanced;
-const { games } = require("./gameLists/gameBoyAdvanced");
+const { games } = require("./gameLists/gameBoyColor444");
 const starting = 0;
 const ending = games.length;
 
-const platform = 5; // find gameDb platform num
+const platform = 41; // find gameDb platform num
 
 const generate = async () => {
   for (let num = starting; num <= ending; num++) {
     console.log(`🔢 GAME - ${games[num]}`);
+    console.log(`🔢 GAME - ${num}`);
     const gameTitle = await axios
       .get(
         `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
