@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const { games } = require("./gameLists/gameBoyColor444");
+const { games } = require("./gameLists/gameBoyColor");
 const starting = 0;
 const ending = games.length;
 
