@@ -8,18 +8,29 @@ const Game = () => {
   const [game, setGame] = useState([]);
   const router = useRouter();
   const { id } = router.query;
+  const [newDownloadLink, setNewDownloadLink] = useState("");
 
   // dotenv.config();
   // const apiUrl = process.env.API_URL;
 
-  const findGame = () => {
-    Axios.get(`https://api.games.everettdeleon.com/api/games/read/${id}`).then(
-      (res) => {
-        const data = res.data;
-        console.log(data);
-        setGame(data);
-      }
-    );
+  const findGame = async () => {
+    try {
+      const res = await Axios.get(
+        `https://api.games.everettdeleon.com/api/games/read/${id}`
+      );
+      const data = res.data;
+      console.log(data);
+      setGame(data);
+
+      let downloadTitle = data.title;
+      alert(downloadTitle);
+      let downloadGame = downloadTitle.replace(/[,:\s]+/g, "-");
+      let newDownloadLink = `http://10.0.0.123/roms/${data.console}/${downloadGame}/${downloadGame}.zip`;
+      setNewDownloadLink(newDownloadLink);
+    } catch (error) {
+      // Handle the error appropriately
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -46,7 +57,7 @@ const Game = () => {
             gameId={game.gameId}
             players={game.players}
             region={game.region}
-            downloadLink={game.downloadLink}
+            downloadLink={newDownloadLink}
             serial={game.serial}
             publisher={game.publisher}
             downloadSize={game.downloadSize}

@@ -9,7 +9,7 @@ const Games = () => {
   const [games, setGames] = useState([]);
   const router = useRouter();
   const { id } = router.query;
-  const [limit, setLimit] = useState(500);
+  const [limit, setLimit] = useState(5000);
   const [letter, setLetter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -280,6 +280,7 @@ const Games = () => {
                     key={key}
                     num={key + 1}
                     gameId={item._id}
+                    console={item.console}
                     title={item.title}
                     size={item.downloadSize}
                     downloadLink={item.downloadLink}

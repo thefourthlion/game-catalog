@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import { Carousel } from "react-bootstrap";
 // import puppeteer from "puppeteer";
@@ -32,6 +32,8 @@ const GameInfo = ({
   const [showOldBoxImg, setShowOldBoxImg] = useState(true);
   const [showOldCartImg, setShowOldCartImg] = useState(true);
   const [showCheatCodes, setShowCheatCodes] = useState(false);
+
+   
 
   const rating = parseFloat(overallReview) / 2;
 
