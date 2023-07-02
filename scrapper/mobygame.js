@@ -3,16 +3,26 @@ const app = express();
 const port = process.env.PORT || 3003;
 const axios = require("axios");
 
-let firstGame = 7590;
-let lastGame = 88096;
+const { games } = require("./gameLists/gameBoy");
+
+const start = 0;
+const end = games.length - 1;
 const delayTime = 1000;
 
+const delay = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 async function iterateSlowly() {
-  for (let num = firstGame; num <= lastGame; num++) {
-    await new Promise((resolve) => setTimeout(resolve, delayTime)); // wait for 1 second
+  for (let num = start; num <= end; num++) {
+   
+    
     try {
+      await delay(delayTime)
+      console.log(`🔢 GAME - ${games[num]}`);
+      console.log(`⚛️ GAME - ${num}`);
       const title = await axios
-        .get(`https://api.games.everettdeleon.com/api/games/read/game/${num}`)
+        .get(`https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`)
         .then((response) => {
           const data = response.data;
           let title = data.title;
@@ -23,7 +33,7 @@ async function iterateSlowly() {
         });
 
       const year = await axios
-        .get(`https://api.games.everettdeleon.com/api/games/read/game/${num}`)
+        .get(`https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`)
         .then((response) => {
           const data = response.data;
           let year = data.year;
@@ -34,6 +44,7 @@ async function iterateSlowly() {
         });
 
       console.log(`----------------- ${year} - ${title} ----------------`);
+      console.log(`https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `)
 
       const gameInfo = await axios
         .get(
@@ -56,22 +67,20 @@ async function iterateSlowly() {
         console.log("⛔ IMAGE");
       } else {
         console.log(gameInfo);
-        await axios
-          .post(
-            `https://api.games.everettdeleon.com/api/games/update/game/${num}`,
-            {
-              oldCartImg: gameInfo,
-            }
-          )
-          .then(() => {
-            console.log("✅ CHANGED IMAGE");
-          })
-          .catch((error) => {
-            console.log("🛑 COULDN'T CHANGE IMAGE");
-          });
+        // await axios
+        //   .post(
+        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //     {
+        //       oldCartImg: gameInfo,
+        //     }
+        //   )
+        //   .then(() => {
+        //     console.log("✅ CHANGED IMAGE");
+        //   })
+        //   .catch((error) => {
+        //     console.log("🛑 COULDN'T CHANGE IMAGE");
+        //   });
       }
-
-      console.log(`========== ${num}`);
     } catch (e) {
       process.on("uncaughtException", (e) => {
         console.log("uncaughtException:", e);
