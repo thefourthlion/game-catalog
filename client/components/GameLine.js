@@ -23,7 +23,7 @@ const GameLine = ({
           <Link href={`/game/${gameId}`}>{title}</Link>
         </p>
         <p className="item size">{size}</p>
-        {downloadLink == "download-link" ? (
+        {downloadLink != "download-link" ? (
           <a className="item download" href={newDownloadLink}>
             <button className="primary-btn" type="submit">
               Download
