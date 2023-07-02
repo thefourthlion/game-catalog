@@ -225,8 +225,9 @@ exports.updateImageByGameId = async (req, res) => {
         oldBoxImg: req.body.oldBoxImg,
         oldScreenImg: req.body.oldScreenImg,
         oldCartImg: req.body.oldCartImg,
-        releaseDate: req.body.releaseDate,
-        gameDbId: req.body.gameDbId,
+        screenImg: req.body.screenImg,
+        boxImg: req.body.boxImg,
+        cartImg: req.body.cartImg,
       },
       (err, result) => {
         if (err) {
