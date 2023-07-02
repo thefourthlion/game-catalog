@@ -21,14 +21,7 @@ const Game = () => {
       const data = res.data;
       console.log(data);
       setGame(data);
-
-      let downloadTitle = data.title;
-      alert(downloadTitle);
-      let downloadGame = downloadTitle.replace(/[,:\s]+/g, "-");
-      let newDownloadLink = `http://10.0.0.123/roms/${data.console}/${downloadGame}/${downloadGame}.zip`;
-      setNewDownloadLink(newDownloadLink);
     } catch (error) {
-      // Handle the error appropriately
       console.error(error);
     }
   };
@@ -57,7 +50,7 @@ const Game = () => {
             gameId={game.gameId}
             players={game.players}
             region={game.region}
-            downloadLink={newDownloadLink}
+            downloadLink={game.downloadLink}
             serial={game.serial}
             publisher={game.publisher}
             downloadSize={game.downloadSize}

@@ -11,10 +11,6 @@ const GameLine = ({
   size,
   downloadLink,
 }) => {
-  let downloadTitle = title;
-  let downloadGame = downloadTitle.replace(/[,:\s]+/g, "-");
-  let newDownloadLink = `http://10.0.0.123/roms/${console}/${downloadGame}/${downloadGame}.zip`;
-
   return (
     <div className="GameLine">
       <div className="GameLine-container">
@@ -24,7 +20,10 @@ const GameLine = ({
         </p>
         <p className="item size">{size}</p>
         {downloadLink != "download-link" ? (
-          <a className="item download" href={newDownloadLink}>
+          <a
+            className="item download"
+            href={`http://10.0.0.123${downloadLink}`}
+          >
             <button className="primary-btn" type="submit">
               Download
             </button>

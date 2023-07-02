@@ -33,8 +33,6 @@ const GameInfo = ({
   const [showOldCartImg, setShowOldCartImg] = useState(true);
   const [showCheatCodes, setShowCheatCodes] = useState(false);
 
-   
-
   const rating = parseFloat(overallReview) / 2;
 
   // const downloadGame = async (link) => {
@@ -191,7 +189,7 @@ const GameInfo = ({
 
           <div className="btn-container">
             {downloadLink != "download-link" ? (
-              <a href={downloadLink}>
+              <a href={`http://10.0.0.123${downloadLink}`}>
                 <button className="primary-btn" type="submit">
                   Free Download
                 </button>
