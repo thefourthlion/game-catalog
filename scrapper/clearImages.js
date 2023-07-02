@@ -17,8 +17,9 @@ const generate = async () => {
           oldBoxImg: "placeholder",
           oldScreenImg: "placeholder",
           oldCartImg: "placeholder",
-          releaseDate: "placeholder",
-          gameDbId: "placeholder",
+          screenImg:"placeholder",
+          boxImg:"placeholder",
+          cartImg:"placeholder",
         }
       )
       .then(() => {

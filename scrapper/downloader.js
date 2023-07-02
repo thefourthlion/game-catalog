@@ -7,10 +7,10 @@ const { Storage } = require("@google-cloud/storage");
 
 const { games } = require("./gameLists/gameBoyAdvanced");
 
-const start = 0;
+const start = 1559;
 const end = games.length - 1;
 const currentGameConsole = "Game Boy Advance";
-const delayTime = 1000;
+const delayTime = 3000;
 let retryCount = 0;
 // let count = 0;
 let newCurrentFile = false;
@@ -115,14 +115,14 @@ const downloadGames = async () => {
           if (current_num == num) {
             retryCount++;
             console.log(`Retrying...${retryCount}`);
-            if (retryCount > 4) {
+            if (retryCount > 9) {
               num = num + 1;
               console.log(`MOVING ON 👌...${retryCount}`);
               await delay(delayTime);
             }
           }
 
-          if (retryCount == 5) {
+          if (retryCount == 10) {
             retryCount = 0;
           }
           // Download the game if it's not already downloaded
