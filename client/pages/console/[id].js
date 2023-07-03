@@ -9,7 +9,7 @@ const Games = () => {
   const [games, setGames] = useState([]);
   const router = useRouter();
   const { id } = router.query;
-  const [limit, setLimit] = useState(5000);
+  const [limit, setLimit] = useState(200);
   const [letter, setLetter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
