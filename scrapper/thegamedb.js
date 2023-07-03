@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
-const { games } = require("./gameLists/gameBoy");
-const starting = 82;
+const { games } = require("./gameLists/gameBoyColor");
+const starting = 0;
 const ending = games.length;
 
 const platform = 4; // find gameDb platform num
@@ -35,7 +35,9 @@ const generate = async () => {
       .catch((error) => {
         console.log(error.type);
       });
-
+    console.log(
+      `https://api.thegamesdb.net/v1/Games/ByGameName?apikey=${process.env.GAME_DB_API_KEY}&name=${gameTitle}&include=screenshot`
+    );
     const gameDbId = await axios
       .get(
         `https://api.thegamesdb.net/v1/Games/ByGameName?apikey=${process.env.GAME_DB_API_KEY}&name=${gameTitle}&include=screenshot`
@@ -95,23 +97,23 @@ const generate = async () => {
       let clearLogoLink = `https://cdn.thegamesdb.net/images/original/clearlogo/${gameDbId.id}-1.png`;
       console.log(clearLogoLink);
 
-      await axios
-        .post(
-          `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
-          {
-            oldBoxImg: boxArtLink,
-            oldScreenImg: titleScreenLink,
-            oldCartImg: screenshotLink,
-            releaseDate: gameDbId.releaseDate,
-            gameDbId: gameDbId.id,
-          }
-        )
-        .then(() => {
-          console.log(`✅ CHANGED DB  `);
-        })
-        .catch((error) => {
-          console.log("🛑 COULDN'T CHANGE DB");
-        });
+      // await axios
+      //   .post(
+      //     `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
+      //     {
+      //       oldBoxImg: boxArtLink,
+      //       oldScreenImg: titleScreenLink,
+      //       oldCartImg: screenshotLink,
+      //       releaseDate: gameDbId.releaseDate,
+      //       gameDbId: gameDbId.id,
+      //     }
+      //   )
+      //   .then(() => {
+      //     console.log(`✅ CHANGED DB  `);
+      //   })
+      //   .catch((error) => {
+      //     console.log("🛑 COULDN'T CHANGE DB");
+      //   });
     }
   }
 };

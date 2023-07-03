@@ -15,14 +15,14 @@ const delay = (ms) => {
 
 async function iterateSlowly() {
   for (let num = start; num <= end; num++) {
-   
-    
     try {
-      await delay(delayTime)
+      await delay(delayTime);
       console.log(`🔢 GAME - ${games[num]}`);
       console.log(`⚛️ GAME - ${num}`);
       const title = await axios
-        .get(`https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`)
+        .get(
+          `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+        )
         .then((response) => {
           const data = response.data;
           let title = data.title;
@@ -33,7 +33,9 @@ async function iterateSlowly() {
         });
 
       const year = await axios
-        .get(`https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`)
+        .get(
+          `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+        )
         .then((response) => {
           const data = response.data;
           let year = data.year;
@@ -44,18 +46,24 @@ async function iterateSlowly() {
         });
 
       console.log(`----------------- ${year} - ${title} ----------------`);
-      console.log(`https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `)
+      console.log(
+        `https://api.mobygames.com/v1/games?platform=10&title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `
+      );
 
       const gameInfo = await axios
         .get(
-          `https://api.mobygames.com/v1/games?title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `
+          `https://api.mobygames.com/v1/games?platform=10&title=${title}&release_date=${year}&limit=5&offset=0&api_key=moby_BrC6i2Ixtl0JFBxIGeqfiBiHpdL `
         )
         .then((response) => {
           const data = response.data;
           const games = data.games[0];
           let sample_cover = games.sample_cover;
-          let thumbnail_image = sample_cover.thumbnail_image;
-          return thumbnail_image;
+          let cover_image = sample_cover.image;
+          console.log({ cover: cover_image });
+          let sample_screenshots = games.sample_screenshots;
+          let sample_image = sample_screenshots[0].image;
+          console.log({ screenshot: sample_image });
+          return cover_image;
         })
         .catch((error) => {
           console.log(error.type);
