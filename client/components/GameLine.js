@@ -22,7 +22,7 @@ const GameLine = ({
         {downloadLink != "download-link" ? (
           <a
             className="item download"
-            href={`http://10.0.0.123${downloadLink}`}
+            href={`https://games.bombroms.com${downloadLink}`}
           >
             <button className="primary-btn" type="submit">
               Download

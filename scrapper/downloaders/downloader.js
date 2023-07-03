@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/gameBoyAdvanced");
+const { games } = require("../gameLists/gameBoyAdvanced");
 
 const start = 1559;
 const end = games.length - 1;
