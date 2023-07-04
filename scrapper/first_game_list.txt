@@ -5,7 +5,7 @@
 // ------ ✅ Nintendo 64 Games Available - #1001 (2518 - 87558) @ 12.777404000000004GB
 // ------ ✅ Super Nintendo Games Available - #3673 (215 - 88018) @ 3.1744679999999943GB
 // ------ ✅ Nintendo Games Available - #4424 (1 - 88067) @ 5.653308999999967GB
-// # ------ 3️⃣ ✅ Game Boy Advance Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB
+// # ------ PLATFORM 5 3️⃣ ✅ Game Boy Advance Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB
 
 ✅ Nintendo DS Games Available - #7030 (18351 - 87992) @ 209.6218250000005GB
 ✅ Sega Saturn Games Available - #2167 (24335 - 88019) @ 630.8578299999988GB

@@ -189,7 +189,7 @@ const GameInfo = ({
 
           <div className="btn-container">
             {downloadLink != "download-link" ? (
-              <a href={`http://games.bombroms.com${downloadLink}`} download>
+              <a href={`https://games.bombroms.com${downloadLink}`} download>
                 <button className="primary-btn" type="submit">
                   Free Download
                 </button>
