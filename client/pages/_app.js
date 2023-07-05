@@ -1,3 +1,4 @@
+import "../styles/ConsoleSlide.scss";import "../styles/HandheldSlider.scss";import "../styles/Spark.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Handhelds.scss";
 import "../styles/Consoles.scss";
@@ -24,12 +25,15 @@ import "../styles/font.css";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Spark from "../components/Spark";
 
 function MyApp({ Component, pageProps }) {
   return (
     <UserAuthContextProvider>
       <Navbar />
+      <Spark />
       <Component {...pageProps} />
+
       <Footer />
     </UserAuthContextProvider>
   );
