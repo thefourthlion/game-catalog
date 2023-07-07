@@ -1,1 +1,27 @@
-.Home{}
+.Home {
+}
+
+.ConsoleComponents {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // gap: 50px;
+  }
+
+  .images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 3 equal-width columns */
+    // grid-gap: 10px;
+  }
+
+  img {
+    // border: 1px solid white;
+
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    height: auto;
+  }
+}

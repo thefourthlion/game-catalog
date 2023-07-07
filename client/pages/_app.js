@@ -1,4 +1,4 @@
-import "../styles/ConsoleSlide.scss";import "../styles/HandheldSlider.scss";import "../styles/Spark.scss";
+import "../styles/Nintendo.scss";import "../styles/Sega.scss";import "../styles/Microsoft.scss";import "../styles/Sony.scss";import "../styles/Mission.scss";import "../styles/ConsoleSlide.scss";import "../styles/HandheldSlider.scss";import "../styles/Spark.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Handhelds.scss";
 import "../styles/Consoles.scss";
