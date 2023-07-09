@@ -1,10 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
-const { games } = require("./gameLists/gameBoyColor");
-const starting = 0;
+const { games } = require("./gameLists/nintendoDs");
+const starting = 1498;
 const ending = games.length;
 
-const platform = 4; // find gameDb platform num
+const platform = 8; // find gameDb platform num
 
 const generate = async () => {
   for (let num = starting; num <= ending; num++) {
@@ -97,23 +97,23 @@ const generate = async () => {
       let clearLogoLink = `https://cdn.thegamesdb.net/images/original/clearlogo/${gameDbId.id}-1.png`;
       console.log(clearLogoLink);
 
-      // await axios
-      //   .post(
-      //     `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
-      //     {
-      //       oldBoxImg: boxArtLink,
-      //       oldScreenImg: titleScreenLink,
-      //       oldCartImg: screenshotLink,
-      //       releaseDate: gameDbId.releaseDate,
-      //       gameDbId: gameDbId.id,
-      //     }
-      //   )
-      //   .then(() => {
-      //     console.log(`✅ CHANGED DB  `);
-      //   })
-      //   .catch((error) => {
-      //     console.log("🛑 COULDN'T CHANGE DB");
-      //   });
+      await axios
+        .post(
+          `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
+          {
+            oldBoxImg: boxArtLink,
+            oldScreenImg: titleScreenLink,
+            oldCartImg: screenshotLink,
+            releaseDate: gameDbId.releaseDate,
+            gameDbId: gameDbId.id,
+          }
+        )
+        .then(() => {
+          console.log(`✅ CHANGED DB  `);
+        })
+        .catch((error) => {
+          console.log("🛑 COULDN'T CHANGE DB");
+        });
     }
   }
 };

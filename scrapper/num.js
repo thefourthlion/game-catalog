@@ -1,3 +1,3 @@
-const { games } = require("./gameLists/playstationPortable");
+const { games } = require("./gameLists/nintendoDs");
 
 console.log(games.length);

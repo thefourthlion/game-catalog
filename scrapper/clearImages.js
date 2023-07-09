@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 
-const { games } = require("./gameLists/gameBoyColor");
+const { games } = require("./gameLists/virtualBoy");
 
 const starting = 0;
 const ending = games.length;
@@ -17,9 +17,9 @@ const generate = async () => {
           oldBoxImg: "placeholder",
           oldScreenImg: "placeholder",
           oldCartImg: "placeholder",
-          screenImg:"placeholder",
-          boxImg:"placeholder",
-          cartImg:"placeholder",
+          screenImg: "placeholder",
+          boxImg: "placeholder",
+          cartImg: "placeholder",
         }
       )
       .then(() => {

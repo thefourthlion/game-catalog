@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3003;
 const axios = require("axios");
 
-const { games } = require("./gameLists/gameBoy");
+const { games } = require("./gameLists/playstationPortable");
 
 const start = 0;
 const end = games.length - 1;
