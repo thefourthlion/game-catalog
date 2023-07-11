@@ -1,6 +1,8 @@
 import os
 import py7zr
 
+print(os.walk())
+
 def extract_7z_files_in_folder(folder_path):
     for root, dirs, files in os.walk(folder_path):
         for file in files:
@@ -22,6 +24,6 @@ def extract_7z_files_in_folder(folder_path):
                 print(f"Deleted {file_path}")
 
 
-folder_to_search = './downloads'
+folder_to_search = r"Z:\programming\gameCatalog\scrapper\downloads"
 
 extract_7z_files_in_folder(folder_to_search)

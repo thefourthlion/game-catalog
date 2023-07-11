@@ -5,11 +5,11 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/virtualBoy");
+const { games } = require("./curratedGamesList/ps2");
 
 const start = 0;
-const end = games.length;
-const currentGameConsole = "Virtual Boy";
+const end = games.length + 1;
+const currentGameConsole = "PlayStation 2";
 const delayTime = 15000;
 let retryCount = 0;
 let minute = delayTime * 4;
@@ -105,12 +105,12 @@ const downloadGames = async () => {
 
       let currentFile = path.join(
         __dirname,
-        `${downloadDir}` + `${gameTitle}.zip`
+        `${downloadDir}` + `${gameTitle}.7z`
       );
 
       let fileWithoutDash = path.join(
         __dirname,
-        `${downloadDir}` + `${title}.zip`
+        `${downloadDir}` + `${title}.7z`
       );
 
       console.log(
@@ -164,7 +164,7 @@ const downloadGames = async () => {
 
           const breakUpFile = files[0].split(".");
 
-          if (breakUpFile[breakUpFile.length - 1] == "zip") {
+          if (breakUpFile[breakUpFile.length - 1] == "7z") {
             newCurrentFile = `${__dirname}\\downloads\\${gameTitle}\\${files[0]}`;
           }
 
@@ -185,17 +185,17 @@ const downloadGames = async () => {
           let fileType = files[0].split(".")[1];
 
           const originalFilePath = `${downloadDir}${files[0]}`;
-          if (fileType == "zip") {
-            console.log("zip file");
+          if (fileType == "7z") {
+            console.log("7z file");
             // Rename the downloaded file to game name
-            const newFilePath = `${downloadDir}/${gameTitle}.zip`;
+            const newFilePath = `${downloadDir}/${gameTitle}.7z`;
             try {
               fs.renameSync(originalFilePath, newFilePath);
             } catch (e) {
               console.log("wait...");
             }
           } else {
-            const newFilePath = `${downloadDir}/${gameTitle}.zip`;
+            const newFilePath = `${downloadDir}/${gameTitle}.7z`;
             try {
               fs.renameSync(originalFilePath, newFilePath);
             } catch (e) {
@@ -213,36 +213,36 @@ const downloadGames = async () => {
       ) {
         // if the game exists, log it
         let exists = "✅";
-        let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.zip`;
+        let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.7z`;
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
-        axios
-          .post(
-            `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
-            {
-              downloadLink: localRomHostUrl,
-            }
-          )
-          .then(() => {
-            console.log("✅ CHANGED DESCRIPTION");
-          })
-          .catch((error) => {
-            console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-          });
+        // axios
+        //   .post(
+        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //     {
+        //       downloadLink: localRomHostUrl,
+        //     }
+        //   )
+        //   .then(() => {
+        //     console.log("✅ CHANGED DESCRIPTION");
+        //   })
+        //   .catch((error) => {
+        //     console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+        //   });
         // upload it to google server if its downloaded
         // await uploadFileToGoogleCloud(
-        //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,
-        //   `${downloadDir}/${gameTitle}.zip`,
+        //   `${getConsole}/${gameTitle}/${gameTitle}.7z`,
+        //   `${downloadDir}/${gameTitle}.7z`,
         //   bucketName
         // ).then(() => {
         //   // upload it to google server if its downloaded
 
-        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
+        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.7z`;
 
         // post the google link to db
 
         // Delete game once it is uploaded to google storage
-        // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {
+        // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.7z`, (err) => {
         //   if (err) throw err;
         //   console.log("File deleted!");
         // });
