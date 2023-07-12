@@ -157,7 +157,7 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
-          await delay(delayTime);
+          // await delay(delayTime);
           // }
 
           const files = fs.readdirSync(`${downloadDir}`);
