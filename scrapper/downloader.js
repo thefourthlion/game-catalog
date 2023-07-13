@@ -5,14 +5,27 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./curratedGamesList/ps2");
+const { games } = require("./gameLists/playstationportable");
+const { spawn } = require("child_process");
 
-const start = 0;
-const end = games.length + 1;
-const currentGameConsole = "PlayStation 2";
-const delayTime = 15000;
+function restartApp() {
+  console.log("Restarting the application...");
+
+  const app = spawn(process.argv[0], process.argv.slice(1), {
+    detached: true,
+    stdio: "inherit",
+  });
+
+  app.unref();
+  process.exit();
+}
+
+const start = 724;
+const end = games.length;
+const currentGameConsole = "PlayStation Portable";
+const delayTime = 5000;
 let retryCount = 0;
-let minute = delayTime * 4;
+let minute = delayTime * 20;
 let retryTimes = minute * 3;
 // let count = 0;
 let newCurrentFile = false;
@@ -48,6 +61,10 @@ const downloadGames = async () => {
   console.log("Starting ✅");
   for (let num = start; num <= end; num++) {
     try {
+      // Call the restartApp function whenever you want to restart your application
+      if (num == end - 1) {
+        restartApp();
+      }
       // await delay(delayTime);
       await page.setDefaultNavigationTimeout(0);
 
@@ -157,7 +174,7 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
-          // await delay(delayTime);
+          await delay(delayTime);
           // }
 
           const files = fs.readdirSync(`${downloadDir}`);
@@ -216,19 +233,19 @@ const downloadGames = async () => {
         let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.7z`;
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
-        // axios
-        //   .post(
-        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
-        //     {
-        //       downloadLink: localRomHostUrl,
-        //     }
-        //   )
-        //   .then(() => {
-        //     console.log("✅ CHANGED DESCRIPTION");
-        //   })
-        //   .catch((error) => {
-        //     console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-        //   });
+        axios
+          .post(
+            `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+            {
+              downloadLink: localRomHostUrl,
+            }
+          )
+          .then(() => {
+            console.log("✅ CHANGED DESCRIPTION");
+          })
+          .catch((error) => {
+            console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+          });
         // upload it to google server if its downloaded
         // await uploadFileToGoogleCloud(
         //   `${getConsole}/${gameTitle}/${gameTitle}.7z`,
