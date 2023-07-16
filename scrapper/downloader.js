@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/playstationportable");
+const { games } = require("./gameLists/nintendoDs");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,16 +20,17 @@ function restartApp() {
   process.exit();
 }
 
-const start = 724;
+const start = 289;
 const end = games.length;
-const currentGameConsole = "PlayStation Portable";
+const currentGameConsole = "Nintendo DS";
 const delayTime = 5000;
 let retryCount = 0;
 let minute = delayTime * 20;
 let retryTimes = minute * 3;
 // let count = 0;
 let newCurrentFile = false;
-
+let errorCount = 0;
+let maxErrorCount = 3;
 const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -122,12 +123,12 @@ const downloadGames = async () => {
 
       let currentFile = path.join(
         __dirname,
-        `${downloadDir}` + `${gameTitle}.7z`
+        `${downloadDir}` + `${gameTitle}.zip`
       );
 
       let fileWithoutDash = path.join(
         __dirname,
-        `${downloadDir}` + `${title}.7z`
+        `${downloadDir}` + `${title}.zip`
       );
 
       console.log(
@@ -174,22 +175,33 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
-          await delay(delayTime);
-          // }
+          try {
+            await delay(delayTime);
+            // }
 
-          const files = fs.readdirSync(`${downloadDir}`);
+            const files = fs.readdirSync(`${downloadDir}`);
 
-          const breakUpFile = files[0].split(".");
+            const breakUpFile = files[0].split(".");
 
-          if (breakUpFile[breakUpFile.length - 1] == "7z") {
-            newCurrentFile = `${__dirname}\\downloads\\${gameTitle}\\${files[0]}`;
-          }
+            if (breakUpFile[breakUpFile.length - 1] == "zip") {
+              newCurrentFile = `${__dirname}\\downloads\\${gameTitle}\\${files[0]}`;
+            }
 
-          console.log(fileWithoutDash);
-          console.log(fs.existsSync(fileWithoutDash));
+            console.log(fileWithoutDash);
+            console.log(fs.existsSync(fileWithoutDash));
 
-          if (fs.existsSync(fileWithoutDash) != false) {
-            console.log(`👾🔎🥶 FILE EXISTS: ${num}`);
+            if (fs.existsSync(fileWithoutDash) != false) {
+              console.log(`👾🔎🥶 FILE EXISTS: ${num}`);
+            }
+
+            errorCount = 0;
+          } catch (e) {
+            console.log("🌋 Error finding file: " + downloadDir);
+            console.log("ERROR Count: " + errorCount);
+            errorCount++;
+            if (errorCount == maxErrorCount) {
+              num++;
+            }
           }
         } else {
           console.log(`🔎🔎🔎`);
@@ -202,17 +214,17 @@ const downloadGames = async () => {
           let fileType = files[0].split(".")[1];
 
           const originalFilePath = `${downloadDir}${files[0]}`;
-          if (fileType == "7z") {
-            console.log("7z file");
+          if (fileType == "zip") {
+            console.log("zip file");
             // Rename the downloaded file to game name
-            const newFilePath = `${downloadDir}/${gameTitle}.7z`;
+            const newFilePath = `${downloadDir}/${gameTitle}.zip`;
             try {
               fs.renameSync(originalFilePath, newFilePath);
             } catch (e) {
               console.log("wait...");
             }
           } else {
-            const newFilePath = `${downloadDir}/${gameTitle}.7z`;
+            const newFilePath = `${downloadDir}/${gameTitle}.zip`;
             try {
               fs.renameSync(originalFilePath, newFilePath);
             } catch (e) {
@@ -230,7 +242,7 @@ const downloadGames = async () => {
       ) {
         // if the game exists, log it
         let exists = "✅";
-        let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.7z`;
+        let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.zip`;
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
         axios
@@ -248,18 +260,18 @@ const downloadGames = async () => {
           });
         // upload it to google server if its downloaded
         // await uploadFileToGoogleCloud(
-        //   `${getConsole}/${gameTitle}/${gameTitle}.7z`,
-        //   `${downloadDir}/${gameTitle}.7z`,
+        //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,
+        //   `${downloadDir}/${gameTitle}.zip`,
         //   bucketName
         // ).then(() => {
         //   // upload it to google server if its downloaded
 
-        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.7z`;
+        //   let googleGCSUrl = `https://storage.googleapis.com/game-catalog-roms/${getConsole}/${gameTitle}.zip`;
 
         // post the google link to db
 
         // Delete game once it is uploaded to google storage
-        // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.7z`, (err) => {
+        // fs.unlink(`./downloads/${gameTitle}/${gameTitle}.zip`, (err) => {
         //   if (err) throw err;
         //   console.log("File deleted!");
         // });
