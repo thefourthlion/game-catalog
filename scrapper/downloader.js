@@ -20,7 +20,7 @@ function restartApp() {
   process.exit();
 }
 
-const start = 289;
+const start = 0;
 const end = games.length;
 const currentGameConsole = "Nintendo DS";
 const delayTime = 5000;
