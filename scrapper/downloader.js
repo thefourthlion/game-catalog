@@ -22,7 +22,7 @@ function restartApp() {
 
 const start = 0;
 const end = games.length;
-const currentGameConsole = "Nintendo DS";
+const currentGameConsole = "Playstation Portable";
 const delayTime = 5000;
 let retryCount = 0;
 let minute = delayTime * 20;
