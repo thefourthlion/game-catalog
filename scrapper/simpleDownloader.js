@@ -14,10 +14,7 @@ const port = process.env.PORT || 3002;
 
 //ps3
 
-const gameNumbers = [
-  25498, 25567, 25585, 25701, 25685, 25721, 24880, 24913, 25090, 25100, 24731,
-  24766, 24805, 24806, 24828,
-];
+const gameNumbers = [24828];
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
