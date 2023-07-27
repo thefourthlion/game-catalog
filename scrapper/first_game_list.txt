@@ -1,9 +1,9 @@
 💻✅ Game Boy Color Games Available - #1963 (11 - 87858) @ 0.8464650000000007GB - PLATFORM 41
 💻✅ Game Boy Games Available - #2109 (2941 - 87856) @ 0.22061600000000015GB - PLATFORM 4
 💻✅ Game Boy Advance Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB - PLATFORM 5
-✅ Master System Games Available - #417 (83629 - 87529) @ 0.07214499999999989GB
+💻✅ Master System Games Available - #417 (83629 - 87529) @ 0.07214499999999989GB
 💻✅ Nintendo DS Games Available - #7030 (18351 - 87992) @ 209.6218250000005GB
-✅ Nintendo Games Available - #4424 (1 - 88067) @ 5.653308999999967GB
+💻✅ Nintendo Games Available - #4424 (1 - 88067) @ 5.653308999999967GB
 ✅ Nintendo 64 Games Available - #1001 (2518 - 87558) @ 12.777404000000004GB
 ✅ Super Nintendo Games Available - #3673 (215 - 88018) @ 3.1744679999999943GB
 ✅ Sega Saturn Games Available - #2167 (24335 - 88019) @ 630.8578299999988GB
