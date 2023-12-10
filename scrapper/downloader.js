@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/nintendoDs");
+const { games } = require("./curratedGamesList/ps3v3");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -245,19 +245,19 @@ const downloadGames = async () => {
         let localRomHostUrl = `https://bombroms.com/roms/${getConsole}/${gameTitle}/${gameTitle}.zip`;
 
         console.log(`Is ${currentFile} downloaded? ${exists}`);
-        axios
-          .post(
-            `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
-            {
-              downloadLink: localRomHostUrl,
-            }
-          )
-          .then(() => {
-            console.log("✅ CHANGED DESCRIPTION");
-          })
-          .catch((error) => {
-            console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-          });
+        // axios
+        //   .post(
+        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //     {
+        //       downloadLink: localRomHostUrl,
+        //     }
+        //   )
+        //   .then(() => {
+        //     console.log("✅ CHANGED DESCRIPTION");
+        //   })
+        //   .catch((error) => {
+        //     console.log("🛑 COULDN'T CHANGE DESCRIPTION");
+        //   });
         // upload it to google server if its downloaded
         // await uploadFileToGoogleCloud(
         //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,
