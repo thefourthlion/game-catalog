@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./curratedGamesList/ps3v3");
+const { games } = require("./gameLists/gameBoyColor");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -22,7 +22,7 @@ function restartApp() {
 
 const start = 0;
 const end = games.length;
-const currentGameConsole = "Playstation 3";
+const currentGameConsole = "Game Boy Color";
 const delayTime = 5000;
 let retryCount = 0;
 let minute = delayTime * 20;
@@ -98,14 +98,14 @@ const downloadGames = async () => {
 
       const getConsole = await page.evaluate(() => {
         const console = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2 > span.sectionTitle"
+          "#main > div.innerMain > div > main > h2 > div.sectionTitle"
         ).innerText;
         return console;
       });
 
       const gameTitle = await page.evaluate(() => {
         let title = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2 > span:nth-child(3)"
+          "#main > div.innerMain > div > main > h2 > div:nth-child(2)"
         ).innerText;
         title = title.replace(/[,:\s]+/g, "-");
         title = `${title}`;
@@ -114,7 +114,7 @@ const downloadGames = async () => {
 
       const title = await page.evaluate(() => {
         let title = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2 > span:nth-child(3)"
+          "#main > div.innerMain > div > main > h2 > div:nth-child(2)"
         ).innerText;
         return title;
       });
