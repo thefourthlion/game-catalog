@@ -1,0 +1,10 @@
+version: "25.0.2"
+gamescrapper:
+  api:
+    build: /
+    container_name: gamescrapper
+    ports:
+      - "3025:3025"
+    volumes:
+      - ./:/gamescrapper
+      - /node_modules

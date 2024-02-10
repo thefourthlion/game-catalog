@@ -20,10 +20,10 @@ function restartApp() {
   process.exit();
 }
 
-const start = 0;
+const start = 1156;
 const end = games.length;
 const currentGameConsole = "Game Boy Color";
-const delayTime = 5000;
+const delayTime = 2000;
 let retryCount = 0;
 let minute = delayTime * 20;
 let retryTimes = minute * 3;
@@ -132,7 +132,7 @@ const downloadGames = async () => {
       );
 
       console.log(
-        `-------------------- #${num} - ${getConsole} -------------------------`
+        `-------------------- #${num} - ${getConsole} ${parseInt(games.length) - parseInt(num)} -------------------------`
       );
 
       let gameExists = false;
