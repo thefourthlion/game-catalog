@@ -1,0 +1,40 @@
+.ConsoleGames .container {
+  text-align: left;
+}
+.ConsoleGames .search-input-label {
+  height: 55px;
+  width: 60vw;
+  margin: 0 auto 35px auto;
+}
+.ConsoleGames .loading-header {
+  text-align: center;
+}
+.ConsoleGames .no-games-found {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.ConsoleGames .view-more-btn {
+  height: 55px;
+  width: 200px;
+  margin: 10px auto 0 auto;
+}
+.ConsoleGames .btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ConsoleGames .letter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.ConsoleGames .letter-container p:hover {
+  color: rgb(8, 255, 213);
+  cursor: pointer;
+}/*# sourceMappingURL=ConsoleGames.css.map */

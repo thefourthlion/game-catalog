@@ -1,0 +1,57 @@
+.GameLine .GameLine-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 950px;
+  margin: 0 auto 10px auto;
+}
+@media (min-width: 900px) {
+  .GameLine {
+    /* Styles for desktop devices */
+  }
+  .GameLine .GameLine-container {
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+.GameLine p {
+  font-weight: bold;
+}
+.GameLine button {
+  bottom: 7px;
+  width: 150px;
+  height: 45px;
+  padding-bottom: 3px;
+}
+.GameLine .size {
+  width: 75px;
+}
+.GameLine .download {
+  width: 75px;
+}
+.GameLine .title {
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 420px;
+}
+@media (max-width: 900px) {
+  .GameLine .GameLine-container {
+    margin: 0 auto 20px auto;
+    width: 75vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: normal;
+  }
+  .GameLine .title {
+    width: 75vw;
+  }
+  .GameLine .size {
+    position: relative;
+    left: 15px;
+  }
+  .GameLine button {
+    width: 75vw;
+    height: auto;
+  }
+}/*# sourceMappingURL=GameLine.css.map */

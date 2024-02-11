@@ -1,0 +1,43 @@
+.spark {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(252, 239, 11);
+  pointer-events: none;
+  animation: sparkAnimation 1s infinite;
+  z-index: 5;
+}
+
+@keyframes sparkAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: rgb(252, 239, 11);
+  }
+  20% {
+    transform: scale(1.2);
+    opacity: 1;
+    background-color: rgb(252, 239, 11);
+  }
+  30% {
+    transform: scale(0.9);
+    opacity: 1;
+    background-color: rgba(252, 239, 11, 0.7);
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: rgb(252, 239, 11);
+  }
+  80% {
+    transform: scale(1.2);
+    opacity: 1;
+    background-color: rgb(252, 239, 11);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: rgb(252, 239, 11);
+  }
+}/*# sourceMappingURL=Spark.css.map */

@@ -1,0 +1,29 @@
+.Handhelds .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Handhelds .consoles {
+  padding-top: 7px;
+  border: 2px solid rgb(8, 255, 213);
+  border-radius: 5px;
+  height: 65px;
+  width: 400px;
+}
+.Handhelds .consoles:hover {
+  box-shadow: 9px 9px 4px -5px rgba(8, 255, 213, 0.6);
+}
+@media only screen and (max-width: 900px) {
+  .Handhelds .consoles {
+    padding-top: 12px;
+    border: 2px solid rgb(8, 255, 213);
+    border-radius: 5px;
+    height: 65px;
+    width: 300px;
+  }
+}/*# sourceMappingURL=handhelds.css.map */

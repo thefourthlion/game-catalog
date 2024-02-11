@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Orbitron:wght@900&family=Oxanium:wght@800&family=Press+Start+2P&family=Ubuntu+Mono:wght@700&family=VT323&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(23, 23, 36) !important;
+  text-align: center !important;
+  color: rgb(255, 254, 254) !important;
+  font-family: "Oxanium", cursive;
+}
+body a {
+  color: rgb(252, 239, 11);
+}
+body a:hover {
+  color: rgb(8, 255, 213) !important;
+}
+body .page {
+  margin-top: 125px;
+  margin-bottom: 125px;
+}
+body .form-label {
+  color: #3b3833;
+}
+body .search-input-form-control {
+  border: 2px solid rgb(252, 239, 11);
+  border-color: rgb(252, 239, 11);
+  color: #3b3833 !important;
+}
+body .search-input-form-control:focus {
+  background-color: white;
+  border-color: rgb(8, 255, 213);
+  box-shadow: none;
+  outline: 0 none;
+  color: #3b3833 !important;
+  box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
+}
+body .primary-btn {
+  color: #3b3833;
+  background-color: rgb(252, 239, 11);
+  border: 2px solid rgb(252, 239, 11);
+  border-radius: 5px;
+  font-size: 1.25rem;
+  padding-top: 3px;
+  cursor: pointer;
+}
+body .primary-btn:hover {
+  background-color: rgb(8, 255, 213);
+  border: 2px solid rgb(8, 255, 213);
+  border-radius: 5px;
+  color: rgb(252, 239, 11);
+  box-shadow: 9px 9px 4px -5px rgba(8, 255, 213, 0.6);
+}
+body .secondary-btn {
+  color: rgb(252, 239, 11);
+  font-weight: bold;
+  background-color: rgb(8, 255, 213);
+  border: 2px solid rgb(8, 255, 213);
+  border-radius: 5px;
+  font-size: 1.25rem;
+  padding-top: 3px;
+  cursor: pointer;
+}
+body .secondary-btn:hover {
+  background-color: rgb(252, 239, 11);
+  border: 2px solid rgb(252, 239, 11);
+  border-radius: 5px;
+  color: #3b3833;
+  box-shadow: 9px 9px 4px -5px rgba(252, 239, 11, 0.6);
+}
+body .third-btn {
+  color: rgb(255, 254, 254);
+  font-weight: bold;
+  background-color: #cc5b27;
+  border: 2px solid #cc5b27;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  padding-top: 3px;
+  cursor: pointer;
+}
+body .third-btn:hover {
+  background-color: #ad4e22;
+  border: 2px solid #ad4e22;
+  border-radius: 5px;
+  box-shadow: 9px 9px 4px -6px hsla(0, 0%, 0%, 0.3);
+}
+body .dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: rgb(252, 239, 11);
+}
+@media only screen and (max-width: 900px) {
+  body .page {
+    margin: 95px 0 125px 0;
+  }
+  body .phone-none {
+    display: none;
+  }
+}
+@media only screen and (min-width: 900px) {
+  body .pc-none {
+    display: none;
+  }
+}/*# sourceMappingURL=globals.css.map */

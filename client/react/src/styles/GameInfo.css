@@ -1,0 +1,152 @@
+.GameInfo {
+  text-align: left !important;
+}
+.GameInfo p {
+  font-size: 1.25rem;
+  word-wrap: break-word;
+}
+.GameInfo img {
+  width: 22vw;
+  height: 45vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.GameInfo a:hover {
+  color: #3b3833;
+}
+.GameInfo table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.GameInfo th,
+.GameInfo td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+  border-radius: 5px;
+}
+.GameInfo th {
+  background-color: rgb(252, 239, 11);
+}
+.GameInfo button {
+  margin: 7.5px 0 7.5px 0;
+  font-weight: bold;
+  width: 200px;
+  height: 55px;
+  padding-bottom: 6px;
+}
+.GameInfo .carousel {
+  position: absolute;
+  top: 0;
+}
+.GameInfo .carousel-img {
+  width: 22vw;
+  height: 45vh;
+}
+.GameInfo .img-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 22vw;
+  height: 45vh;
+}
+.GameInfo .game-information {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 5px 0 5px 0;
+}
+.GameInfo .platform {
+  margin-top: 10px;
+}
+.GameInfo .product-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.GameInfo .wiki-link {
+  margin-left: 5px;
+}
+.GameInfo .btn-container {
+  position: relative;
+  top: 7px;
+}
+.GameInfo .info-container {
+  position: relative;
+  margin: 0 15px 0 15px;
+  text-align: left;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.GameInfo .info-header {
+  text-align: center;
+  background-color: rgb(8, 255, 213);
+  border-radius: 5px;
+  height: 55px;
+  color: #3b3833;
+}
+.GameInfo .descriptions {
+  margin: 0 auto;
+  width: 62vw;
+}
+.GameInfo .descriptions > h1 {
+  margin: 15px 0 15px 0;
+}
+.GameInfo .descriptions > p {
+  margin: 0;
+}
+.GameInfo .cheat-codes {
+  margin: 0 auto;
+  width: 62vw;
+}
+.GameInfo .cheat-codes > h1 {
+  margin: 15px 0 15px 0;
+}
+.GameInfo .cheats {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.GameInfo .code {
+  margin-right: 25px;
+}
+@media (max-width: 900px) {
+  .GameInfo .btn-container {
+    position: relative;
+    top: 0px;
+  }
+  .GameInfo button {
+    width: 85vw;
+  }
+  .GameInfo .info-container h1 {
+    margin-top: 10px;
+  }
+  .GameInfo img {
+    width: 85vw;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .GameInfo .carousel-img {
+    width: 85vw;
+  }
+  .GameInfo .img-container {
+    min-width: 85vw;
+  }
+  .GameInfo .product-container {
+    margin: 0 auto;
+    flex-direction: column;
+    width: 85vw;
+  }
+  .GameInfo .info-container {
+    margin: 0 auto;
+    width: 85vw;
+  }
+  .GameInfo .cheat-codes {
+    width: 85vw;
+  }
+  .GameInfo .descriptions {
+    width: 85vw;
+  }
+}/*# sourceMappingURL=GameInfo.css.map */

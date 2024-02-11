@@ -1,0 +1,27 @@
+@import "./Variables.scss";
+.dropdown {
+  .dropdown {
+    // min-width: 165px;
+    // font-weight: bold;
+    width: auto;
+    font-size: 25px;
+    font-weight: bold;
+    color: $white !important;
+  }
+
+  .navbar-link:hover {
+    color: $secondary-color !important;
+  }
+
+  .dropdown:hover {
+    // min-width: 165px;
+    // font-weight: bold;
+
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
+
+  .dropdown-menu {
+    background-color: $dark !important;
+  }
+}

@@ -1,0 +1,124 @@
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 8 !important;
+  background-color: rgba(23, 23, 36, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-bottom: none;
+  outline: none;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  font-weight: bold;
+  box-shadow: 0px 1px 1px 1px rgba(8, 255, 213, 0.6);
+}
+.Navbar .logo-header {
+  color: rgb(252, 239, 11);
+}
+.Navbar .login {
+  position: relative;
+  bottom: 7px;
+}
+.Navbar .burger div {
+  width: 35px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(252, 239, 11);
+  margin: 5px;
+}
+.Navbar button {
+  height: 55px;
+  width: 200px;
+}
+.Navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.Navbar li {
+  padding: 20px;
+  flex-direction: row;
+}
+.Navbar a {
+  text-decoration: none;
+  color: rgb(255, 254, 254);
+}
+.Navbar .links {
+  position: relative;
+  top: 4.5px;
+}
+.Navbar .burger {
+  position: relative;
+  top: 0px;
+  display: none;
+  cursor: pointer;
+}
+.Navbar .logo {
+  position: relative;
+  bottom: 5px;
+}
+.Navbar .nav-title {
+  display: none;
+  color: rgb(252, 239, 11);
+}
+
+.nav-item {
+  font-size: 25px;
+}
+.nav-item a::before {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  top: 40px;
+}
+.nav-item a:hover::before {
+  transform: scaleX(1);
+}
+
+@media (max-width: 900px) {
+  .Navbar {
+    background-color: rgb(23, 23, 36);
+    height: 75px;
+  }
+  .Navbar .logo-header {
+    position: relative;
+    top: 7px;
+    right: 25px;
+  }
+  .Navbar .nav-title {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    display: block;
+  }
+  .Navbar .nav-links {
+    background-color: rgb(23, 23, 36);
+    position: absolute;
+    height: 100vh;
+    top: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+    width: 100vw;
+  }
+  .Navbar #nav-hidden {
+    transform: translateX(100%);
+  }
+  .Navbar #nav-active {
+    transform: translateX(0%);
+  }
+  .Navbar .burger {
+    display: block;
+    position: relative;
+    position: absolute;
+    right: 25px;
+    top: 20px;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

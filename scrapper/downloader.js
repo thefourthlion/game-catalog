@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/gameBoyColor");
+const { games } = require("./gameLists/gameBoyAdvanced");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,13 +20,13 @@ function restartApp() {
   process.exit();
 }
 
-const start = 1156;
+const start = 559;
 const end = games.length;
-const currentGameConsole = "Game Boy Color";
-const delayTime = 2000;
+const currentGameConsole = "Game Boy Advance";
+const delayTime = 5000;
 let retryCount = 0;
 let minute = delayTime * 20;
-let retryTimes = minute * 3;
+let retryTimes = minute * 1;
 // let count = 0;
 let newCurrentFile = false;
 let errorCount = 0;
@@ -57,6 +57,8 @@ const bucketName = "game-catalog-roms";
 
 const downloadGames = async () => {
   const browser = await puppeteer.launch({ headless: true });
+  // for linux
+  // const browser = await puppeteer.launch({ executablePath: '/usr/bin/chromium-browser', args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote'] });
   const page = await browser.newPage();
 
   console.log("Starting ✅");
