@@ -20,7 +20,7 @@ function restartApp() {
   process.exit();
 }
 
-const start = 559;
+const start = 2337;
 const end = games.length;
 const currentGameConsole = "Game Boy Advance";
 const delayTime = 5000;

@@ -1,0 +1,17 @@
+version: "25.0.2"
+services:
+  client:
+    build: /
+    container_name: thebombroms-client
+    ports:
+      - '3000:3000'
+    # wont work in windows
+    # volumes:
+    #   - ./client/react:/thebombroms
+    stdin_open: true
+    tty: true
+#     networks:
+#       - docker-network
+# networks:
+#   docker-network:
+#     external: true
