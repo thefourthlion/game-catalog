@@ -1,0 +1,15 @@
+version: "25.0.2"
+services:
+  api:
+    build: /
+    container_name: thebombroms-server
+    ports:
+      - "3025:3025"
+    volumes:
+      - ./:/thebombroms-server
+      - /node_modules
+#     networks:
+#       - docker-network
+# networks:
+#   docker-network:
+#     external: true
