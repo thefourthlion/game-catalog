@@ -1,5 +1,5 @@
 # what img to do you want to pull
-FROM node:17-alpine
+FROM node:14-alpine
 
 # where to work from, what everything will have access to
 WORKDIR /thebombroms
