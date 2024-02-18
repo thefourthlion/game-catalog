@@ -63,8 +63,8 @@ const uploadFileToGoogleCloud = async function (
 // cycle through tr's and get text info from inside
 // github for cover images - https://github.com/libretro-thumbnails/libretro-thumbnails
 
-let firstGame = 0;
-let lastGame = 88313;
+let firstGame = 835;
+let lastGame = 92357;
 const missingGames = [];
 const delayTime = 0;
 
@@ -104,7 +104,7 @@ async function downloadImage(url, selector, path) {
       // --------------------------------------------------- get title  -----------------------------
       const title = await page.evaluate(() => {
         const data = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span:nth-child(3)"
+          "#main > div.innerMain > div > main > h2 > div:nth-child(2)"
         ).innerText;
         return data;
       });
@@ -118,7 +118,7 @@ async function downloadImage(url, selector, path) {
       // --------------------------------------------------- get game console -----------------------------
       const gameConsole = await page.evaluate(() => {
         const data = document.querySelector(
-          "#main > div.innerMain > div > div.mainContent > h2.mainContent > span.sectionTitle"
+          "#main > div.innerMain > div > main > h2 > div.sectionTitle"
         ).innerText;
         return data;
       });
@@ -131,93 +131,46 @@ async function downloadImage(url, selector, path) {
         return data;
       });
 
-      // --------------------------------------------------- get cheatCode code -----------------------------
       const cheatCode = await page.evaluate(() => {
         const listOfItems = [];
-        const length = document.querySelectorAll(
-          "#main > div.innerMain > div > div.mainContent > table.mainContent.rounded.striped > tbody > tr"
-        ).length;
-        console.log(`Length: ${length}`);
-        for (let i = 1; i < length + 1; i++) {
-          const data = document.querySelector(
-            `#main > div.innerMain > div > div.mainContent > table.mainContent.rounded.striped > tbody > tr:nth-child(${i}) > td:nth-child(1)`
-          ).innerText;
-          listOfItems.push(data);
-        }
+        const rows = document.querySelectorAll(
+          "#main > div.innerMain > div > main > table.mainContent.rounded.striped > tbody > tr"
+        );
+
+        rows.forEach(row => {
+          const codeCellText = row.querySelector('td:nth-child(1)').innerText;
+          // Check if the second cell contains the specific note text
+          const descriptionCell = row.querySelector('td:nth-child(2)');
+          if (descriptionCell && !descriptionCell.innerText.includes("Note: There are two versions given for some of the following Codes.")) {
+            listOfItems.push(codeCellText);
+          }
+        });
+
         return listOfItems;
       });
+
 
       // --------------------------------------------------- get cheatCode description -----------------------------
       const cheatCodeDescription = await page.evaluate(() => {
         const listOfItems = [];
-        const length = document.querySelectorAll(
-          "#main > div.innerMain > div > div.mainContent > table.mainContent.rounded.striped > tbody > tr"
-        ).length;
-        console.log(`Length: ${length}`);
-        for (let i = 1; i < length + 1; i++) {
-          const data = document.querySelector(
-            `#main > div.innerMain > div > div.mainContent > table.mainContent.rounded.striped > tbody > tr:nth-child(${i}) > td:nth-child(2)`
-          ).innerText;
-          listOfItems.push(data);
-        }
+        const rows = document.querySelectorAll("#main > div.innerMain > div > main > table.mainContent.rounded.striped > tbody > tr");
+        rows.forEach(row => {
+          // Check if the row contains the note and skip it
+          const isNoteRow = row.innerText.includes("Note: There are two versions given for some of the following Codes.");
+          if (isNoteRow) {
+            return; // Skip this iteration
+          }
+
+          const secondCell = row.querySelector("td:nth-child(2)");
+          if (secondCell) { // Make sure the second cell exists before accessing its text
+            listOfItems.push(secondCell.innerText);
+          }
+          // If the cell doesn't exist, this iteration is automatically skipped
+        });
         return listOfItems;
       });
 
-      // // --------------------------------------------------- get game info titles -----------------------------
-      // const gameInfoTitle = await page.evaluate(() => {
-      //   const listOfItems = [];
-      //   const length = document.querySelectorAll(
-      //     "#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(1) > table > tbody > tr"
-      //   ).length;
-      //   console.log(`Length: ${length}`);
-      //   for (let i = 1; i < length; i++) {
-      //     try {
-      //       const data = document.querySelector(
-      //         `#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(1) > table > tbody > tr:nth-child(${i}) > td:nth-child(1)`
-      //       ).innerHTML;
-      //       if (data != '<hr style="margin:1px">') {
-      //         listOfItems.push(data);
-      //       }
-      //     } catch (e) {}
-      //   }
-      //   return listOfItems;
-      // });
 
-      // // --------------------------------------------------- get game info descriptions -----------------------------
-      // const gameInfoDescription = await page.evaluate(() => {
-      //   const listOfItems = [];
-      //   const length = document.querySelectorAll(
-      //     "#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(1) > table > tbody > tr"
-      //   ).length;
-      //   console.log(`Length: ${length}`);
-      //   for (let i = 1; i < length; i++) {
-      //     try {
-      //       const data = document.querySelector(
-      //         `#main > div.innerMain > div > div.mainContent > div.mainContent > div:nth-child(1) > table > tbody > tr:nth-child(${i}) > td:nth-child(3)`
-      //       ).innerText;
-      //       if (data != '<hr style="margin:1px">') {
-      //         listOfItems.push(data);
-      //       }
-      //     } catch (e) {}
-      //   }
-      //   return listOfItems;
-      // });
-
-      // --------------------------------------------------- get reviewName description -----------------------------
-      // const reviewName = await page.evaluate(() => {
-      //   const listOfItems = [];
-      //   const length = document.querySelectorAll(
-      //     "#reviewDiv > table:nth-child(1) > tbody"
-      //   ).length;
-      //   console.log(`Length: ${length}`);
-      //   for (let i = 1; i < length + 1; i++) {
-      //     const data = document.querySelector(
-      //       `#main > div.innerMain > div > div.mainContent > table.mainContent.rounded.striped > tbody > tr:nth-child(${i}) > td:nth-child(2)`
-      //     ).innerText;
-      //     listOfItems.push(data);
-      //   }
-      //   return length;
-      // });
 
       const players = await page.evaluate(() => {
         const row = Array.from(document.querySelectorAll(".rounded tr")).find(
@@ -457,20 +410,15 @@ async function downloadImage(url, selector, path) {
       console.log("---------------------------------------");
       console.log(`Game Title: ${title}`);
       // console.log(`Download Size : ${downloadSize}`);
-      console.log(`Console: ${gameConsole}`);
-      console.log(`Game File Name: ${gameFileName}`);
+      // console.log(`Console: ${gameConsole}`);
+      // console.log(`Game File Name: ${gameFileName}`);
       // console.log(`Media Id : ${mediaId}`);
       // console.log(`Screen Img: "${oldScreenImg}`);
       // console.log(`Box Img: "${oldBoxImg}`);
       // console.log(`Cart Img: "${oldCartImg}`);
       // console.log(`CheatCode : ${cheatCode}`);
       // console.log(`CheatCode Description: "${cheatCodeDescription}`);
-      // console.log(`Game Info Description: "${gameInfoDescription}`);
-      // console.log(`Game Info Titles: "${gameInfoTitle}`);
-      // console.log(`Review names: ${reviewName}`);
-      // console.log(`Review Dates: ${reviewDate}`);
-      // console.log(`Review Description: ${reviewDescription}`);
-      console.log(`Games Left : ${lastGame - num}  |  GAME#${num}`);
+      // console.log(`Games Left : ${lastGame - num}  |  GAME#${num}`);
 
       const reviewName = ["placeholder", "placeholder"];
       const reviewDate = ["placeholder", "placeholder"];
@@ -610,20 +558,22 @@ async function downloadImage(url, selector, path) {
         description: description,
         timestamp: date,
       };
+
+      console.log(games)
       // 37 inputs
 
-      await axios({
-        method: "POST",
-        url: `https://api.games.everettdeleon.com/api/games/create`,
-        data: games,
-        timeout: 7000,
-      })
-        .then(() => {
-          console.log("Successfully wrote data to db ✅");
-        })
-        .catch((error) => {
-          console.error({ "Failed writing to db 🛑": error });
-        });
+      // await axios({
+      //   method: "POST",
+      //   url: `http://192.168.0.66:3017/api/games/create`,
+      //   data: games,
+      //   timeout: 7000,
+      // })
+      //   .then(() => {
+      //     console.log("Successfully wrote data to db ✅");
+      //   })
+      //   .catch((error) => {
+      //     console.error({ "Failed writing to db 🛑": error });
+      //   });
     } catch (e) {
       const missingGame = `Missing game #${num}`;
       missingGames.push(missingGame);

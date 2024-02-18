@@ -30,7 +30,7 @@ const generate = async () => {
   for (let num = starting; num <= ending; num++) {
     // ------------------------------- get data from db -------------------------------
     const res = await axios.get(
-      `https://api.games.everettdeleon.com/api/games/read/game/${num}`
+      `http://192.168.0.66:3017/api/games/read/game/${num}`
     );
 
     const data = res.data;
@@ -51,8 +51,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${nintendoSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${nintendoSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -76,8 +75,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${genesisSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${genesisSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -102,8 +100,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${superNintendoSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${superNintendoSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -126,8 +123,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${saturnSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${saturnSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -152,8 +148,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${playstationSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${playstationSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -177,8 +172,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${nintendo64Size} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${nintendo64Size} GB - ${ending - num
           } ------------------------`
         );
 
@@ -202,8 +196,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${dreamcastSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${dreamcastSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -228,8 +221,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${playstation2Size} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${playstation2Size} GB - ${ending - num
           } ------------------------`
         );
 
@@ -252,8 +244,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${xboxSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${xboxSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -273,8 +264,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${gameCubeSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${gameCubeSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -298,8 +288,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${xbox360Size} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${xbox360Size} GB - ${ending - num
           } ------------------------`
         );
 
@@ -324,8 +313,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${playstation3Size} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${playstation3Size} GB - ${ending - num
           } ------------------------`
         );
 
@@ -348,8 +336,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${wiiSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${wiiSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -369,8 +356,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${wiiWareSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${wiiWareSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -393,8 +379,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${gamBoySize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${gamBoySize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -418,8 +403,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${virtualBoySize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${virtualBoySize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -444,8 +428,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${gameBoyColorSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${gameBoyColorSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -471,8 +454,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${gameBoyAdvancedSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${gameBoyAdvancedSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -496,8 +478,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${nintendoDsSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${nintendoDsSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -524,8 +505,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${playstationPortableSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${playstationPortableSize} GB - ${ending - num
           } ------------------------`
         );
 
@@ -550,8 +530,7 @@ const generate = async () => {
         }
 
         console.log(
-          `------------------------------ #${num} - ${platform} - ${masterSystemSize} GB - ${
-            ending - num
+          `------------------------------ #${num} - ${platform} - ${masterSystemSize} GB - ${ending - num
           } ------------------------`
         );
 

@@ -1,10 +1,33 @@
 require("dotenv").config();
 const axios = require("axios");
-const { games } = require("./gameLists/nintendoDs");
-const starting = 1498;
+const { games } = require("./gameLists/playstation");
+
+const { dreamcast } = require("./gameLists/dreamcast");
+const { gameBoy } = require("./gameLists/gameBoy");
+const { gameBoyAdvanced } = require("./gameLists/gameBoyAdvanced");
+const { gameBoyColor } = require("./gameLists/gameBoyColor");
+const { gameCube } = require("./gameLists/gameCube");
+const { genesis } = require("./gameLists/genesis");
+const { masterSystem } = require("./gameLists/masterSystem");
+const { Nintendo } = require("./gameLists/Nintendo");
+const { nintendo64 } = require("./gameLists/nintendo64");
+const { nintendoDs } = require("./gameLists/nintendoDs");
+const { playstation } = require("./gameLists/playstation");
+const { playstation2 } = require("./gameLists/playstation2");
+const { playstation3 } = require("./gameLists/playstation3");
+const { playstationPortable } = require("./gameLists/playstationPortable");
+const { saturn } = require("./gameLists/saturn");
+const { superNintendo } = require("./gameLists/superNintendo");
+const { virtualBoy } = require("./gameLists/virtualBoy");
+const { wii } = require("./gameLists/wii");
+const { wiiWare } = require("./gameLists/wiiWare");
+const { xbox } = require("./gameLists/xbox");
+const { xbox360 } = require("./gameLists/xbox360");
+
+const starting = 0;
 const ending = games.length;
 
-const platform = 8; // find gameDb platform num
+const platform = 10; // find gameDb platform num
 
 const generate = async () => {
   for (let num = starting; num <= ending; num++) {
@@ -12,7 +35,7 @@ const generate = async () => {
     console.log(`🔢 GAME - ${num}`);
     const gameTitle = await axios
       .get(
-        `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+        `http://192.168.0.66:3017/api/games/read/game/${games[num]}`
       )
       .then((response) => {
         let data = response.data;
@@ -25,7 +48,7 @@ const generate = async () => {
 
     const gameConsole = await axios
       .get(
-        `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+        `http://192.168.0.66:3017/api/games/read/game/${games[num]}`
       )
       .then((response) => {
         let data = response.data;
@@ -99,7 +122,7 @@ const generate = async () => {
 
       await axios
         .post(
-          `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
+          `http://192.168.0.66:3017/api/games/update/game/all/${games[num]}`,
           {
             oldBoxImg: boxArtLink,
             oldScreenImg: titleScreenLink,

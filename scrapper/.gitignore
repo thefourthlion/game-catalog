@@ -6,3 +6,5 @@ google-key.txt
 .env
 /downloads
 /emulator
+/extras
+/thegamedb-dump

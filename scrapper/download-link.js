@@ -19,7 +19,7 @@ const downloadGames = async () => {
       console.log(`🔢 GAME - ${games[num]}`);
       console.log(`⚛️ GAME - ${num}`);
       const gameDataResponse = await axios.get(
-        `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+        `http://192.168.0.66:3017/api/games/read/game/${games[num]}`
       );
       const gameData = gameDataResponse.data;
 
@@ -31,7 +31,7 @@ const downloadGames = async () => {
       if (oldDownloadLink != "0 KB") {
         axios
           .post(
-            `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+            `http://192.168.0.66:3017/api/games/update/game/${games[num]}`,
             {
               downloadLink: localRomHostUrl,
             }

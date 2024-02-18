@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/gameBoyAdvanced");
+const { games } = require("./gameLists/nintendoDs");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,10 +20,10 @@ function restartApp() {
   process.exit();
 }
 
-const start = 2337;
+const start = 633;
 const end = games.length;
-const currentGameConsole = "Game Boy Advance";
-const delayTime = 5000;
+const currentGameConsole = "Nintendo DS";
+const delayTime = 15000;
 let retryCount = 0;
 let minute = delayTime * 20;
 let retryTimes = minute * 1;
@@ -249,7 +249,7 @@ const downloadGames = async () => {
         console.log(`Is ${currentFile} downloaded? ${exists}`);
         // axios
         //   .post(
-        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //     `http://192.168.0.66:3017/api/games/update/game/${games[num]}`,
         //     {
         //       downloadLink: localRomHostUrl,
         //     }

@@ -12,7 +12,7 @@ const generate = async () => {
 
     await axios
       .post(
-        `https://api.games.everettdeleon.com/api/games/update/game/all/${games[num]}`,
+        `http://192.168.0.66:3017/api/games/update/game/all/${games[num]}`,
         {
           oldBoxImg: "placeholder",
           oldScreenImg: "placeholder",

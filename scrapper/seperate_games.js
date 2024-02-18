@@ -37,7 +37,7 @@ const createLists = async () => {
     console.log(`-------------------------- Searching #${num}`);
     // ------------------------------- get data from db -------------------------------
     const gameId = await axios
-      .get(`https://api.games.everettdeleon.com/api/games/read/game/${num}`)
+      .get(`http://192.168.0.66:3017/api/games/read/game/${num}`)
       .then((response) => {
         const data = response.data;
 
@@ -49,7 +49,7 @@ const createLists = async () => {
       });
 
     const platform = await axios
-      .get(`https://api.games.everettdeleon.com/api/games/read/game/${num}`)
+      .get(`http://192.168.0.66:3017/api/games/read/game/${num}`)
       .then((response) => {
         const data = response.data;
 

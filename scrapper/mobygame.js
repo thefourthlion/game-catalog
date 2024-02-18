@@ -21,7 +21,7 @@ async function iterateSlowly() {
       console.log(`⚛️ GAME - ${num}`);
       const title = await axios
         .get(
-          `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+          `http://192.168.0.66:3017/api/games/read/game/${games[num]}`
         )
         .then((response) => {
           const data = response.data;
@@ -34,7 +34,7 @@ async function iterateSlowly() {
 
       const year = await axios
         .get(
-          `https://api.games.everettdeleon.com/api/games/read/game/${games[num]}`
+          `http://192.168.0.66:3017/api/games/read/game/${games[num]}`
         )
         .then((response) => {
           const data = response.data;
@@ -77,7 +77,7 @@ async function iterateSlowly() {
         console.log(gameInfo);
         // await axios
         //   .post(
-        //     `https://api.games.everettdeleon.com/api/games/update/game/${games[num]}`,
+        //     `http://192.168.0.66:3017/api/games/update/game/${games[num]}`,
         //     {
         //       oldCartImg: gameInfo,
         //     }

@@ -31,7 +31,7 @@ let lastGame = 88096;
   for (let num = firstGame; num <= lastGame; num++) {
     try {
       const id = await axios
-        .get(`https://api.games.everettdeleon.com/api/games/read/game/${num}`)
+        .get(`http://192.168.0.66:3017/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let mediaId = data.mediaId;
