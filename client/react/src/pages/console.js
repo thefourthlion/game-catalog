@@ -39,7 +39,7 @@ const Console = () => {
         try {
             console.log(id)
             const response = await Axios.get(
-                `https://api.games.everettdeleon.com/api/games/read/console/${id}/${letter}?limit=${limit}`
+                `http://192.168.0.66:3017/api/games/read/console/${id}/${letter}?limit=${limit}`
             );
             const data = response.data;
             setFilteredData(data);

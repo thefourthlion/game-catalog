@@ -4,7 +4,7 @@ FROM node:17-alpine
 RUN npm install -g nodemon
 
 # where to work from, what everything will have access to
-WORKDIR /speedtest-server
+WORKDIR /thebombroms-server
 
 # copy package.json to cache
 COPY package.json .

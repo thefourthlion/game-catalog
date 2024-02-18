@@ -17,7 +17,7 @@ const Games = () => {
 
     const getGames = () => {
         Axios.get(
-            `https://api.games.everettdeleon.com/api/games/read?limit=${limit}`
+            `http://192.168.0.66:3017/api/games/read?limit=${limit}`
         ).then((res) => {
             const data = res.data;
             setGames(data);
