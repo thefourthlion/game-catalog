@@ -16,7 +16,7 @@ const Game = () => {
     const findGame = async () => {
         try {
             const res = await Axios.get(
-                `http://192.168.0.66:3017/api/games/read/${id}`
+                `http://localhost:3017/api/games/read/${id}`
             );
             const data = res.data;
             console.log(data);

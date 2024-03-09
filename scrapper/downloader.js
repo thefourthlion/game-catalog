@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/nintendoDs");
+const { games } = require("./gameLists/updated_consoles/dreamcast");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,9 +20,9 @@ function restartApp() {
   process.exit();
 }
 
-const start = 633;
+const start = 1;
 const end = games.length;
-const currentGameConsole = "Nintendo DS";
+const currentGameConsole = "Dreamcast";
 const delayTime = 15000;
 let retryCount = 0;
 let minute = delayTime * 20;
@@ -249,7 +249,7 @@ const downloadGames = async () => {
         console.log(`Is ${currentFile} downloaded? ${exists}`);
         // axios
         //   .post(
-        //     `http://192.168.0.66:3017/api/games/update/game/${games[num]}`,
+        //     `http://localhost:3017/api/games/update/game/${games[num]}`,
         //     {
         //       downloadLink: localRomHostUrl,
         //     }

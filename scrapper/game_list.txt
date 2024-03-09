@@ -1,0 +1,45 @@
+// mb = 1661.62 MB
+⚫ ✅ Atari5200 has 113 games and they take up 1.11 MB
+⚫ ✅ Atari2600 has 735 games and they take up 5.21 MB
+⚫ ✅ Lynx has 110 games and they take up 13.07 MB
+⚫ ✅ Atari7800 has 127 games and they take up 3.51 MB
+🟣 ✅ Mastersystem has 699 games and they take up 80.56 MB
+🟣 ✅ Gamegear has 802 games and they take up 143.76 MB
+🟣 ✅ Sega32x has 214 games and they take up 301.72 MB
+🟠 ✅ Virtualboy has 66 games and they take up 32.22 MB
+🟠 ✅ Gameboy has 2165 games and they take up 221.13 MB
+🟠 ✅ Gameboycolor has 2021 games and they take up 859.33 MB
+
+
+// gb = 1495 GB
+🟣 ✅ Genesis has 2962 games and they take up 1.87 GB
+🟣 Dreamcast has 1382 games and they take up 578.85 GB
+🟣 Saturn has 2154 games and they take up 610.85 GB
+🟠 ✅ Supernintendo has 3798 games and they take up 3.15 GB
+🟠 ✅ Nintendo64 has 1055 games and they take up 12.92 GB
+🟠 ✅ Gameboyadvance has 3357 games and they take up 13.70 GB
+🟠 ✅ Nintendo has 4722 games and they take up 5.55 GB
+🟠 ✅ Wiiware has 2905 games and they take up 60.20 GB
+🟠 2463 Nintendods has 7157 games and they take up 207.91 GB
+
+
+
+// tb = 74.5 TB
+
+🔵 Playstationportable has 2789 games and they take up 1.43 TB
+🔵 Playstation has 9573 games and they take up 2.12 TB
+🔵 Playstation2 has 11110 games and they take up 13.09 TB
+🔵 Playstation3 has 4309 games and they take up 27.60 TB
+🟠 Gamecube has 1843 games and they take up 1.15 TB
+🟠 Wii has 3619 games and they take up 6.55 TB
+🟢 Xbox has 2557 games and they take up 3.92 TB
+🟢 Xbox360 has 3113 games and they take up 18.64 TB
+
+
+All of the games combined take up 75.95 TB
+
+All playstation game = 44.24 TB 
+All Nintendo games = 8 TB 
+All Xbox games = 22.56 TB
+All Sega games = 1.19 TB
+All Atari games = 22.90 MB

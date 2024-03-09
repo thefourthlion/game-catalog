@@ -1,3 +1,32 @@
+Atari 2600 
+Atari 5200 
+Nintendo 
+Master System 
+Atari 7800 
+Genesis 
+Super Nintendo 
+Sega 32X 
+Saturn 
+PlayStation 
+Nintendo 64	 
+Dreamcast 
+PlayStation 2 
+GameCube 
+Xbox 
+Xbox 360 
+PlayStation 3 
+Wii 
+WiiWare
+Game Boy
+Lynx
+Game Gear
+Virtual Boy
+Game Boy Color
+Game Boy Advance
+Nintendo DS
+PlayStation Portable	
+
+
 ☑️✅ Game Boy Color Games Available - #1963 (11 - 87858) @ 0.8464650000000007GB - PLATFORM 41
 ☑️✅ Game Boy Games Available - #2109 (2941 - 87856) @ 0.22061600000000015GB - PLATFORM 4
 ☑️✅ Game Boy Advance Games Available - #3625 (2975 - 88059) @ 13.876949999999985GB - PLATFORM 5
@@ -32,3 +61,4 @@ Game Gear - no data
 👾 = 22,218.89gb
 🎮 = 22,076.43gb
 🧙 = 6,579.36gb
+
