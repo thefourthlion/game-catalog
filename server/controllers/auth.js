@@ -1,6 +1,9 @@
-const User = require("../models/auth");
+const User = require("../models/Users");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+
+//--------------------------------------------Register------------------------------------
+
 exports.registerUser = async (req, res, next) => {
   try {
     const user = new User({
@@ -9,18 +12,29 @@ exports.registerUser = async (req, res, next) => {
       phoneNumber: req.body.phoneNumber,
       password: req.body.password,
     });
+
+    // create web token
     const accessToken = jwt.sign(
-      { id: user.id, username: user.username },
+      {
+        id: user.id,
+        username: user.username,
+      },
       process.env.JWT_ENCRYPT_KEY,
-      { expiresIn: "3m" }
+      {
+        expiresIn: "3m",
+      }
     );
+
     User.register(user, req.body.password, (err, user) => {
       if (err) {
         console.log(err);
         res.send(err);
       } else {
         passport.authenticate("local")(req, res, () => {
-          res.json({ accessToken: accessToken, username: user.username });
+          res.json({
+            accessToken: accessToken,
+            username: user.username,
+          });
           console.log("user registered");
         });
       }
@@ -29,19 +43,39 @@ exports.registerUser = async (req, res, next) => {
     next(err);
   }
 };
+
+//--------------------------------------------Login---------------------------------------
+
 exports.loginUser = async (req, res) => {
   try {
-    const user = new User({ username: req.body.username });
+    const user = new User({
+      username: req.body.username,
+    });
+
+    // create web token
     const accessToken = jwt.sign(
-      { id: user.id, username: user.username },
+      {
+        id: user.id,
+        username: user.username,
+      },
       process.env.JWT_ENCRYPT_KEY,
-      { expiresIn: "3m" }
+      {
+        expiresIn: "3m",
+      }
     );
+
+    // Refresh token
     const refreshToken = jwt.sign(
-      { id: user.id, username: user.username },
+      {
+        id: user.id,
+        username: user.username,
+      },
       process.env.JWT_ENCRYPT_KEY,
-      { expiresIn: "20m" }
+      {
+        expiresIn: "20m",
+      }
     );
+
     req.login(user, (err) => {
       if (err) {
         console.log(err);
@@ -61,6 +95,9 @@ exports.loginUser = async (req, res) => {
     console.log(err);
   }
 };
+//--------------------------------------------Delete--------------------------------------
+
+// working but not giving response?
 exports.deleteUser = async (req, res) => {
   try {
     if ((await User.findById(req.params.id)) === null) {
@@ -73,6 +110,9 @@ exports.deleteUser = async (req, res) => {
     console.log(err);
   }
 };
+
+//--------------------------------------------Log Users *testing*-------------------------
+
 exports.logUsers = async (req, res) => {
   console.log("Log user called");
   User.find({}, (err, result) => {
