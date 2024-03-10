@@ -34,6 +34,7 @@ exports.registerUser = async (req, res, next) => {
           res.json({
             accessToken: accessToken,
             username: user.username,
+            gameList:gameList,
           });
           console.log("user registered");
         });
@@ -86,11 +87,33 @@ exports.loginUser = async (req, res) => {
             accessToken: accessToken,
             refreshToken: refreshToken,
             username: user.username,
+            gameList:gameList,
           });
           console.log("user logged in");
         });
       }
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// ------------------------------------------- change user info -------------------------
+exports.updateUser = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        phoneNumber: req.body.phoneNumber,
+        gameList:req.body.gameList,
+      },
+      (err, result) => {
+        if (err) {
+          res.json({ app: err });
+        }
+        res.send(result);
+      }
+    );
   } catch (err) {
     console.log(err);
   }

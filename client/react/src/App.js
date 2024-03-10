@@ -1,3 +1,4 @@
+import "./styles/userGames.css";
 import "./styles/game.css";
 import "./styles/console.css";
 import "./styles/Spark.css";
@@ -43,6 +44,7 @@ import Games from "./pages/games";
 import Handhelds from "./pages/handhelds";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import UserGames from "./pages/userGames";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -67,6 +69,7 @@ const App = () => {
                         <Route path="handhelds" element={<Handhelds />} />
                         <Route path="login" element={<Login />} />
                         <Route path="register" element={<Register />} />
+                        <Route path="user-games" element={<UserGames />} />
                     </Route>
                 </Routes>
                 <Footer />

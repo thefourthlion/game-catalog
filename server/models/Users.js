@@ -26,6 +26,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    gameList:{
+      type:[String],
+      default:[""],
+    }
   },
   { timestamps: true }
 );

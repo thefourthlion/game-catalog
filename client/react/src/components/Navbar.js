@@ -110,7 +110,7 @@ export default function Navbar() {
         </li>
 
         <li className="nav-item links">
-          <a className="navbar-link" href="/emulators">
+          <a className="navbar-link" href="/user-games">
             Game Lists
           </a>
         </li>
