@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
 const PCGamesSchema = new mongoose.Schema(
   {
-    title: { type: String, required: [true, "Please provide title"] },
-    link: { type: String, required: [true, "Please provide link"] },
-    image: { type: String, required: [true, "Please provide image"] },
+    name: { type: String, required: [true, "Please provide name"] },
+    seeds: { type: String, required: [true, "Please provide seeds"] },
+    date: { type: String, required: [true, "Please provide date"] },
+    size: { type: String, required: [true, "Please provide size"] },
+    torrentLink: {
+      type: String,
+      required: [true, "Please provide torrentLink"],
+    },
+    image: { type: String, },
   },
   { timestamps: true }
 );

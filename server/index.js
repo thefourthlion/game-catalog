@@ -63,4 +63,4 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 app.use("/api/Games", require("./routes/Games"));
 app.use("/api/PCGames", require("./routes/PCGames"));
-app.use('/api/SwitchGames', require('./routes/SwitchGames'));
+app.use('/api/SwitchGames', require('./routes/SwitchGames'));app.use('/api/PCGames', require('./routes/PCGames'));app.use('/api/PCGames', require('./routes/PCGames'));
