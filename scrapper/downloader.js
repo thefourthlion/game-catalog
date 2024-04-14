@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/updated_consoles/dreamcast");
+const { games } = require("./gameLists/updated_consoles/supernintendo");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,9 +20,9 @@ function restartApp() {
   process.exit();
 }
 
-const start = 1;
+const start = 0;
 const end = games.length;
-const currentGameConsole = "Dreamcast";
+const currentGameConsole = "Super Nintendo";
 const delayTime = 15000;
 let retryCount = 0;
 let minute = delayTime * 20;
@@ -114,12 +114,16 @@ const downloadGames = async () => {
         return title;
       });
 
+      console.log(`🤬🤬${gameTitle}`)
+
       const title = await page.evaluate(() => {
         let title = document.querySelector(
           "#main > div.innerMain > div > main > h2 > div:nth-child(2)"
         ).innerText;
         return title;
       });
+
+      console.log(`🤬🤬${title}`)
 
       const downloadDir = `./downloads/${gameTitle}/`;
 

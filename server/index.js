@@ -4,7 +4,7 @@ const passport = require("passport");
 const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 3017;
-const User = require("./models/Users");;
+const User = require("./models/Users");
 const connectDB = require("./config/mongoose");
 const LocalStrategy = require("passport-local").Strategy;
 require("dotenv").config({ path: "./.env" });
@@ -24,7 +24,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 
 app.use(
   session({
@@ -56,7 +55,6 @@ app.get("/", (req, res) => {
 
 app.use(errorHandler);
 
-
 app.listen(PORT, () => {
   console.log("✅ Listening on port " + PORT);
 });
@@ -64,3 +62,5 @@ app.listen(PORT, () => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 app.use("/api/Games", require("./routes/Games"));
+app.use("/api/PCGames", require("./routes/PCGames"));
+app.use('/api/SwitchGames', require('./routes/SwitchGames'));

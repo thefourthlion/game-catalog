@@ -1,3 +1,6 @@
+import "./styles/SwitchGames.css";
+import "./styles/AddPCGames.css";
+import "./styles/PCGames.css";
 import "./styles/userGames.css";
 import "./styles/game.css";
 import "./styles/console.css";
@@ -27,7 +30,7 @@ import "./styles/favorites.css";
 import "./styles/Emulators.css";
 import "./styles/Consoles.css";
 import "./styles/globals.css";
-import "./styles/dropdown.css"
+import "./styles/dropdown.css";
 import React from "react";
 
 import Home from "./pages/Home";
@@ -51,30 +54,30 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Navbar />
-                <Spark />
-                <Routes>
-                    <Route path="/">
-                        <Route index element={<Home />} />
-                        <Route path="Home" element={<Home />} />
-                        <Route path="console" element={<Console />} />
-                        <Route path="consoles" element={<Consoles />} />
-                        <Route path="favorites" element={<Favorites />} />
-                        <Route path="emulators" element={<Emulators />} />
-                        <Route path="games" element={<Games />} />
-                        <Route path="game" element={<Game />} />
-                        <Route path="handhelds" element={<Handhelds />} />
-                        <Route path="login" element={<Login />} />
-                        <Route path="register" element={<Register />} />
-                        <Route path="user-games" element={<UserGames />} />
-                    </Route>
-                </Routes>
-                <Footer />
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Spark />
+        <Routes>
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route path="Home" element={<Home />} />
+            <Route path="console" element={<Console />} />
+            <Route path="consoles" element={<Consoles />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="emulators" element={<Emulators />} />
+            <Route path="games" element={<Games />} />
+            <Route path="game" element={<Game />} />
+            <Route path="handhelds" element={<Handhelds />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="user-games" element={<UserGames />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
 };
 export default App;
