@@ -25,7 +25,6 @@
 
 
 // tb = 74.5 TB
-
 🔵 Playstationportable has 2789 games and they take up 1.43 TB
 🔵 Playstation has 9573 games and they take up 2.12 TB
 🔵 Playstation2 has 11110 games and they take up 13.09 TB
