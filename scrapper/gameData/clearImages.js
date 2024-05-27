@@ -12,7 +12,7 @@ const generate = async () => {
 
     await axios
       .post(
-        `http://localhost:3017/api/games/update/game/all/${games[num]}`,
+        `https://api.thebombroms.com/api/games/update/game/all/${games[num]}`,
         {
           oldBoxImg: "placeholder",
           oldScreenImg: "placeholder",

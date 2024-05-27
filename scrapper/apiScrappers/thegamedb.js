@@ -35,7 +35,7 @@ const generate = async () => {
     console.log(`🔢 GAME - ${num}`);
     const gameTitle = await axios
       .get(
-        `http://localhost:3017/api/games/read/game/${games[num]}`
+        `https://api.thebombroms.com/api/games/read/game/${games[num]}`
       )
       .then((response) => {
         let data = response.data;
@@ -48,7 +48,7 @@ const generate = async () => {
 
     const gameConsole = await axios
       .get(
-        `http://localhost:3017/api/games/read/game/${games[num]}`
+        `https://api.thebombroms.com/api/games/read/game/${games[num]}`
       )
       .then((response) => {
         let data = response.data;
@@ -122,7 +122,7 @@ const generate = async () => {
 
       await axios
         .post(
-          `http://localhost:3017/api/games/update/game/all/${games[num]}`,
+          `https://api.thebombroms.com/api/games/update/game/all/${games[num]}`,
           {
             oldBoxImg: boxArtLink,
             oldScreenImg: titleScreenLink,

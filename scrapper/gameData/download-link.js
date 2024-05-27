@@ -19,7 +19,7 @@ const downloadGames = async () => {
       console.log(`🔢 GAME - ${games[num]}`);
       console.log(`⚛️ GAME - ${num}`);
       const gameDataResponse = await axios.get(
-        `http://localhost:3017/api/games/read/game/${games[num]}`
+        `https://api.thebombroms.com/api/games/read/game/${games[num]}`
       );
       const gameData = gameDataResponse.data;
 
@@ -31,7 +31,7 @@ const downloadGames = async () => {
       if (oldDownloadLink != "0 KB") {
         axios
           .post(
-            `http://localhost:3017/api/games/update/game/${games[num]}`,
+            `https://api.thebombroms.com/api/games/update/game/${games[num]}`,
             {
               downloadLink: localRomHostUrl,
             }

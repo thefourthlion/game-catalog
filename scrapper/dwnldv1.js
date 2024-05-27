@@ -253,7 +253,7 @@ const downloadGames = async () => {
         console.log(`Is ${currentFile} downloaded? ${exists}`);
         // axios
         //   .post(
-        //     `http://localhost:3017/api/games/update/game/${games[num]}`,
+        //     `https://api.thebombroms.com/api/games/update/game/${games[num]}`,
         //     {
         //       downloadLink: localRomHostUrl,
         //     }

@@ -20,7 +20,7 @@ function restartApp() {
   process.exit();
 }
 
-const start = 0;
+const start = 26;
 const end = games.length;
 const currentGameConsole = "PlayStation Portable";
 const delayTime = 15000;
@@ -127,7 +127,7 @@ const downloadGames = async () => {
       );
 
       console.log(
-        `-------------------- #${num} - ${getConsole} ${
+        `-------------------- #${num} / ${end} - ${getConsole} ${
           parseInt(games.length) - parseInt(num)
         } -------------------------`
       );
