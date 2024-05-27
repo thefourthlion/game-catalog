@@ -20,3 +20,8 @@ EXPOSE 3017
 
 # what commands to run when container is up
 CMD ["npm", "run", "dev"]
+
+
+
+# docker build -t thebombroms-server .
+# docker run -dp 3017:3017 thebombroms-server
