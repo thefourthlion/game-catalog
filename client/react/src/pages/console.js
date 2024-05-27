@@ -39,7 +39,7 @@ const Console = () => {
         try {
             console.log(id)
             const response = await Axios.get(
-                `http://localhost:3017/api/games/read/console/${id}/${letter}?limit=${limit}`
+                `https://api.thebombroms.com/api/games/read/console/${id}/${letter}?limit=${limit}`
             );
             const data = response.data;
             setFilteredData(data);

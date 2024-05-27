@@ -7,7 +7,7 @@ const refreshPage = () => {
 const register = (username, email, password, permissions,
     phoneNumber, profilePic) => {
     return axios
-        .post("http://localhost:3017/api/auth/register", {
+        .post("https://api.thebombroms.com/api/auth/register", {
             username,
             email,
             phoneNumber,
@@ -29,7 +29,7 @@ const register = (username, email, password, permissions,
 
 const login = (username, password) => {
     return axios
-        .post("http://localhost:3017/api/auth/login", {
+        .post("https://api.thebombroms.com/api/auth/login", {
             username,
             password,
         })

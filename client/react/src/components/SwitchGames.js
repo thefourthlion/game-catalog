@@ -5,7 +5,7 @@ const SwitchGames = () => {
   const getGames = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3017/api/SwitchGames/read`
+        `https://api.thebombroms.com/api/SwitchGames/read`
       );
       const data = response.data;
       setSwitchGames(data);

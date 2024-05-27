@@ -18,3 +18,8 @@ EXPOSE 4002
 
 # what commands to run when container is up
 CMD ["npm", "start"]
+
+
+
+# docker build -t thebombroms .
+# docker run -dp 4002:4002 thebombroms

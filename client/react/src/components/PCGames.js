@@ -5,7 +5,7 @@ const PCGames = () => {
   const getGames = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3017/api/pcgames/read`
+        `https://api.thebombroms.com/api/pcgames/read`
       );
       const data = response.data;
       setPCGames(data);

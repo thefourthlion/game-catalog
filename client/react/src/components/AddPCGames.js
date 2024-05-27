@@ -16,7 +16,7 @@ const AddPCGames = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3017/api/PCGames/create",
+        "https://api.thebombroms.com/api/PCGames/create",
         {
           title,
           image,
