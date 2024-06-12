@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/updated_consoles/playstationportable");
+const { games } = require("./gameLists/updated_consoles/nintendods");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,9 +20,10 @@ function restartApp() {
   process.exit();
 }
 
-const start = 26;
+const start = 1062;
 const end = games.length;
-const currentGameConsole = "PlayStation Portable";
+// console doesnt matter right now
+const currentGameConsole = "Nintendo DS";
 const delayTime = 15000;
 let retryCount = 0;
 let minute = delayTime * 20;
@@ -66,8 +67,9 @@ const downloadGames = async () => {
     try {
       // Call the restartApp function whenever you want to restart your application
       if (num == end - 1) {
-        restartApp();
+        num = 0
       }
+      
       // await delay(delayTime);
       await page.setDefaultNavigationTimeout(0);
 
@@ -127,12 +129,38 @@ const downloadGames = async () => {
       );
 
       console.log(
-        `-------------------- #${num} / ${end} - ${getConsole} ${
-          parseInt(games.length) - parseInt(num)
+        `-------------------- #${num} / ${end} - ${getConsole} ${parseInt(games.length) - parseInt(num)
         } -------------------------`
       );
 
       let gameExists = false;
+
+      const gameSizeInMB = await page.evaluate(() => {
+        let size = document.querySelector("#download_size").innerText;
+        if (size.includes("KB")) {
+          size = size.replace(/KB/g, "");
+          size = parseFloat(size);
+          size = size / 1000;
+          return size;
+        }
+
+        if (size.includes("MB")) {
+          size = size.replace(/MB/g, "");
+          size = parseFloat(size);
+          return size;
+        }
+
+        if (size.includes("GB")) {
+          size = size.replace(/GB/g, "");
+          size = parseFloat(size);
+          size = size * 1000;
+          return size;
+        }
+      });
+
+      const downloadSpeedInMBPS = 3;
+      let gamesDownloadTimeInSec =
+        parseFloat(gameSizeInMB) / parseFloat(downloadSpeedInMBPS);
 
       if (isDownloadable == "Download") {
         if (
@@ -172,8 +200,21 @@ const downloadGames = async () => {
             (num = num - 1),
           ]);
 
+          await Promise.all([
+            await page.click("#download_form > button"),
+            console.log("Downloading..."),
+            // If the game isn't downloaded yet, don't move forward
+            (num = num - 1),
+          ]);
+
+          console.log(`⏳⌛⌛ Waiting ${gamesDownloadTimeInSec} seconds for download...`)
+
           try {
-            await delay(delayTime);
+            if (retryCount > 1) {
+              await delay(gamesDownloadTimeInSec);
+            } else {
+              await delay(delayTime);
+            }
             // }
 
             const files = fs.readdirSync(`${downloadDir}`);
@@ -246,8 +287,8 @@ const downloadGames = async () => {
       // check if the game exists and we're working on the current console
       if (fs.existsSync(currentZipFile) || fs.existsSync(current7zFile)) {
         if (
-          fs.existsSync(newCurrentFile) == false &&
-          getConsole == currentGameConsole
+          fs.existsSync(newCurrentFile) == false
+          && getConsole == currentGameConsole
         ) {
           // if the game exists, log it
           let exists = "✅";
