@@ -1,45 +1,34 @@
 import os
-import zipfile
-import shutil  # Import shutil for moving files
+import py7zr
 
-
-def unzip_files_in_folder(folder_path):
-    # Define the paths for the extras and corrupted folders
-    extras_folder = os.path.join(folder_path, 'extras')
-    corrupted_folder = os.path.join(folder_path, 'corrupted')
-
-    # Ensure the extras and corrupted folders exist
-    for folder in [extras_folder, corrupted_folder]:
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-
+def extract_7z_files_in_folder(folder_path):
     for root, dirs, files in os.walk(folder_path):
         for file in files:
-            if file.endswith('.zip'):
+            if file.endswith('.7z'):
                 file_path = os.path.join(root, file)
-                extract_path = os.path.splitext(file_path)[0]
+                extract_path = os.path.splitext(file_path)[0]  # Remove .7z extension for extraction
+
                 try:
-                    with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                        zip_ref.extractall(extract_path)
+                    file_size = os.path.getsize(file_path)
+                    if file_size == 0:
+                        print(f"File {file_path} is empty, skipping.")
+                        continue
+
+                    with py7zr.SevenZipFile(file_path, mode='r') as archive:
+                        archive.extractall(path=extract_path)
                     print(f"Extracted {file} to {extract_path}")
-                    # Delete the zip file after successful extraction
-                    os.remove(file_path)
-                except FileNotFoundError as e:
-                    print(f"Error extracting {file}: {e}. Moving to extras folder.")
-                    shutil.move(file_path, extras_folder)
-                except zipfile.BadZipFile as e:
-                    print(f"Corrupted or invalid ZIP file {file}: {e}. Moving to corrupted folder.")
-                    shutil.move(file_path, corrupted_folder)
+                    os.remove(file_path)  # Delete the 7z file
+                except py7zr.exceptions.Bad7zFile:
+                    print(f"Failed to extract {file_path}: Not a valid 7z file")
+                except Exception as e:
+                    print(f"An error occurred while extracting {file_path}: {e}")
 
         for file in files:
             if file == "Vimm's Lair.txt":
                 file_path = os.path.join(root, file)
-                try:
-                    os.remove(file_path)
-                    print(f"Deleted {file_path}")
-                except FileNotFoundError as e:
-                    print(f"Error deleting {file}: {e}")
+                os.remove(file_path)  # Delete the file named "Vimm's Lair.txt"
+                print(f"Deleted {file_path}")
 
+folder_to_search = r"../downloads"
 
-folder_to_search = '../downloads'
-unzip_files_in_folder(folder_to_search)
+extract_7z_files_in_folder(folder_to_search)

@@ -5,7 +5,7 @@ const axios = require("axios");
 const fsExtra = require("fs-extra");
 const { Storage } = require("@google-cloud/storage");
 
-const { games } = require("./gameLists/updated_consoles/nintendods");
+const { games } = require("./gameLists/updated_consoles/playstationportable");
 const { spawn } = require("child_process");
 
 function restartApp() {
@@ -20,14 +20,14 @@ function restartApp() {
   process.exit();
 }
 
-const start = 1062;
+const start = 1;
 const end = games.length;
+console.log(`🔑🔑🔑 ${end}`)
 // console doesnt matter right now
-const currentGameConsole = "Nintendo DS";
+const currentGameConsole = "PlayStation Portable";
 const delayTime = 15000;
 let retryCount = 0;
-let minute = delayTime * 20;
-let retryTimes = minute * 1;
+let retryTimes = 5;
 // let count = 0;
 let newCurrentFile = false;
 let errorCount = 0;
@@ -69,7 +69,7 @@ const downloadGames = async () => {
       if (num == end - 1) {
         num = 0
       }
-      
+
       // await delay(delayTime);
       await page.setDefaultNavigationTimeout(0);
 
@@ -91,7 +91,7 @@ const downloadGames = async () => {
       // Check if the download button is available for the game
       const isDownloadable = await page.evaluate(() => {
         const download = document.querySelector(
-          "#download_form > button"
+          "#dl_form > button:nth-child(3)"
         ).innerText;
         if (download != false) {
           return download;
@@ -102,19 +102,27 @@ const downloadGames = async () => {
 
       const getConsole = await page.evaluate(() => {
         const console = document.querySelector(
-          "#main > div.innerMain > div > main > h2 > div.sectionTitle"
+          ".sectionTitle"
         ).innerText;
         return console;
       });
 
-      const gameTitle = await page.evaluate(() => {
-        let title = document.querySelector(
-          "#main > div.innerMain > div > main > h2 > div:nth-child(2)"
-        ).innerText;
-        title = title.replace(/[,:\s]+/g, "-");
-        title = `${title}`;
+      let gameTitle = await page.evaluate(() => {
+        let title = document.querySelector("#canvas").getAttribute("data-v");
+        // Decode Base64 string to buffer
         return title;
       });
+
+      const buffer = Buffer.from(gameTitle, 'base64');
+
+        // Convert buffer to text
+        gameTitle = buffer.toString('utf8');
+
+        // let gameTitle = document.querySelector(
+        //   ".sectionTitle"
+        // ).innerText;
+        gameTitle = gameTitle.replace(/[,:\s]+/g, "-");
+        gameTitle = `${gameTitle}`;
 
       const downloadDir = `./downloads/${gameTitle}/`;
 
@@ -136,7 +144,7 @@ const downloadGames = async () => {
       let gameExists = false;
 
       const gameSizeInMB = await page.evaluate(() => {
-        let size = document.querySelector("#download_size").innerText;
+        let size = document.querySelector("#dl_size").innerText;
         if (size.includes("KB")) {
           size = size.replace(/KB/g, "");
           size = parseFloat(size);
@@ -176,7 +184,7 @@ const downloadGames = async () => {
             retryCount++;
             console.log(`Retrying...${retryCount}`);
             if (retryCount == retryTimes) {
-              num = num + 1;
+              num++;
               console.log(`MOVING ON 👌...${retryCount}`);
               // await delay(delayTime);
             }
@@ -194,17 +202,14 @@ const downloadGames = async () => {
           });
 
           await Promise.all([
-            await page.click("#download_form > button"),
+            await page.click("#dl_form > button:nth-child(3)"),
             console.log("Downloading..."),
-            // If the game isn't downloaded yet, don't move forward
             (num = num - 1),
           ]);
 
           await Promise.all([
-            await page.click("#download_form > button"),
-            console.log("Downloading..."),
-            // If the game isn't downloaded yet, don't move forward
-            (num = num - 1),
+            await page.click("#dl_form > button:nth-child(3)"),
+            console.log("Downloading..."),            
           ]);
 
           console.log(`⏳⌛⌛ Waiting ${gamesDownloadTimeInSec} seconds for download...`)
@@ -297,19 +302,20 @@ const downloadGames = async () => {
           console.log(
             `Is ${currentZipFile || current7zFile} downloaded? ${exists}`
           );
-          // axios
-          //   .post(
-          //     `http://192.168.0.66:3017/api/games/update/game/${games[num]}`,
-          //     {
-          //       downloadLink: localRomHostUrl,
-          //     }
-          //   )
-          //   .then(() => {
-          //     console.log("✅ CHANGED DESCRIPTION");
-          //   })
-          //   .catch((error) => {
-          //     console.log("🛑 COULDN'T CHANGE DESCRIPTION");
-          //   });
+          axios
+            .post(
+              `http://localhost:3017/api/games/update/game/${games[num]}`,
+              {
+                downloadLink: localRomHostUrl,
+              }
+            )
+            .then(() => {
+              console.log("✅ CHANGED DOWNLOAD LINK");
+            })
+            .catch((error) => {
+              console.log("🛑 COULDN'T CHANGE DOWNLOAD LINK");
+            });
+
           // upload it to google server if its downloaded
           // await uploadFileToGoogleCloud(
           //   `${getConsole}/${gameTitle}/${gameTitle}.zip`,

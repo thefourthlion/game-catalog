@@ -36,7 +36,7 @@ def delete_unzipped_folders(folder_path):
 
 
 # Define the directory to search for folders to zip and potentially delete
-folder_to_search = './downloads'
+folder_to_search = '../downloads'
 
 # Zip folders within the specified directory
 zip_folders_in_folder(folder_to_search)
