@@ -45,7 +45,7 @@ const createLists = async () => {
     console.log(`-------------------------- Searching #${num}`);
 
     try {
-      const response = await axios.get(`https://api.thebombroms.com/api/games/read/game/${num}`);
+      const response = await axios.get(`http://localhost:4010/api/games/read/game/${num}`);
       const data = response.data;
 
       const gameId = data.gameId;

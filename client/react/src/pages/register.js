@@ -24,7 +24,7 @@ const Register = () => {
   const getUsers = async () => {
     try {
       const response = await axios.get(
-        "https://api.thebombroms.com/api/auth/read"
+        "http://localhost:4010/api/auth/read"
       );
       setUser(response.data);
       console.log(response.data);
@@ -36,7 +36,7 @@ const Register = () => {
   const deleteUsers = async (id) => {
     try {
       const response = await axios.delete(
-        `https://api.thebombroms.com/api/auth/delete/${id}`
+        `http://localhost:4010/api/auth/delete/${id}`
       );
       console.log(response.data);
       refreshPage();

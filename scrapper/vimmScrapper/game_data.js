@@ -564,7 +564,7 @@ async function downloadImage(url, selector, path) {
 
       await axios({
         method: "POST",
-        url: `https://api.thebombroms.com/api/games/create`,
+        url: `http://localhost:4010/api/games/create`,
         data: games,
         timeout: 7000,
       })

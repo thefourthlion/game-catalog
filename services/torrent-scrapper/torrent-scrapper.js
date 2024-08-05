@@ -6,7 +6,7 @@
 const puppeteer = require("puppeteer");
 const axios = require("axios");
 
-const url = "https://api.thebombroms.com/api/pcgames";
+const url = "http://localhost:4010/api/pcgames";
 
 
 const getData = (callback) => {

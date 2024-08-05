@@ -31,7 +31,7 @@ let lastGame = 88096;
   for (let num = firstGame; num <= lastGame; num++) {
     try {
       const id = await axios
-        .get(`https://api.thebombroms.com/api/games/read/game/${num}`)
+        .get(`http://localhost:4010/api/games/read/game/${num}`)
         .then((response) => {
           const data = response.data;
           let mediaId = data.mediaId;

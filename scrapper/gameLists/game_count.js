@@ -50,7 +50,7 @@ fs.readdir(consolesDir, async (err, files) => {
           let totalSizeBytes = 0;
           for (const gameId of consoleData.games) {
             try {
-              const response = await axios.get(`https://api.thebombroms.com/api/games/read/game/${gameId}`);
+              const response = await axios.get(`http://localhost:4010/api/games/read/game/${gameId}`);
               const sizeBytes = convertToBytes(response.data.downloadSize);
               totalSizeBytes += sizeBytes;
               totalSizeBytesAllGames += sizeBytes; // Add to the total size of all games

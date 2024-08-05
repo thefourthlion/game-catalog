@@ -17,7 +17,7 @@ const Games = () => {
 
     const getGames = () => {
         Axios.get(
-            `https://api.thebombroms.com/api/games/read?limit=${limit}`
+            `http://localhost:4010/api/games/read?limit=${limit}`
         ).then((res) => {
             const data = res.data;
             setGames(data);

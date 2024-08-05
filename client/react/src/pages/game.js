@@ -16,7 +16,7 @@ const Game = () => {
     const findGame = async () => {
         try {
             const res = await Axios.get(
-                `https://api.thebombroms.com/api/games/read/${id}`
+                `http://localhost:4010/api/games/read/${id}`
             );
             const data = res.data;
             console.log(data);

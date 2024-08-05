@@ -36,7 +36,7 @@ const generate = async () => {
   for (let num = starting; num <= ending; num++) {
     // ------------------------------- get data from db -------------------------------
     const res = await axios.get(
-      `https://api.thebombroms.com/api/games/read/game/${num}`
+      `http://localhost:4010/api/games/read/game/${num}`
     );
 
     const data = res.data;

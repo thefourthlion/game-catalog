@@ -1,17 +1,12 @@
-version: "25.0.2"
 services:
   client:
-    build: /
-    container_name: thebombroms-client
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: game-catalog-client
     ports:
-      - '4002:4002'
-    # wont work in windows
-    # volumes:
-    #   - ./client/react:/thebombroms
-    stdin_open: true
-    tty: true
-#     networks:
-#       - docker-network
-# networks:
-#   docker-network:
-#     external: true
+      - "4009:4009"
+    environment:
+      - PORT=4009
+    volumes:
+      - ./:/game-catalog-client

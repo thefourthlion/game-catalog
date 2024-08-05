@@ -4,7 +4,7 @@ FROM node:17-alpine
 RUN npm install -g nodemon
 
 # where to work from, what everything will have access to
-WORKDIR /thebombroms-server
+WORKDIR /game-catalog-server
 
 # copy package.json to cache
 COPY package.json .
@@ -16,12 +16,12 @@ RUN npm install
 COPY . .
 
 # which port to use and which port to map it to
-EXPOSE 3017
+EXPOSE 4010
 
 # what commands to run when container is up
 CMD ["npm", "run", "dev"]
 
 
 
-# docker build -t thebombroms-server .
-# docker run -dp 3017:3017 thebombroms-server
+# docker build -t game-catalog-server .
+# docker run -dp 4010:4010 game-catalog-server

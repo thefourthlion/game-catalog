@@ -1,15 +1,12 @@
-version: "25.0.2"
 services:
-  api:
-    build: /
-    container_name: thebombroms-server
+  game-catalog-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: game-catalog-server
     ports:
-      - "3017:3017"
+      - "4010:4010"
+    environment:
+      - PORT=4010
     volumes:
-      - ./:/thebombroms-server
-      - /node_modules
-#     networks:
-#       - docker-network
-# networks:
-#   docker-network:
-#     external: true
+      - ./:/game-catalog-server
